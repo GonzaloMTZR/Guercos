@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Empleado;
+use App\Puesto;
 
 class EmpleadosController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,8 @@ class EmpleadosController extends Controller
      */
     public function index()
     {
-        return view('modules.empleados.index');
+        $empleados = Empleado::all();
+        return view('modules.empleados.index', compact('empleados'));
     }
 
     /**
@@ -23,7 +32,8 @@ class EmpleadosController extends Controller
      */
     public function create()
     {
-        return view('modules.empleados.create');
+        $puestos = Puesto::all();
+        return view('modules.empleados.create', compact('puestos'));
     }
 
     /**
@@ -32,9 +42,17 @@ class EmpleadosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Empleado $empleado)
     {
-        //
+        $empleado->nombre = request('nombre');
+        $empleado->fechaNacimiento = request('fechaNacimiento');
+        $empleado->direccion = request('direccion');
+        $empleado->numeroTelefonico = request('numeroTelefonico');
+        $empleado->email = request('email');
+        $empleado->idPuesto = request('idPuesto');
+        $empleado->save();
+
+        return redirect('/empleados');
     }
 
     /**

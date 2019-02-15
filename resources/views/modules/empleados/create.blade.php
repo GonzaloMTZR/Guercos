@@ -21,7 +21,7 @@
     <div class="col-md-12 col-xl-12 mt-3 mb-3">
         <div class="card">
             <div class="card-block user-detail-card">
-                <form method="POST" action="/inventario" enctype="multipart/form-data">
+                <form method="POST" action="/empleados" enctype="multipart/form-data">
                     @csrf
 
                     <div class="row">
@@ -59,7 +59,7 @@
                                     <h6 class="f-w-400 m-b-30"><i class="icofont icofont-ui-home"></i>Dirección :</h6>
                                 </div>
                                 <div class="col-sm-7">
-                                    <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                                    <textarea class="form-control" name="direccion" id="" cols="30" rows="10"></textarea>
                                 </div>
                             </div>
                             <div class="row">
@@ -67,7 +67,7 @@
                                     <h6 class="f-w-400 m-b-30"><i class="icofont icofont-ui-touch-phone"></i>Numero de telefono :</h6>
                                 </div>
                                 <div class="col-sm-7">
-                                        <input type="text" class="form-control mob_no" data-mask="999-999-9999">
+                                        <input type="text" name="numeroTelefonico" class="form-control mob_no" data-mask="999-999-9999">
                                 </div>
                             </div>
                         
@@ -76,7 +76,13 @@
                                     <h6 class="f-w-400 m-b-30"><i class="icofont icofont-fax"></i>Puesto de trabajo :</h6>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" name="puesto" id="">
+                                    <select name="idPuesto" id="">
+                                        <option selected disabled>Seleccione el puesto del empleado</option>
+
+                                        @foreach ($puestos as $puesto)
+                                            <option value="{{$puesto['id']}}">{{$puesto['puesto']}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">

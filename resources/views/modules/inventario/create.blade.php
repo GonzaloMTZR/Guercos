@@ -63,23 +63,17 @@
                                                 <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
                                                 <input type="text" class="form-control" placeholder="Precio" name="precio">
                                             </div>
-                                        </div>
-
-                                            
+                                        </div>  
                                     </div>
 
                                     <div class="row">
-                                        
-                                            <div class="col-sm-6">
-                                                    <label for="imagenProducto">Imagen del producto</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="icofont icofont-file-image"></i></span>
-                                                        <input type="file" class="form-control" name="imagenProducto">
-                                                    </div>
-                                            </div>
-                                
-                                        
-                                        
+                                        <div class="col-sm-6">
+                                                <label for="imagenProducto">Imagen del producto</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="icofont icofont-file-image"></i></span>
+                                                    <input type="file" class="form-control" name="imagenProducto">
+                                                </div>
+                                        </div>   
                                     </div>
 
                                     <div class="col-sm-12">

@@ -17,9 +17,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/pages/flag-icon/flag-icon.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/pages/menu-search/css/component.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/style.css')}}">
-
-
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/bower_components/jquery.steps/css/jquery.steps.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/jquery.mCustomScrollbar.css')}}">
+    @yield('css')
 </head>
 
 <body>
@@ -77,49 +77,6 @@
                                
                             </ul>
                             <ul class="nav-right">
-                                
-                                <li class="header-notification">
-                                    <a href="#!">
-                                        <i class="ti-bell"></i>
-                                        <span class="badge bg-c-pink"></span>
-                                    </a>
-                                    <ul class="show-notification">
-                                        <li>
-                                            <h6>Notificaciones</h6>
-                                            <label class="label label-danger">Nuevas</label>
-                                        </li>
-                                        <li>
-                                            <div class="media">
-                                                <img class="d-flex align-self-center" src="{{asset('admin/assets/images/user.png')}}" alt="Generic placeholder image">
-                                                <div class="media-body">
-                                                    <h5 class="notification-user">John Doe</h5>
-                                                    <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                    <span class="notification-time">30 minutes ago</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="media">
-                                                <img class="d-flex align-self-center" src="{{asset('admin/assets/images/user.png')}}" alt="Generic placeholder image">
-                                                <div class="media-body">
-                                                    <h5 class="notification-user">Joseph William</h5>
-                                                    <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                    <span class="notification-time">30 minutes ago</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="media">
-                                                <img class="d-flex align-self-center" src="{{asset('admin/assets/images/user.png')}}" alt="Generic placeholder image">
-                                                <div class="media-body">
-                                                    <h5 class="notification-user">Sara Soudein</h5>
-                                                    <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                    <span class="notification-time">30 minutes ago</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
                             
                                 <li class="user-profile header-notification">
                                     <a href="#!">
@@ -166,7 +123,7 @@
                                     <img class="img-40 img-radius" src="{{asset('admin/assets/images/avatar-4.jpg')}}" alt="User-Profile-Image">
                                     <div class="user-details">
                                         <span>{{Auth::user()->name}}</span>
-                                        <span id="more-details">PUESTO DE LA EMPRESA<i class="ti-angle-down"></i></span>
+                                        <span id="more-details">Puesto en la empresa / Rol en el sistema<i class="ti-angle-down"></i></span>
                                     </div>
                                 </div>
 
@@ -174,7 +131,6 @@
                                     <ul>
                                         <li class="more-details">
                                             <a href="/perfil/show"><i class="ti-user"></i>Ver Perfil</a>
-                                            <a href="#!"><i class="ti-settings"></i>Configuración</a>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                                 <i class="ti-layout-sidebar-left"></i>Cerrar Sesión
@@ -185,13 +141,6 @@
                                             </form>
                                         </li>
                                     </ul>
-                                </div>
-                            </div>
-                            <div class="pcoded-search">
-                                <span class="searchbar-toggle">  </span>
-                                <div class="pcoded-search-box ">
-                                    <input type="text" placeholder="Buscar">
-                                    <span class="search-icon"><i class="ti-search" aria-hidden="true"></i></span>
                                 </div>
                             </div>
                             
@@ -215,14 +164,14 @@
                                                 <li class="">
                                                     <a href="/inventario">
                                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.ver.default">Ver articulos</span>
+                                                        <span class="pcoded-mtext" data-i18n="nav.inv.ver">Ver articulos en el inventario</span>
                                                         <span class="pcoded-mcaret"></span>
                                                     </a>
                                                 </li>
                                                 <li class="">
                                                     <a href="/inventario/create">
                                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.add.ecommerce">Agregar</span>
+                                                        <span class="pcoded-mtext" data-i18n="nav.inv.add">Agregar articulo al invenatrio</span>
                                                         <span class="pcoded-mcaret"></span>
                                                     </a>
                                                 </li>
@@ -237,40 +186,56 @@
                                             </a>
                                             <ul class="pcoded-submenu">
                                                 <li class="">
-                                                    <a href="index.html">
+                                                    <a href="/ventas">
                                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.dash.default">Ver todas las ventas</span>
+                                                        <span class="pcoded-mtext" data-i18n="nav.venta.ver">Ver todas las ventas</span>
                                                         <span class="pcoded-mcaret"></span>
                                                     </a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="dashboard-ecommerce.html">
+                                                    <a href="/ventas/create">
                                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.dash.ecommerce">Agregar una venta</span>
+                                                        <span class="pcoded-mtext" data-i18n="nav.venta.add">Agregar una venta</span>
                                                         <span class="pcoded-mcaret"></span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
 
+                                        <li class="">    
+                                            <a href="/paquetes">        
+                                                <span class="pcoded-micon"><i class="ti-gift"></i><b>P</b></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.paquetes.main">Paquetes</span>        
+                                                <span class="pcoded-mcaret"></span>    
+                                            </a>
+                                        </li>
+
+                                        <li class="">    
+                                            <a href="/entradas">        
+                                                <span class="pcoded-micon"><i class="ti-shift-left"></i><b>E</b></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.entradas.main">Entradas</span>        
+                                                <span class="pcoded-mcaret"></span>    
+                                            </a>
+                                        </li>
+
                                         <li class="pcoded-hasmenu">
                                             <a href="javascript:void(0)">
                                                 <span class="pcoded-micon"><i class="ti-crown"></i><b>F</b></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.fie.main"><Nav>Fiestas</Nav></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.fiesta.main"><Nav>Fiestas</Nav></span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                             <ul class="pcoded-submenu">
                                                 <li class="">
                                                     <a href="/fiestas">
                                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.ver.default">Ver fiestas</span>
+                                                        <span class="pcoded-mtext" data-i18n="nav.fiesta.ver">Ver fiestas</span>
                                                         <span class="pcoded-mcaret"></span>
                                                     </a>
                                                 </li>
                                                 <li class="">
                                                     <a href="/fiestas/create">
                                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.add.ecommerce">Agendar fiesta</span>
+                                                        <span class="pcoded-mtext" data-i18n="nav.fiesta.add">Agendar fiesta</span>
                                                         <span class="pcoded-mcaret"></span>
                                                     </a>
                                                 </li>
@@ -287,19 +252,30 @@
                                                 <li class="">
                                                     <a href="/empleados">
                                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.dash.default">Ver todos los empleados</span>
+                                                        <span class="pcoded-mtext" data-i18n="nav.emp.ver">Ver todos los empleados</span>
                                                         <span class="pcoded-mcaret"></span>
                                                     </a>
                                                 </li>
                                                 <li class="">
                                                     <a href="/empleados/create">
                                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.dash.ecommerce">Agregar nuevo empleado</span>
+                                                        <span class="pcoded-mtext" data-i18n="nav.emp.add">Agregar nuevo empleado</span>
                                                         <span class="pcoded-mcaret"></span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
+
+                                        <li class="">    
+                                            <a href="/cocina">        
+                                                <span class="pcoded-micon"><i class="icofont icofont-fork-and-knife"></i><b>C</b></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.cocina.main">Cocina</span>        
+                                                <span class="pcoded-mcaret"></span>    
+                                            </a>
+                                        </li>
+
+                                        
+
                                 </ul>
                         </div>
                     </nav>
@@ -320,7 +296,6 @@
 </div>
 
 
-
 <script type="text/javascript" src="{{asset('admin/bower_components/jquery/js/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/bower_components/jquery-ui/js/jquery-ui.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/bower_components/popper.js/js/popper.min.js')}}"></script>
@@ -336,27 +311,8 @@
 <script src="{{asset('admin/assets/js/demo-12.js')}}"></script>
 <script src="{{asset('admin/assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/assets/js/script.js')}}"></script>
-
-
-<script src="{{asset('admin/bower_components/peity/js/jquery.peity.js ')}}"></script>
-<script type="text/javascript" src="{{asset('admin/bower_components/chart.js/js/Chart.js')}}"></script>
-<script src="{{asset('admin/bower_components/d3/js/d3.js')}}"></script>
-<script src="{{asset('admin/bower_components/nvd3/js/nv.d3.js')}}"></script>
-<script src="{{asset('admin/assets/pages/chart/nv-chart/js/stream_layers.js')}}"></script>
-<script src="{{asset('admin/assets/pages/widget/amchart/amcharts.js')}}"></script>
-<script src="{{asset('admin/assets/pages/widget/amchart/gauge.js')}}"></script>
-<script src="{{asset('admin/assets/pages/widget/amchart/pie.js')}}"></script>
-<script src="{{asset('admin/assets/pages/widget/amchart/serial.js')}}"></script>
-<script src="{{asset('admin/assets/pages/widget/amchart/ammap.js')}}"></script>
-<script src="{{asset('admin/assets/pages/widget/amchart/light.js')}}"></script>
-<script src="{{asset('admin/assets/pages/widget/amchart/worldLow.js')}}"></script>
-<script src="{{asset('admin/assets/pages/widget/amchart/continentsLow.js')}}"></script>
-<script src="{{asset('admin/bower_components/raphael/js/raphael.min.js')}}"></script>
-<script src="{{asset('admin/bower_components/morris.js/js/morris.js')}}"></script>
-<script src="{{asset('admin/assets/pages/chart/knob/jquery.knob.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/assets/pages/dashboard/analytic-dashboard.js')}}"></script>
-
-
+<script src="{{asset('admin/bower_components/jquery.cookie/js/jquery.cookie.js')}}"></script>
+@yield('javascripts')
 </body>
 
 </html>

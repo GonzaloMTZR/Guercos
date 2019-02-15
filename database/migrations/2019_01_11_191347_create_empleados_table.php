@@ -18,7 +18,7 @@ class CreateEmpleadosTable extends Migration
             $table->text('nombre');
             $table->date('fechaNacimiento');
             $table->mediumText('direccion');
-            $table->integer('numeroTelefonico');
+            $table->float('numeroTelefonico');
             $table->text('email');
             $table->unsignedInteger('idPuesto');
             $table->foreign('idPuesto')->references('id')->on('puestos');

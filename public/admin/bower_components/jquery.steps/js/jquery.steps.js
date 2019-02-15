@@ -1936,7 +1936,39 @@ var defaults = $.fn.steps.defaults = {
      * @default function (event, currentIndex) { }
      * @for defaults
      **/
-    onFinished: function (event, currentIndex) { },
+    onFinished: function (event, currentIndex) { 
+        var param = {
+            nombre: document.getElementById("nombre").value,
+            descripcion: document.getElementById("descripcion").value,
+            /*nombrePadre: document.getElementById("nombrePadre").value,
+            nombreNiño: document.getElementById("nombreNiño").value,
+            edadNiño: document.getElementById("edadNiño").value,
+            fechaNacimiento: document.getElementById("fechaNacimiento").value*/
+        };
+
+        $.ajaxSetup({ 
+            headers: { 
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+            } 
+        });
+
+        var formId = '#verticle-wizard';
+
+        $.ajax({
+            url: '/categorias',
+            type: 'post',
+            data: param,
+            dataType: 'json',
+
+            success: function(data){
+                console.log('ok');
+            },
+            error: function(){
+				console.log('Error');
+			}
+        });
+        
+    },
 
     /**
      * Fires after async content is loaded. 
@@ -1974,7 +2006,7 @@ var defaults = $.fn.steps.defaults = {
          * @default "Cancel"
          * @for defaults
          **/
-        cancel: "Cancel",
+        cancel: "Cancelar",
 
         /**
          * This label is important for accessability reasons.
@@ -1985,7 +2017,7 @@ var defaults = $.fn.steps.defaults = {
          * @default "current step:"
          * @for defaults
          **/
-        current: "current step:",
+        current: "Paso actual:",
 
         /**
          * This label is important for accessability reasons and describes the kind of navigation.
@@ -1996,7 +2028,7 @@ var defaults = $.fn.steps.defaults = {
          * @for defaults
          * @since 0.9.7
          **/
-        pagination: "Pagination",
+        pagination: "Paginación",
 
         /**
          * Label for the finish button.
@@ -2006,7 +2038,7 @@ var defaults = $.fn.steps.defaults = {
          * @default "Finish"
          * @for defaults
          **/
-        finish: "Finish",
+        finish: "Enviar",
 
         /**
          * Label for the next button.
@@ -2016,7 +2048,7 @@ var defaults = $.fn.steps.defaults = {
          * @default "Next"
          * @for defaults
          **/
-        next: "Next",
+        next: "Siguiente",
 
         /**
          * Label for the previous button.
@@ -2026,7 +2058,7 @@ var defaults = $.fn.steps.defaults = {
          * @default "Previous"
          * @for defaults
          **/
-        previous: "Previous",
+        previous: "Regresar",
 
         /**
          * Label for the loading animation.
@@ -2036,7 +2068,7 @@ var defaults = $.fn.steps.defaults = {
          * @default "Loading ..."
          * @for defaults
          **/
-        loading: "Loading ..."
+        loading: "Cargando ..."
     }
 };
 })(jQuery);
