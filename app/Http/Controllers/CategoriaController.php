@@ -40,19 +40,7 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-
-        if($request->ajax()) {
-            $categoria = Categoria::create($request->all());
-            return response()->json([$categoria]);
-        }
-
-        /*$response = array(
-            $categoria->nombre => request('nombre'),
-            $categoria->descripcion => request('descripcion')
-        );
-        //$response->save();
-
-        return \Response::json($response);*/
+        
     }
 
     /**

@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class PaquetesController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Display a listing of the resource.
@@ -19,7 +15,8 @@ class PaquetesController extends Controller
      */
     public function index()
     {
-        return view ('modules.paquetes.index');
+        $paquetes = Paquetes::all();
+        return view ('modules.paquetes.index', compact('paquetes'));
     }
 
     /**
@@ -51,7 +48,7 @@ class PaquetesController extends Controller
      */
     public function show(Paquetes $paquetes)
     {
-        //
+        return view('modules.paquetes.show');
     }
 
     /**

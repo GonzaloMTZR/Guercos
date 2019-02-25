@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Empleado;
-use App\Puesto;
 
 class EmpleadosController extends Controller
 {
@@ -32,8 +31,8 @@ class EmpleadosController extends Controller
      */
     public function create()
     {
-        $puestos = Puesto::all();
-        return view('modules.empleados.create', compact('puestos'));
+        //$puestos = Puesto::all();
+        return view('modules.empleados.create');
     }
 
     /**
@@ -49,7 +48,6 @@ class EmpleadosController extends Controller
         $empleado->direccion = request('direccion');
         $empleado->numeroTelefonico = request('numeroTelefonico');
         $empleado->email = request('email');
-        $empleado->idPuesto = request('idPuesto');
         $empleado->save();
 
         return redirect('/empleados');

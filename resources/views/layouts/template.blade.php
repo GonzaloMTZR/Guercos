@@ -157,21 +157,21 @@
                                         <li class="pcoded-hasmenu">
                                             <a href="javascript:void(0)">
                                                 <span class="pcoded-micon"><i class="ti-view-list-alt"></i><b>Inv</b></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.inv.main"><Nav>Inventario</Nav></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.inv.main"><Nav>Productos</Nav></span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                             <ul class="pcoded-submenu">
                                                 <li class="">
-                                                    <a href="/inventario">
+                                                    <a href="/productos">
                                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.inv.ver">Ver articulos en el inventario</span>
+                                                        <span class="pcoded-mtext" data-i18n="nav.inv.ver">Ver productos en el inventario</span>
                                                         <span class="pcoded-mcaret"></span>
                                                     </a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="/inventario/create">
+                                                    <a href="/productos/create">
                                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.inv.add">Agregar articulo al invenatrio</span>
+                                                        <span class="pcoded-mtext" data-i18n="nav.inv.add">Agregar producto al invenatrio</span>
                                                         <span class="pcoded-mcaret"></span>
                                                     </a>
                                                 </li>
@@ -274,7 +274,29 @@
                                             </a>
                                         </li>
 
-                                        
+                                        <li class="pcoded-hasmenu">
+                                            <a href="#">
+                                                <span class="pcoded-micon"><i class="ti-user"></i><b>POV</b></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.pov.main"><Nav>Puntos de venta</Nav></span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                            <ul class="pcoded-submenu">
+                                                <li class="">
+                                                    <a href="/POVC">
+                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                        <span class="pcoded-mtext" data-i18n="nav.pov.POVC">Punto de venta de cocina</span>
+                                                        <span class="pcoded-mcaret"></span>
+                                                    </a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="/POVE">
+                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                        <span class="pcoded-mtext" data-i18n="nav.pov.POVE">Punto de venta de entrada</span>
+                                                        <span class="pcoded-mcaret"></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
 
                                 </ul>
                         </div>

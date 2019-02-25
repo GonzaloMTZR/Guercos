@@ -20,8 +20,6 @@ class CreateEmpleadosTable extends Migration
             $table->mediumText('direccion');
             $table->float('numeroTelefonico');
             $table->text('email');
-            $table->unsignedInteger('idPuesto');
-            $table->foreign('idPuesto')->references('id')->on('puestos');
             $table->timestamps();
         });
     }

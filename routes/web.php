@@ -12,7 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    if(Auth::check()){
+        return redirect('/dashboard');
+    }else{
+        return view('auth.login');
+    }
+    
 });
 
 Route::get('/dashboard', 'PagesController@dashboard')->middleware('auth');
@@ -27,6 +32,7 @@ Route::resource('/paquetes', 'PaquetesController')->middleware('auth');
 Route::resource('/fiestas', 'FiestaController')->middleware('auth');
 Route::resource('/ventas', 'VentaController')->middleware('auth');
 Route::resource('/categorias', 'CategoriaController')->middleware('auth');
+Route::resource('/productos', 'ProductoController')->middleware('auth');
 
 
 /* Rutas personalizdas para auth
@@ -43,8 +49,6 @@ Route::resource('/categorias', 'CategoriaController')->middleware('auth');
     Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
     Route::post('password/reset', 'Auth\PasswordController@reset');
 */
-
-
 
 //Rutas para el registro e inicio de sesión
 Auth::routes();

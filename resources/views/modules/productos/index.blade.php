@@ -1,0 +1,163 @@
+@extends('layouts.template')
+@section('title', '- Productos')
+@section('css')
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">-->
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}">
+@endsection
+
+@section('content')
+    <div class="page-header card">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                    <i class="icofont icofont-royal bg-c-lite-green"></i>
+                    <div class="d-inline">
+                        <h4>Prodcutos</h4>
+                        <span>Productos disponibles.</span>
+                        <!--<form action="POST">
+                            <div class="input-group input-group-button input-group-primary">
+                                <input type="text" class="form-control" placeholder="Buscar empleado...">
+                                <button type="submit " class="btn btn-primary input-group-addon" id="basic-addon1">Buscar</button>
+                            </div>
+                        </form>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page body start -->
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- Product list card start -->
+            <div class="card">
+                <div class="card-header">
+                    <h5>Lista de productos</h5>
+                    <span>Haga click en el signo de mas para ver las acciones.</span>
+                    <a class="btn btn-primary waves-effect waves-light f-right d-inline-block md-trigger" href="/productos/create"> 
+                        <i class="icofont icofont-plus m-r-5"></i> Agregar producto</a>
+                </div>
+
+                <div class="card-block">
+                    <div class="table-responsive">
+                        <div class="table-content">
+                            <div class="project-table">
+                                <table id="productos" class="table table-striped dt-responsive nowrap" style="width:100%"> <!--class="table table-striped dt-responsive nowrap"-->
+                                    
+                                    <thead>
+                                        <tr>
+                                            <th>Imagen</th>
+                                            <th>Codigo</th>
+                                            <th>Nombre</th>
+                                            <th>Área</th>
+                                            <th>Unidad</th>
+                                            <th>Categoria</th>
+                                            <th>Costo</th>
+                                            <th>Stock</th>
+                                            <th>Es infinito?</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+
+                                    <!-- Foreach para imprimir los datos de la base de datos -->
+                                    <tbody>
+                                        @foreach ($productos as $producto)
+                                                <tr>
+                                                    <td class="pro-list-img">
+                                                        <img src="/imagenes/productos/{{$producto->imagenProducto}}" width="70px" class="img-fluid" alt="Imagen">
+                                                    </td>
+                                                    <td>{{$producto->codigo}}</td>
+                                                    <td class="pro-name">
+                                                        <h6>{{$producto->descripcion}}</h6>
+                                                    </td>
+                                                    <td>{{$producto->area}}</td>
+                                                    <td>{{$producto->tipoUnidad}}</td>
+                                                    <td>{{$producto->categoria}}</td>
+                                                    <td>${{$producto->precio}}</td>
+                                                    <td>
+                                                        <label class="text-{{$producto->cantidad <= 10 ? 'danger' : 'success'}}">{{$producto->cantidad}}</label>
+                                                    </td>
+                                                    <td>{{$producto->infinito}}</td>
+                                                    <td>
+                                                        <a href="/productos/{{$producto->id}}/edit" class="btn btn-warning">Editar</a>
+                                                  
+                                                        <form id="eliminar" method="POST" action="/productos/{{ $producto->id }}">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                    
+                                                            <div class="field">
+                                                                <div class="control">
+                                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        
+                                                    </td>
+                                                </tr>
+                                            
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section('javascripts')
+    <script type="text/javascript">
+        (function() {
+        var form = document.getElementById('eliminar');
+        form.addEventListener('submit', function(event) {
+            // si es false entonces que no haga el submit
+            if (!confirm('Realmente desea eliminar?')) {
+            event.preventDefault();
+            }
+        }, false);
+        })();
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#productos').DataTable({
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "No hay registros",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total registros)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Registros",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "No se econtraron coincidencias",
+                    "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                    } /* Aqui acaba la paginación */
+                } /* Aqui acaba el Languaje */
+            });
+        });
+    </script>
+    <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin/bower_components/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
+
+    <script src="{{asset('admin/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('admin/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
+    <!--<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>-->
+@endsection
+
+
+@endsection

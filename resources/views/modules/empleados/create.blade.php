@@ -76,12 +76,12 @@
                                     <h6 class="f-w-400 m-b-30"><i class="icofont icofont-fax"></i>Puesto de trabajo :</h6>
                                 </div>
                                 <div class="col-sm-7">
-                                    <select name="idPuesto" id="">
+                                    <select class="form-control" name="idPuesto" id="">
                                         <option selected disabled>Seleccione el puesto del empleado</option>
 
-                                        @foreach ($puestos as $puesto)
-                                            <option value="{{$puesto['id']}}">{{$puesto['puesto']}}</option>
-                                        @endforeach
+                                        <!--@ foreach ($puestos as $puesto)
+                                            <option value="{ {$puesto['id']}}">{ {$puesto['puesto']}}</option>
+                                        @ endforeach-->
                                     </select>
                                 </div>
                             </div>

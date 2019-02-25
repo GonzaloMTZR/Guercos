@@ -24,7 +24,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5>Lista de productos</h5>
-                    <button type="button" class="btn btn-primary waves-effect waves-light f-right d-inline-block md-trigger" data-modal="modal-13"> 
+                    <button type="button" class="btn btn-primary waves-effect waves-light f-right d-inline-block md-trigger" href="#"> 
                         <i class="icofont icofont-plus m-r-5"></i> Agregar producto</button>
                 </div>
 
