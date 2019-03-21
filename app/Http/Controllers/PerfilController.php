@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class PerfilController extends Controller
 {
@@ -49,7 +50,9 @@ class PerfilController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   
+        /*$user = User::findOrFail($id);
+        dd($user);*/
         return view('modules.perfil.show');
     }
 
@@ -61,7 +64,7 @@ class PerfilController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('modules.perfil.edit');
     }
 
     /**

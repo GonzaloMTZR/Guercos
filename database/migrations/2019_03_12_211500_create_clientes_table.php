@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEstatusFiestasTable extends Migration
+class CreateClientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class CreateEstatusFiestasTable extends Migration
      */
     public function up()
     {
-        Schema::create('estatus_fiestas', function (Blueprint $table) {
+        Schema::create('clientes', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('estatusFiesta');
+            $table->text('nombre');
+            $table->mediumText('calle');
+            $table->mediumText('colonia');
+            $table->text('ciudad');
+            $table->text('telefonoCasa');
+            $table->text('telefonoCelular');
+            $table->text('correo')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +33,6 @@ class CreateEstatusFiestasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estatus_fiestas');
+        Schema::dropIfExists('clientes');
     }
 }

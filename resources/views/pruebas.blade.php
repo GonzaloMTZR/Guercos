@@ -1,15 +1,20 @@
 @extends('layouts.template')
-@section('title', '- Entrada de invitados')
+@section('title', '- Pruebas')
+
 
 @section('content')
     <div class="page-header card">
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="icofont icofont-rounded-double-right bg-c-lite-green"></i>
+                    <i class="icofont icofont-royal bg-c-lite-green"></i>
                     <div class="d-inline">
-                        <h4>Entrada de invitados</h4>
-                        <span>Registro de entradas de los invitados (PRUEBA).</span>
+                        <h4>Pruebas de usuarios</h4>
+                        @hasanyrole($roles)
+                            <span>Soy usuario {{Auth::user()->name}} - {{$roles}}</span>
+                        @else
+                            Si muestra esto no jala
+                        @endrole
                         <!--<form action="POST">
                             <div class="input-group input-group-button input-group-primary">
                                 <input type="text" class="form-control" placeholder="Buscar empleado...">
@@ -21,4 +26,7 @@
             </div>
         </div>
     </div>
+
+    
+
 @endsection

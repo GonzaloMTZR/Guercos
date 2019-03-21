@@ -1,5 +1,4 @@
 <!-- Perfil del usuario -->
-
 @extends('layouts.template')
 @section('content')
 <div class="col-md-12 col-xl-12 ">
@@ -17,10 +16,10 @@
                 <div class="col-sm-8 user-detail">
                     <div class="row">
                         <div class="col-sm-5">
-                            <h6 class="f-w-400 m-b-30"><i class="icofont icofont-ui-user"></i>Nombre :</h6>
+                            <h6 class="f-w-400 m-b-30"><i class="icofont icofont-ui-user"></i>Nombre:</h6>
                         </div>
                         <div class="col-sm-7">
-                            <h6 class="m-b-30">Gregory Durk</h6>
+                            <h6 class="m-b-30">{{Auth::user()->name}}</h6>
                         </div>
                     </div>
                     <div class="row">
@@ -36,7 +35,7 @@
                             <h6 class="f-w-400 m-b-30"><i class="icofont icofont-ui-email"></i>Correo electrónico :</h6>
                         </div>
                         <div class="col-sm-7">
-                            <h6 class="m-b-30"><a href="mailto:dummy@gmail.com">techdemo@gmail.com</a></h6>
+                            <h6 class="m-b-30"><a href="mailto:dummy@gmail.com">{{Auth::user()->email}}</a></h6>
                         </div>
                     </div>
                     <div class="row">
@@ -61,7 +60,10 @@
                             <h6 class="f-w-400 m-b-30"><i class="icofont icofont-fax"></i>Puesto de trabajo :</h6>
                         </div>
                         <div class="col-sm-7">
-                            <h6 class="m-b-30">Puesto 1</h6>
+                            @foreach(Auth::user()->roles()->pluck('name') as $role_name)
+                                <h6 class="m-b-30">{{$role_name}}</h6>
+                            @endforeach
+                            
                         </div>
                     </div>
                 </div>

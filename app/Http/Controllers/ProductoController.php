@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Producto;
+use Alert;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -60,7 +61,9 @@ class ProductoController extends Controller
         ]);
         //dd ($producto);
         
+        Alert::success('Success Message', 'Optional Title');
         return redirect('/productos');
+        
     }
 
     /**

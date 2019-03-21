@@ -15,12 +15,11 @@ class CreateFiestasTable extends Migration
     {
         Schema::create('fiestas', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('folioFiesta');
             $table->date('fechaFiesta');
             $table->time('horaInicio');
             $table->time('horaFinal');
             $table->time('horaComida');
-            $table->unsignedInteger('idSalon'); //TABLA - HECHA
+            $table->text('salon');
             $table->text('nombrePapa');
             $table->text('nombreNiño');
             $table->date('fechaNacNiño');
@@ -30,22 +29,21 @@ class CreateFiestasTable extends Migration
             $table->text('ciudad');
             $table->text('telefonoCasa');
             $table->text('telefonoCelular');
-            $table->text('correo');
+            $table->text('correo')->nullable();
             $table->date('fechaReservacion');
             $table->unsignedInteger('idPaquete'); //TABLA - HECHA
             $table->unsignedInteger('idPeriodo'); //TABLA - HECHA
-            $table->unsignedInteger('idComidaNiños'); //TABLA - ¿?
-            $table->unsignedInteger('idComidaAdulto'); //TABLA -¿?
-            $table->integer('cantidadComidaNiños');
-            $table->integer('cantidadComidaAdulto');
-            $table->float('totalPaquete');
-            $table->float('total');
-            $table->mediumText('notas');
-            $table->unsignedInteger('idPartyStatus'); //TABLA - HECHA
-            $table->text('piñata');
-            $table->text('pastel');
-            $table->mediumText('chargeSheetNotes');
-            $table->integer('porcentajeDescuento');
+            $table->text('comidaNiños')->nullable(); //TABLA - ¿?
+            $table->text('comidaAdulto')->nullable(); //TABLA -¿?
+            $table->integer('cantidadComidaNiños')->nullable();
+            $table->integer('cantidadComidaAdulto')->nullable();
+            $table->float('totalPaquete')->nullable();
+            $table->float('total')->nullable();
+            $table->mediumText('notas')->nullable();
+            $table->text('partyStatus'); //TABLA - HECHA
+            $table->text('piñata')->nullable();
+            $table->text('pastel')->nullable();
+            $table->text('manteles');
             $table->timestamps();
         });
     }

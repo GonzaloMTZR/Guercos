@@ -123,7 +123,9 @@
                                     <img class="img-40 img-radius" src="{{asset('admin/assets/images/avatar-4.jpg')}}" alt="User-Profile-Image">
                                     <div class="user-details">
                                         <span>{{Auth::user()->name}}</span>
-                                        <span id="more-details">Puesto en la empresa / Rol en el sistema<i class="ti-angle-down"></i></span>
+                                        @foreach(Auth::user()->roles()->pluck('name') as $role_name)
+                                            <span id="more-details">Puesto en la empresa: {{$role_name}}<i class="ti-angle-down"></i></span>
+                                        @endforeach
                                     </div>
                                 </div>
 
@@ -146,172 +148,56 @@
                             
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Navegación</div>
                                 <ul class="pcoded-item pcoded-left-item">
-                                        <li class="">    
-                                            <a href="/dashboard">        
-                                                <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>        
-                                                <span class="pcoded-mcaret"></span>    
-                                            </a>
-                                        </li>
+                                    <li class="">    
+                                        <a href="/dashboard">        
+                                            <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>        
+                                            <span class="pcoded-mcaret"></span>    
+                                        </a>
+                                    </li>
 
-                                        <li class="pcoded-hasmenu">
-                                            <a href="javascript:void(0)">
-                                                <span class="pcoded-micon"><i class="ti-view-list-alt"></i><b>Inv</b></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.inv.main"><Nav>Productos</Nav></span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                            <ul class="pcoded-submenu">
-                                                <li class="">
-                                                    <a href="/productos">
-                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.inv.ver">Ver productos en el inventario</span>
-                                                        <span class="pcoded-mcaret"></span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="/productos/create">
-                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.inv.add">Agregar producto al invenatrio</span>
-                                                        <span class="pcoded-mcaret"></span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                    @role('AdminCocina')
+                                        @include('MenuRoles.cocina')
+                                    @else
+          
+                                    @endrole
 
-                                        <li class="pcoded-hasmenu">
-                                            <a href="javascript:void(0)">
-                                                <span class="pcoded-micon"><i class="ti-money"></i><b>V</b></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.ventas.main"><Nav>Ventas</Nav></span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                            <ul class="pcoded-submenu">
-                                                <li class="">
-                                                    <a href="/ventas">
-                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.venta.ver">Ver todas las ventas</span>
-                                                        <span class="pcoded-mcaret"></span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="/ventas/create">
-                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.venta.add">Agregar una venta</span>
-                                                        <span class="pcoded-mcaret"></span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                    @role('AdminFiestas')
+                                        @include('MenuRoles.fiestas')
+                                        @include('MenuRoles.paquetes')
+                                        @include('MenuRoles.clientes')
+                                        <!--@ include('MenuRoles.empleados')-->
+                                    @else
+          
+                                    @endrole
 
-                                        <li class="">    
-                                            <a href="/paquetes">        
-                                                <span class="pcoded-micon"><i class="ti-gift"></i><b>P</b></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.paquetes.main">Paquetes</span>        
-                                                <span class="pcoded-mcaret"></span>    
-                                            </a>
-                                        </li>
+                                    @role('AdminVentas')
+                                        @include('MenuRoles.ventas')
+                                    @else
+          
+                                    @endrole
 
-                                        <li class="">    
-                                            <a href="/entradas">        
-                                                <span class="pcoded-micon"><i class="ti-shift-left"></i><b>E</b></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.entradas.main">Entradas</span>        
-                                                <span class="pcoded-mcaret"></span>    
-                                            </a>
-                                        </li>
+                                    @role('Administrador')
+                                        @include('MenuRoles.superAdmin')
+                                    @else
+          
+                                    @endrole
 
-                                        <li class="pcoded-hasmenu">
-                                            <a href="javascript:void(0)">
-                                                <span class="pcoded-micon"><i class="ti-crown"></i><b>F</b></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.fiesta.main"><Nav>Fiestas</Nav></span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                            <ul class="pcoded-submenu">
-                                                <li class="">
-                                                    <a href="/fiestas">
-                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.fiesta.ver">Ver fiestas</span>
-                                                        <span class="pcoded-mcaret"></span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="/fiestas/create">
-                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.fiesta.add">Agendar fiesta</span>
-                                                        <span class="pcoded-mcaret"></span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="pcoded-hasmenu">
-                                            <a href="javascript:void(0)">
-                                                <span class="pcoded-micon"><i class="ti-user"></i><b>E</b></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.empl.main"><Nav>Empleados</Nav></span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                            <ul class="pcoded-submenu">
-                                                <li class="">
-                                                    <a href="/empleados">
-                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.emp.ver">Ver todos los empleados</span>
-                                                        <span class="pcoded-mcaret"></span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="/empleados/create">
-                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.emp.add">Agregar nuevo empleado</span>
-                                                        <span class="pcoded-mcaret"></span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="">    
-                                            <a href="/cocina">        
-                                                <span class="pcoded-micon"><i class="icofont icofont-fork-and-knife"></i><b>C</b></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.cocina.main">Cocina</span>        
-                                                <span class="pcoded-mcaret"></span>    
-                                            </a>
-                                        </li>
-
-                                        <li class="pcoded-hasmenu">
-                                            <a href="#">
-                                                <span class="pcoded-micon"><i class="ti-user"></i><b>POV</b></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.pov.main"><Nav>Puntos de venta</Nav></span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                            <ul class="pcoded-submenu">
-                                                <li class="">
-                                                    <a href="/POVC">
-                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.pov.POVC">Punto de venta de cocina</span>
-                                                        <span class="pcoded-mcaret"></span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="/POVE">
-                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext" data-i18n="nav.pov.POVE">Punto de venta de entrada</span>
-                                                        <span class="pcoded-mcaret"></span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
+                                
                                 </ul>
                         </div>
                     </nav>
+
                 <div class="pcoded-content">
                     <div class="pcoded-inner-content">
-
                         <div class="main-body">
                             <div class="page-wrapper">
                                 @yield('content')
                             </div>
                         </div>
-                        
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

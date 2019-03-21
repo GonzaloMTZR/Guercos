@@ -82,15 +82,13 @@
                                                     </td>
                                                     <td>{{$producto->infinito}}</td>
                                                     <td>
-                                                        <a href="/productos/{{$producto->id}}/edit" class="btn btn-warning">Editar</a>
-                                                  
-                                                        <form id="eliminar" method="POST" action="/productos/{{ $producto->id }}">
+                                                        <a href="/productos/{{$producto->id}}/edit" class="btn btn-warning"></a>
+                                                        <form method="POST" action="/productos/{{$producto->id}}">
                                                             @method('DELETE')
                                                             @csrf
-                                                    
                                                             <div class="field">
                                                                 <div class="control">
-                                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                                        <button type="submit" class="btn btn-danger"></i></button>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -110,19 +108,8 @@
         </div>
     </div>
 </div>
-
+@include('sweet::alert')
 @section('javascripts')
-    <script type="text/javascript">
-        (function() {
-        var form = document.getElementById('eliminar');
-        form.addEventListener('submit', function(event) {
-            // si es false entonces que no haga el submit
-            if (!confirm('Realmente desea eliminar?')) {
-            event.preventDefault();
-            }
-        }, false);
-        })();
-    </script>
     <script>
         $(document).ready(function() {
             $('#productos').DataTable({
@@ -155,6 +142,7 @@
 
     <script src="{{asset('admin/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{asset('admin/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <!--<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>-->
 @endsection

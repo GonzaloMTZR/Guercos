@@ -46,9 +46,9 @@ class PaquetesController extends Controller
      * @param  \App\Paquetes  $paquetes
      * @return \Illuminate\Http\Response
      */
-    public function show(Paquetes $paquetes)
-    {
-        return view('modules.paquetes.show');
+    public function show(Paquetes $paquete)
+    {   //$paquetes = Paquetes::findOrFail($id);
+        return view('modules.paquetes.show', compact('paquete'));
     }
 
     /**
