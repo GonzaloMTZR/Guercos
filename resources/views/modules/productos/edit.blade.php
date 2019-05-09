@@ -60,7 +60,7 @@
                     
                     <div class="col-sm-3">
                         <label for="my-input">Cantidad</label>
-                        <input name="cantidad" id="my-input" value="{{$producto->cantidad}}" class="form-control" type="number">
+                        <input name="cantidad" id="my-input" value="{{$producto->stock}}" class="form-control" type="number">
                     </div>
                     
 

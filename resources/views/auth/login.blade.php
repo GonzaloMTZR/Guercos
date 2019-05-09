@@ -61,7 +61,6 @@
                         <hr/>
                         <div class="row">
                             <div class="col-md-10">
-                                <p class="text-inverse text-left m-b-0"><a href="{{route('register')}}">Registrarse.</a></p>
                                 <p class="text-inverse text-left"><b>Güercos</b></p>
                             </div>
                             <div class="col-md-2">

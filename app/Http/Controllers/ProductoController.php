@@ -3,11 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Producto;
+use App\User;
+use Auth;
 use Alert;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
+    public function __construct()
+    {
+        //$this->middleware('auth');
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -52,17 +62,33 @@ class ProductoController extends Controller
             'codigo' => $request->codigo,
             'descripcion' => $request->descripcion,
             'precio' => $request->precio,
-            'cantidad' => $request->cantidad,
+            'stock' => $request->cantidad,
             'area' => $request->area,
             'infinito' => $request->infinito,
             'tipoUnidad' => $request->tipoUnidad,
             'categoria' => $request->categoria,
             'imagenProducto' => $name,
         ]);
+        
+       
+        /*if(Auth::user()->roles('Administrador')){
+            
+            $producto = Producto::create([
+                'codigo' => $request->codigo,
+                'descripcion' => $request->descripcion,
+                'precio' => $request->precio,
+                'cantidad' => $request->cantidad,
+                'area' => $request->area,
+                'infinito' => $request->infinito,
+                'tipoUnidad' => $request->tipoUnidad,
+                'categoria' => $request->categoria,
+                'imagenProducto' => $name,
+            ]);
+        }*/
+
         //dd ($producto);
         
-        Alert::success('Success Message', 'Optional Title');
-        return redirect('/productos');
+        return redirect('/productos')->with('success-message', 'Producto agregado con exito');
         
     }
 
@@ -109,7 +135,7 @@ class ProductoController extends Controller
         $producto->codigo = $request->input('codigo');
         $producto->descripcion = $request->input('descripcion');
         $producto->precio = $request->input('precio');
-        $producto->cantidad = $request->input('cantidad');
+        $producto->stock = $request->input('cantidad');
         $producto->area = $request->input('area');
         $producto->infinito = $request->input('infinito');
         $producto->tipoUnidad = $request->input('tipoUnidad');

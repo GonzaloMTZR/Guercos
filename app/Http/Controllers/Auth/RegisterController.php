@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
@@ -37,7 +41,13 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
+    }
+
+    public function showRegistrationForm()
+    {
+        $roles = Role::all();
+        return view('auth.register', compact('roles'));
     }
 
     /**
@@ -52,6 +62,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'fechaNacimiento' => ['required', 'date'],
+            'direccion' => ['required', 'string', 'max:255'],
+            'telefono' => ['required', 'string', 'max:11' ],
+            'imagenPerfil' => ['image'],
         ]);
     }
 
@@ -63,10 +77,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+
+        if (request()->hasFile('imagenPerfil')) {
+            $file = request()->file('imagenPerfil');
+            $name = time().$file->getClientOriginalName();
+            $public_path = public_path();
+            $file->move($public_path.'/imagenes'.'/'.'usuarios'.'/', $name);
+        }else{
+            $name ='Group-user.jpg';
+        }
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'fechaNacimiento' => $data['fechaNacimiento'],
+            'direccion' => $data['direccion'],
+            'telefono' => $data['telefono'],
+            'imagenPerfil' => $name
         ]);
+        $user->assignRole(request('role'));
+
+        return $user;
+
     }
 }

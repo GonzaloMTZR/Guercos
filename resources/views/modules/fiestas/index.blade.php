@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('title', '- Productos')
+@section('title', '- Fiestas')
 @section('css')
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">-->
@@ -8,14 +8,23 @@
 @endsection
 
 @section('content')
+
+    @if(session()->has('success-message'))
+        <div class="alert alert-success background-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="icofont icofont-close-line-circled text-white"></i>
+            </button>
+            {{ session()->get('success-message') }}
+        </div>
+    @endif
     <div class="page-header card">
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
                     <i class="icofont icofont-royal bg-c-lite-green"></i>
                     <div class="d-inline">
-                        <h4>Prodcutos</h4>
-                        <span>Productos disponibles.</span>
+                        <h4>Fiestas</h4>
+                        <span>Fiestas agendadas.</span>
                         <!--<form action="POST">
                             <div class="input-group input-group-button input-group-primary">
                                 <input type="text" class="form-control" placeholder="Buscar empleado...">

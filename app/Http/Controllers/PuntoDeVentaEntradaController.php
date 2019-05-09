@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\Producto;
+use App\Venta;
 use App\User;
 
-class PerfilController extends Controller
+class PuntoDeVentaEntradaController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +17,12 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        //
+        $productos = DB::table('productos')
+            ->orderBy('descripcion', 'asc')
+            ->get()
+        ;
+        //$productos = Producto::all();
+        return view('modules.POVE.create', compact('productos'));
     }
 
     /**
@@ -29,7 +32,7 @@ class PerfilController extends Controller
      */
     public function create()
     {
-        //
+        return view('modules.POVE.create');
     }
 
     /**
@@ -40,7 +43,26 @@ class PerfilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $venta = new Venta;
+	    $venta->user_id = $request->get('user_id');
+	    $venta->tipoComprobante = $request->get('tipo_comprobante');
+	    $venta->serieComprobante = $request->get('serie_comprobante');
+	    $venta->folio = $request->get('num_comprobante');
+        $venta->totalVenta = $request->get('total_venta');
+        $venta->save();
+        
+	    $cantidad = $request->get('cantidad');
+        $descuento = $request->get('descuento');
+        $producto_id = $request->get('id_articulo');
+
+        $sync_data = [];
+        for($i = 0; $i < count($producto_id); $i++){
+            $sync_data[$producto_id[$i]] = ['descuento' => $descuento[$i], 'cantidad' => $cantidad[$i]];
+        }
+
+        $venta->productos()->sync($sync_data);
+        //dd($venta);
+        return redirect('/PDVE');
     }
 
     /**
@@ -50,10 +72,8 @@ class PerfilController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
-        /*$user = User::findOrFail($id);
-        dd($user);*/
-        return view('modules.perfil.show');
+    {
+        //
     }
 
     /**
@@ -64,7 +84,7 @@ class PerfilController extends Controller
      */
     public function edit($id)
     {
-        return view('modules.perfil.edit');
+        //
     }
 
     /**

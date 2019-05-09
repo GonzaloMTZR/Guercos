@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Empleado;
+use App\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class EmpleadosController extends Controller
 {
@@ -20,7 +23,8 @@ class EmpleadosController extends Controller
      */
     public function index()
     {
-        $empleados = Empleado::all();
+        //$empleados = Empleado::all();
+        $empleados = User::all();
         return view('modules.empleados.index', compact('empleados'));
     }
 
@@ -31,8 +35,8 @@ class EmpleadosController extends Controller
      */
     public function create()
     {
-        //$puestos = Puesto::all();
-        return view('modules.empleados.create');
+        $roles = Role::all();
+        return view('modules.empleados.create', compact('roles'));
     }
 
     /**
@@ -41,16 +45,9 @@ class EmpleadosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Empleado $empleado)
+    public function store(Request $request)
     {
-        $empleado->nombre = request('nombre');
-        $empleado->fechaNacimiento = request('fechaNacimiento');
-        $empleado->direccion = request('direccion');
-        $empleado->numeroTelefonico = request('numeroTelefonico');
-        $empleado->email = request('email');
-        $empleado->save();
-
-        return redirect('/empleados');
+        
     }
 
     /**

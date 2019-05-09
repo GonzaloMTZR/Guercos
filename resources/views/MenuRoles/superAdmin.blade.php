@@ -13,7 +13,7 @@
             </a>
         </li>
         <li class="">
-            <a href="/empleados/create">
+            <a href="/register">
                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                 <span class="pcoded-mtext" data-i18n="nav.emp.add">Agregar nuevo empleado</span>
                 <span class="pcoded-mcaret"></span>
@@ -65,6 +65,13 @@
             <a href="/productos/create">
                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                 <span class="pcoded-mtext" data-i18n="nav.inv.add">Agregar producto al invenatrio</span>
+                <span class="pcoded-mcaret"></span>
+            </a>
+        </li>
+        <li class="">
+            <a href="/productos/create">
+                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                <span class="pcoded-mtext" data-i18n="nav.inv.add">Agregar brazaletes al invenatrio</span>
                 <span class="pcoded-mcaret"></span>
             </a>
         </li>
@@ -129,7 +136,7 @@
 
 
 <li class="">    
-    <a href="/cocina">        
+    <a href="/PDVC">        
         <span class="pcoded-micon"><i class="icofont icofont-fork-and-knife"></i><b>POVC</b></span>
         <span class="pcoded-mtext" data-i18n="nav.POVC.main">Punto de venta de cocina</span>        
         <span class="pcoded-mcaret"></span>    
@@ -137,9 +144,9 @@
 </li>
 
 <li class="">    
-    <a href="/cocina">        
-        <span class="pcoded-micon"><i class="icofont icofont-fork-and-knife"></i><b>POVC</b></span>
-        <span class="pcoded-mtext" data-i18n="nav.POVC.main">Punto de venta de cocina</span>        
+    <a href="/PDVE">        
+        <span class="pcoded-micon"><i class="icofont icofont-fork-and-knife"></i><b>POVE</b></span>
+        <span class="pcoded-mtext" data-i18n="nav.POVC.main">Punto de venta de entrada</span>        
         <span class="pcoded-mcaret"></span>    
     </a>
 </li>

@@ -8,13 +8,22 @@
 @endsection
 
 @section('content')
+    @if(session()->has('success-message'))
+        <div class="alert alert-success background-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="icofont icofont-close-line-circled text-white"></i>
+            </button>
+            {{ session()->get('success-message') }}
+        </div>
+    @endif
+
     <div class="page-header card">
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
                     <i class="icofont icofont-royal bg-c-lite-green"></i>
                     <div class="d-inline">
-                        <h4>Prodcutos</h4>
+                        <h4>Productos</h4>
                         <span>Productos disponibles.</span>
                         <!--<form action="POST">
                             <div class="input-group input-group-button input-group-primary">
@@ -78,7 +87,7 @@
                                                     <td>{{$producto->categoria}}</td>
                                                     <td>${{$producto->precio}}</td>
                                                     <td>
-                                                        <label class="text-{{$producto->cantidad <= 10 ? 'danger' : 'success'}}">{{$producto->cantidad}}</label>
+                                                        <label class="text-{{$producto->stock <= 10 ? 'danger' : 'success'}}">{{$producto->stock}}</label>
                                                     </td>
                                                     <td>{{$producto->infinito}}</td>
                                                     <td>

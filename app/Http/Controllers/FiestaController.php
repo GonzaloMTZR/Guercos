@@ -7,6 +7,9 @@ use App\Paquetes;
 use App\Periodo;
 use App\Producto;
 use App\Cliente;
+use Stripe\Stripe;
+use Stripe\Customer;
+use Stripe\Charge;
 use Illuminate\Http\Request;
 
 class FiestaController extends Controller
@@ -15,13 +18,14 @@ class FiestaController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        //$this->middleware(['role:AdminFiestas']);
     }
     
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+    */
     public function index()
     {   $fiestas = Fiesta::All();
         return view ('modules.fiestas.index', compact('fiestas'));
@@ -42,7 +46,7 @@ class FiestaController extends Controller
         $periodos = Periodo::all();
         $comidas = Producto::all();
 
-        return view ('modules.fiestas.create', compact('paquetes','periodos', 'comidas'));
+        return view ('modules.fiestas.create', compact('paquetes', 'periodos', 'comidas'));
     }
 
     /**
@@ -75,12 +79,13 @@ class FiestaController extends Controller
         $fiesta->colonia = request('colonia');
         $fiesta->calle = request('calle');
         
-        $fiesta->idPaquete = request('idPaquete');
-        $fiesta->idPeriodo = request('idPeriodo');
-        $fiesta->comidaNiños = request('comidaNiño');
-        $fiesta->comidaAdulto = request('comidaAdulto');
+        $fiesta->idPaquete = 1;
+        $fiesta->idPeriodo = 1;
+        $fiesta->comidaNiños = 1;
+        $fiesta->comidaAdulto = 1;
         $fiesta->cantidadComidaNiños = request('cantidadComidaNiños');
         $fiesta->cantidadComidaAdulto = request('cantidadComidaAdulto');
+        $fiesta->manteles = request('manteles');
         /*$fiesta->totalPaquete = request('totalPaquete');
         $fiesta->total = request('total');
         $fiesta->chargeSheetNotes = request('chargeSheetNotes');
@@ -100,8 +105,25 @@ class FiestaController extends Controller
 
         $cliente->save();
         $fiesta->save();
+    
+        try {
+            Stripe::setApiKey(config('services.stripe.secret'));
+            $customer = Customer::create(array(
+                'email' => request('stripeEmail'),
+                'source'  => request('stripeToken')
+            ));
+            
+            $charge = Charge::create(array(
+                'customer' => $customer->id,
+                'amount' => 6500,
+                'currency' => 'mxn'
+            ));
 
-        return redirect('/fiestas');
+            return redirect('/fiestas')->with('success-message', 'Fiesta agendada con exito');
+        }catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+        
 
     }
 
@@ -113,7 +135,7 @@ class FiestaController extends Controller
      */
     public function show(Fiesta $fiesta)
     {
-        //
+        return view('modules.fiestas.show', compact('fiesta'));
     }
 
     /**

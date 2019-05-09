@@ -17,9 +17,11 @@ class VentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view ('modules.ventas.index');
+    public function index(){
+    
+
+        $ventas = Venta::all();
+        return view ('modules.ventas.index', compact('ventas'));
     }
 
     /**

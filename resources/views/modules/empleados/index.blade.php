@@ -24,7 +24,7 @@
 
     <div class="card">
         <div class="card-header">
-            <a class="btn btn-success" href="{{url('/empleados/create')}}">Crear empleado</a>
+            <a class="btn btn-success" href="{{url('/register')}}">Crear empleado</a>
         </div>
         <div class="card-block">
             <div class="table-responsive dt-responsive">
@@ -32,32 +32,32 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Fecha Nacimiento</th>
+                            <!--<th>Fecha Nacimiento</th>-->
                             <th>Email</th>
-                            <th>Dirección</th>
-                            <th>Numero Telefonico</th>
+                            <!--<th>Dirección</th>-->
+                            <!--<th>Numero Telefonico</th>-->
                             <th>Rol</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($empleados as $empleado) 
                             <tr>
-                                <td>{{$empleado->nombre}}</td>
-                                <td>{{date('d-m-Y', strtotime($empleado->fechaNacimiento))}}</td>
+                                <td>{{$empleado->name}}</td>
+                                <!--<td>{ {date('d-m-Y', strtotime($empleado->fechaNacimiento))}}</td>-->
                                 <td>{{$empleado->email}}</td>
-                                <td>{{$empleado->direccion}}</td>
-                                <td>{{$empleado->numeroTelefonico}}</td>
-                                <td>Rol dentro de la empresa</td>
+                                <td>{{$empleado->roles()->value('name')}}</td>
+                                <!--<td>{ {$empleado->numeroTelefonico}}</td>-->
+                                <!--<td>Rol dentro de la empresa</td>-->
                             </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
                             <th>Nombre</th>
-                            <th>Fecha Nacimiento</th>
+                            <!--<th>Fecha Nacimiento</th>-->
                             <th>Email</th>
-                            <th>Dirección</th>
-                            <th>Numero Telefonico</th>
+                            <!--<th>Dirección</th>-->
+                            <!--<th>Numero Telefonico</th>-->
                             <th>Rol</th>
                         </tr>
                     </tfoot>

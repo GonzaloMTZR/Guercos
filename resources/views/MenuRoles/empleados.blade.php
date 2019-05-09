@@ -13,7 +13,7 @@
             </a>
         </li>
         <li class="">
-            <a href="/empleados/create">
+            <a href="/register">
                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                 <span class="pcoded-mtext" data-i18n="nav.emp.add">Agregar nuevo empleado</span>
                 <span class="pcoded-mcaret"></span>

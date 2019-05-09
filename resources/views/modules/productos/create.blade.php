@@ -46,7 +46,13 @@
 
                     <div class="col-sm-6">
                         <label for="my-input">Código del producto</label>
-                        <input name="codigo" id="my-input" class="form-control" type="text">
+                        @role('Administrador')
+                            <input name="codigo" id="my-input" class="form-control" onmouseover="this.focus();" type="text">    
+                        @else
+                            <input name="codigo" id="my-input" class="form-control" type="text">
+                        @endrole
+                        
+                        
                     </div>
                 </div>
 
@@ -66,10 +72,12 @@
                     <div class="col-sm-6">
                         <label for="my-input">Area</label>
                         <select class="form-control" name="area" id="">
+                
                             <option selected disabled>Seleccione el área</option>
                             <option value="Cocina">Cocina</option>
                             <option value="Entrada">Entrada</option>
                             <option value="Piso">Piso</option>
+                            
                         </select>
                     </div>
                 </div>
@@ -77,7 +85,7 @@
                 <div class="form-group row">
                         <div class="col-sm-6">
                             <label for="my-input">Es infinito</label>
-                            <select class="form-control" name="infinito" id="">
+                            <select class="form-control" name="infinito" id="">                        
                                 <option selected disabled>Seleccione la opcion deseada</option>
                                 <option value="Si">Si</option>
                                 <option value="No">No</option>

@@ -80,18 +80,13 @@
                             
                                 <li class="user-profile header-notification">
                                     <a href="#!">
-                                        <img src="{{asset('admin/assets/images/avatar-4.jpg')}}" class="img-radius" alt="User-Profile-Image">
+                                        <img src="/imagenes/usuarios/{{Auth::user()->imagenPerfil}}" class="img-radius" alt="User-Profile-Image">
                                         <span>{{Auth::user()->name}}</span>
                                         <i class="ti-angle-down"></i>
                                     </a>
                                     <ul class="show-notification profile-notification">
                                         <li>
-                                            <a href="#!">
-                                                <i class="ti-settings"></i> Configuración
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/perfil/show">
+                                            <a href="/user/{{Auth::user()->id}}">
                                                 <i class="ti-user"></i> Perfil de usuario
                                             </a>
                                         </li>
@@ -120,7 +115,7 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-40 img-radius" src="{{asset('admin/assets/images/avatar-4.jpg')}}" alt="User-Profile-Image">
+                                    <img class="img-40 img-radius" src="/imagenes/usuarios/{{Auth::user()->imagenPerfil}}" alt="User-Profile-Image">
                                     <div class="user-details">
                                         <span>{{Auth::user()->name}}</span>
                                         @foreach(Auth::user()->roles()->pluck('name') as $role_name)
@@ -132,7 +127,7 @@
                                 <div class="main-menu-content">
                                     <ul>
                                         <li class="more-details">
-                                            <a href="/perfil/show"><i class="ti-user"></i>Ver Perfil</a>
+                                            <a href="/user/{{Auth::user()->id}}"><i class="ti-user"></i>Ver Perfil</a>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                                 <i class="ti-layout-sidebar-left"></i>Cerrar Sesión
@@ -179,6 +174,18 @@
 
                                     @role('Administrador')
                                         @include('MenuRoles.superAdmin')
+                                    @else
+          
+                                    @endrole
+
+                                    @role('VendedorPVEntrada')
+                                        @include('MenuRoles.PVEntrada')
+                                    @else
+          
+                                    @endrole
+
+                                    @role('VendedorPVCocina')
+                                        @include('MenuRoles.PVCocina')
                                     @else
           
                                     @endrole

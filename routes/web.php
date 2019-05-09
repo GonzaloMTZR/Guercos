@@ -19,6 +19,45 @@ Route::get('/', function () {
     }
 });
 
+
+/** 
+ * Ruta del dashboard
+*/
+Route::get('/dashboard', 'DashboardController@index')->middleware('auth');
+
+
+/**
+ * Rutas para el registro e inicio de sesión
+ */
+Auth::routes();
+
+
+/**
+ * grupo de rutas para modificar el perfil del usuario
+ */
+Route::resource('/user' ,'UserController')->middleware('auth');
+Route::post('/user/updatepassword' ,'UserController@UpdatePassword')->middleware('auth'); //Actualizar la contraseña
+Route::post('/user/updateimagen' ,'UserController@UpdateImagen')->middleware('auth'); //Cambiar imagen de perfil
+
+
+/** 
+ * Rutas de los controladores
+ */
+Route::resource('/empleados', 'EmpleadosController')->middleware(['role:Administrador|AdminVentas']); //Controlador para los empleados
+Route::resource('/clientes', 'ClienteController')->middleware(['role:Administrador|AdminFiestas']); //Controlador para los clientes
+Route::resource('/productos', 'ProductoController')->middleware(['role:Administrador|AdminCocina']); //Controlador para el inventario
+Route::resource('/paquetes', 'PaquetesController')->middleware(['role:Administrador|AdminFiestas']); //Controlador para los paquetes
+Route::resource('/fiestas', 'FiestaController')->middleware(['role:Administrador|AdminFiestas']); //Controlador de las fiestas
+Route::resource('/PDVC', 'PuntoDeVentaCocinaController')->middleware(['role:Administrador|AdminVentas|VendedorPVCocina']);//Punto de venta de cocina
+Route::resource('/PDVE', 'PuntoDeVentaEntradaController')->middleware(['role:Administrador|AdminVentas|VendedorPVEntrada']);//Punto de venta de entrada
+Route::resource('/ventas', 'VentaController')->middleware(['role:Administrador|AdminVentas']);//Nuevo controlador de venta (Será el definitivo)
+
+Route::post('/pago', 'SuscripcionController@pago');
+Route::get('/pagosPrueba', function () {
+    return view ('welcome');
+});
+
+
 /*Route::group(['middleware' => ['role:AdminCocina']], function () {
     Route::resource('/productos', 'ProductoController')->middleware('auth');
 });
@@ -42,7 +81,7 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::resource('/fiestas', 'FiestaController')->middleware('auth');
     Route::resource('/ventas', 'VentaController')->middleware('auth');
     Route::resource('/clientes', 'ClienteController')->middleware('auth');
-});*/
+});
 
 Route::group(['middleware' => ['role:VendedorPVEntrada']], function () {
     
@@ -52,26 +91,7 @@ Route::group(['middleware' => ['role:VendedorPVEntrada']], function () {
 Route::group(['middleware' => ['role:VendedorPVCocina']], function () {
     
     //rutas de punto de venta de cocina
-});
-
-//Ruta del dashboard
-Route::get('/dashboard', 'PagesController@dashboard')->middleware('auth');
-Route::resource('/perfil', 'PerfilController')->middleware('auth');
-
-
-//Rutas para el registro e inicio de sesión
-Auth::routes();
-
-
-
-    //Rutas de los controladores
-    Route::resource('/empleados', 'EmpleadosController')->middleware('auth');
-    Route::resource('/perfil', 'PerfilController')->middleware('auth');
-    Route::resource('/clientes', 'ClienteController')->middleware('auth');
-    Route::resource('/productos', 'ProductoController')->middleware('auth');
-    Route::resource('/paquetes', 'PaquetesController')->middleware('auth');
-    Route::resource('/fiestas', 'FiestaController')->middleware('auth');
-    Route::resource('/ventas', 'VentaController')->middleware('auth');
+});*/
 
 
 /*Rutas personalizdas para auth

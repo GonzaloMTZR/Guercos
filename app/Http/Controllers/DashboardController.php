@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Comida;
 use Illuminate\Http\Request;
+use App\Fiesta;
+use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
-class ComidaController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,25 @@ class ComidaController extends Controller
      */
     public function index()
     {
-        //
+        //Dashboard del administrador de fiestas
+        $eventos = Fiesta::all();
+        $evento = [];
+
+        foreach($eventos as $row){
+            $endDate = $row->fechaFiesta."24:00:00";
+            $evento[] = \Calendar::event(
+                $row->nombreNiño,
+                true,
+                new \DateTime($row->fechaFiesta),
+                new \DateTime($row->fechaFiesta),
+                [ 
+                    'color' => '#f05050',
+                    'url' => 'http://full-calendar.io',
+                ]
+            );
+        }
+        $calendar = \Calendar::addEvents($evento);
+        return view('modules.dashboard', compact('calendar'));   
     }
 
     /**
@@ -41,10 +60,10 @@ class ComidaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Comida  $comida
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Comida $comida)
+    public function show($id)
     {
         //
     }
@@ -52,10 +71,10 @@ class ComidaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Comida  $comida
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comida $comida)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +83,10 @@ class ComidaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comida  $comida
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comida $comida)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +94,10 @@ class ComidaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comida  $comida
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comida $comida)
+    public function destroy($id)
     {
         //
     }

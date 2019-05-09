@@ -15,7 +15,7 @@
         <li class="">
             <a href="/ventas/create">
                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                <span class="pcoded-mtext" data-i18n="nav.venta.add">Agregar una venta</span>
+                <span class="pcoded-mtext" data-i18n="nav.venta.add">Generar reporte de ventas</span>
                 <span class="pcoded-mcaret"></span>
             </a>
         </li>

@@ -13,12 +13,19 @@ class User extends Authenticatable
     use HasRoles;
 
     /**
+     * Usar format despues de la fecha de nacimiento 
+     */
+    protected $dates = ['fechaNacimiento'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role',
+        'fechaNacimiento', 'direccion', 'telefono',
+        'imagenPerfil',
     ];
 
     /**
@@ -29,4 +36,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Funcion para hacer la relacion de la tabla user con ventas
+     * Un usuario tiene muchas ventas
+     */
+    public function ventas()
+    {
+        return $this->hasMany('App\Venta');
+    }
 }
