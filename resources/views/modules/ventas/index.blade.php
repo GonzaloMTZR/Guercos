@@ -87,12 +87,8 @@
                                                     <td>{{$venta->id}}</td>
                                                     <td>
                                                         <ul>
-                                                            
                                                             <li>{{$venta->productos()->pluck('descripcion')}}</li>
-                                                            <li>{{$venta->productos()->value('descripcion')}}</li>
-                                                            
-                                                            
-                                                                                                                    
+                                                            <li>{{$venta->productos()->value('descripcion')}}</li>                                                                                                                    
                                                         </ul>
                                                     </td>
                                                     <td>

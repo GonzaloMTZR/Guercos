@@ -57,6 +57,7 @@ class FiestaController extends Controller
      */
     public function store(Fiesta $fiesta)
     {
+
         $fiesta->fechaFiesta = request('fechaFiesta');
         $fiesta->fechaReservacion = request('fechaReservacion');
         $fiesta->horaInicio = request('horaInicio');
@@ -105,25 +106,8 @@ class FiestaController extends Controller
 
         $cliente->save();
         $fiesta->save();
-    
-        try {
-            Stripe::setApiKey(config('services.stripe.secret'));
-            $customer = Customer::create(array(
-                'email' => request('stripeEmail'),
-                'source'  => request('stripeToken')
-            ));
-            
-            $charge = Charge::create(array(
-                'customer' => $customer->id,
-                'amount' => 6500,
-                'currency' => 'mxn'
-            ));
-
-            return redirect('/fiestas')->with('success-message', 'Fiesta agendada con exito');
-        }catch (\Exception $ex) {
-            return $ex->getMessage();
-        }
         
+        return redirect('/fiestas')->with('success-message', 'Fiesta agendada con exito!');
 
     }
 

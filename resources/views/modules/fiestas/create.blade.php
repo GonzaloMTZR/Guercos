@@ -2,36 +2,6 @@
 @section('title', '- Agendar fiesta')
 @section('css')
     <link rel="stylesheet" href="{{asset('admin/bower_components/select2/css/select2.min.css')}}"/>
-    
-    <style>
-        .StripeElement {
-        box-sizing: border-box;
-      
-        height: 40px;
-      
-        padding: 10px 12px;
-      
-        border: 1px solid transparent;
-        border-radius: 4px;
-        background-color: white;
-      
-        box-shadow: 0 1px 3px 0 #e6ebf1;
-        -webkit-transition: box-shadow 150ms ease;
-        transition: box-shadow 150ms ease;
-        }
-      
-        .StripeElement--focus {
-            box-shadow: 0 1px 3px 0 #cfd7df;
-        }
-        
-        .StripeElement--invalid {
-            border-color: #fa755a;
-        }
-      
-        .StripeElement--webkit-autofill {
-            background-color: #fefde5 !important;
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -249,32 +219,9 @@
 
                 <hr>
 
-                <div class="form-group row">
-                    <div class="col-sm-3">
-                        <label for="">Total: 6,500</label>
-                        <div class="checkbox">
-                            <label><input name="pago" type="checkbox" value="1"> Pagar en efectivo</label>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-9">
-                        <script
-                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="{{ config('services.stripe.key') }}"
-                            data-amount="6500"
-                            data-name="Compra"
-                            data-description="Prueba compra"
-                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                            data-locale="auto">
-                        </script>
-                    </div>
-
-
-                </div>
-
 
                 <div class="form-group">
-                    <button type="submit" class="col-sm-12 btn btn-success">Agregar</button>
+                    <button type="submit" class="col-sm-12 btn btn-success">Agendar</button>
                 </div>
 
                 
@@ -293,64 +240,7 @@
             });
         </script>
 
-        <script>
-            var stripe = Stripe('pk_test_qJtbWYkIACUJ2fhYPIREnbcP00zxxxMuKx');
-            var elements = stripe.elements();
-            // Custom styling can be passed to options when creating an Element.
-            var style = {
-            base: {
-                // Add your base input styles here. For example:
-                fontSize: '16px',
-                color: "#32325d",
-            }
-            };
-
-            // Create an instance of the card Element.
-            var card = elements.create('card', {style: style});
-
-            // Add an instance of the card Element into the `card-element` <div>.
-            card.mount('#card-element');
-
-            card.addEventListener('change', function(event) {
-            var displayError = document.getElementById('card-errors');
-            if (event.error) {
-                displayError.textContent = event.error.message;
-            } else {
-                displayError.textContent = '';
-            }
-            });
-
-            // Create a token or display an error when the form is submitted.
-            var form = document.getElementById('payment-form');
-            form.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            stripe.createToken(card).then(function(result) {
-                if (result.error) {
-                // Inform the customer that there was an error.
-                var errorElement = document.getElementById('card-errors');
-                errorElement.textContent = result.error.message;
-                } else {
-                // Send the token to your server.
-                stripeTokenHandler(result.token);
-                }
-            });
-            });
-
-            function stripeTokenHandler(token) {
-            // Insert the token ID into the form so it gets submitted to the server
-            var form = document.getElementById('payment-form');
-            var hiddenInput = document.createElement('input');
-            hiddenInput.setAttribute('type', 'hidden');
-            hiddenInput.setAttribute('name', 'stripeToken');
-            hiddenInput.setAttribute('value', token.id);
-            form.appendChild(hiddenInput);
-
-            // Submit the form
-            form.submit();
-            }
-
-        </script>
+        
     @endsection
 
 @endsection
