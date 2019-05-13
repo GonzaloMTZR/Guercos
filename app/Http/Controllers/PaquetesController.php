@@ -31,7 +31,7 @@ class PaquetesController extends Controller
      */
     public function create()
     {
-        //
+        return view ('modules.paquetes.create');
     }
 
     /**
@@ -64,7 +64,7 @@ class PaquetesController extends Controller
      */
     public function edit(Paquetes $paquetes)
     {
-        //
+        return view ('modules.paquetes.edit');
     }
 
     /**

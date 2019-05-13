@@ -12,13 +12,8 @@
                     <i class="icofont icofont icofont-bag-alt bg-c-lite-green"></i>
                     <div class="d-inline">
                         <h4>Paquetes de fiestas</h4>
-                        <span>Paquetes de fiesta disponibles(PRUEBA).</span>
-                        <!--<form action="POST">
-                            <div class="input-group input-group-button input-group-primary">
-                                <input type="text" class="form-control" placeholder="Buscar empleado...">
-                                <button type="submit " class="btn btn-primary input-group-addon" id="basic-addon1">Buscar</button>
-                            </div>
-                        </form>-->
+                        <span>Listado de los paquetes de fiesta disponibles.</span>
+                        
                     </div>
                 </div>
             </div>
@@ -31,7 +26,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Categorias: </h5>
+                        <h5>Paquetes: </h5>
                         <div class="card-header-right">
                             <i class="icofont icofont-spinner-alt-5"></i>
                         </div>
