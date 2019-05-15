@@ -1,9 +1,11 @@
 @extends('layouts.template')
 @section('title', '- Paquetes de fiesta')
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/bower_components/multiselect/css/multi-select.css')}}"/>
-    <link rel="stylesheet" href="{{asset('admin/bower_components/select2/css/select2.min.css')}}"/>
+    <!--<link rel="stylesheet" type="text/css" href="{ {asset('admin/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{ {asset('admin/bower_components/multiselect/css/multi-select.css')}}"/>
+    <link rel="stylesheet" href="{ {asset('admin/bower_components/select2/css/select2.min.css')}}"/>-->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
 @endsection
 
 @section('content')
@@ -59,21 +61,19 @@
                                         <label for="my-input">Comida de niño <label class="text-danger">*</label></label>
                                         <select class="js-example-basic-multiple" name="comidaNiño[]" multiple="multiple">
                                             <option selected disabled>Seleccione la comida de niño</option>
-                                            <option value="">Producto 1</option>
-                                            <option value="">Producto 2</option>
-                                            <option value="">Producto 3</option>
-                                            <option value="">Producto 4</option>
+                                            @foreach($productos as $producto)
+                                              <option value="{{$producto->id}}">{{$producto->descripcion}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="my-input">Comida de adulto <label class="text-danger">*</label></label>
-                                        <select class="js-example-basic-hide-search" name="comidaAdulto[]" multiple="multiple">
+                                        <select class="js-example-basic-multiple" name="comidaAdulto[]" multiple="multiple">
                                             <option selected disabled>Seleccione la comida de adulto</option>
-                                            <option value="">Producto 1</option>
-                                            <option value="">Producto 2</option>
-                                            <option value="">Producto 3</option>
-                                            <option value="">Producto 4</option>
+                                            @foreach($productos as $producto)
+                                              <option value="{{$producto->id}}">{{$producto->descripcion}}</option>
+                                            @endforeach
                                         </select>
                                     </div>    
                                 </div>
@@ -92,10 +92,22 @@
     </div>
 
     @section('javascripts')
-        <script type="text/javascript" src="{{asset('admin/bower_components/select2/js/select2.full.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('admin/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js')}}"><script>
-        <script type="text/javascript" src="{{asset('admin/bower_components/multiselect/js/jquery.multi-select.js')}}"></script>
-        <script type="text/javascript" src="{{asset('admin/assets/js/jquery.quicksearch.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.js-example-basic-multiple').select2();
+            });
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $('.js-example-basic-multiple').select2();
+            });
+        </script>
+        <!--<script type="text/javascript" src="{ {asset('admin/bower_components/select2/js/select2.full.min.js')}}"></script>
+        <script type="text/javascript" src="{ {asset('admin/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js')}}"></script>
+        <script type="text/javascript" src="{ {asset('admin/bower_components/multiselect/js/jquery.multi-select.js')}}"></script>
+        <script type="text/javascript" src="{ {asset('admin/assets/js/jquery.quicksearch.js')}}"></script>-->
     @endsection
        
         

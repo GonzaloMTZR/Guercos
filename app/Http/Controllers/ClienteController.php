@@ -101,4 +101,11 @@ class ClienteController extends Controller
     {
         //
     }
+  
+    /**
+    * Funcion para poder enviar los correos a los clientes
+    */
+    public function sendEMail(){
+      
+    }
 }

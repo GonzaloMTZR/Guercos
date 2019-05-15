@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaquetesTable extends Migration
+class CreateCantidadPersonasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreatePaquetesTable extends Migration
      */
     public function up()
     {
-        Schema::create('paquetes', function (Blueprint $table) {
+        Schema::create('cantidad_personas', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('descripcionPaquete');
+            $table->string('cantidad');
+            $table->Integer('precio');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreatePaquetesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paquetes');
+        Schema::dropIfExists('cantidad_personas');
     }
 }

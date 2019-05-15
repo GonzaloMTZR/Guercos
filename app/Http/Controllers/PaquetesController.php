@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Paquetes;
+use App\Producto;
 use Illuminate\Http\Request;
 
 class PaquetesController extends Controller
@@ -31,7 +32,8 @@ class PaquetesController extends Controller
      */
     public function create()
     {
-        return view ('modules.paquetes.create');
+        $productos = Producto::all();
+        return view ('modules.paquetes.create', compact('productos'));
     }
 
     /**

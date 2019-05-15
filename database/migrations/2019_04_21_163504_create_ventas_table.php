@@ -20,7 +20,7 @@ class CreateVentasTable extends Migration
             $table->text('folio');
             $table->integer('totalVenta'); //Precio total de la venta
             $table->text('tipoComprobante');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
 
