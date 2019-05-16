@@ -221,7 +221,15 @@
                         subtotal[cont] = (cantidad * precio_venta - descuento);
                         total = total + subtotal[cont];
                         
-                        var fila = '<tr class="selected" id="fila'+cont+'"><td><button class"btn btn-danger" type"button" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="id_articulo[]" value="'+id_articulo+'">'+articulo+'</td><td><input type="number" name="cantidad[]" value="'+cantidad+'"></td><td><input type="number" name="precio_venta[]" value="'+precio_venta+'" readonly></td><td><input type="number" name="descuento[]" value="'+descuento+'"></td><td>'+subtotal[cont]+'</td></tr>';
+                        var fila = '<tr class="selected" id="fila'
+                        +cont+'"><td><button class"btn btn-danger" type"button" onclick="eliminar('
+                        +cont+');">X</button></td><td><input type="hidden" name="id_articulo[]" value="'
+                        +id_articulo+'">'
+                        +articulo+'</td><td><input type="number" name="cantidad[]" value="'
+                        +cantidad+'"></td><td><input type="number" name="precio_venta[]" value="'
+                        +precio_venta+'" readonly></td><td><input type="number" name="descuento[]" value="'
+                        +descuento+'"></td><td>'
+                        +subtotal[cont]+'</td></tr>';
                         
                         //aumentar el contador
                         cont++;

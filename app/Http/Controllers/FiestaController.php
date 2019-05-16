@@ -7,9 +7,7 @@ use App\Paquetes;
 use App\Periodo;
 use App\Producto;
 use App\Cliente;
-use Stripe\Stripe;
-use Stripe\Customer;
-use Stripe\Charge;
+use App\abonos;
 use Illuminate\Http\Request;
 
 class FiestaController extends Controller
@@ -157,5 +155,44 @@ class FiestaController extends Controller
     public function destroy(Fiesta $fiesta)
     {
         //
+    }
+    
+    /**
+    * Los metodos addAbonoEfectivo y addAbonoTarjeta sirven para poder agregar los abonos a las fiestas
+    * se usa una relacion de muchos a muchos en fiestas y abonos y el metodo attach para poder insertar 
+    * los registros en la tabla intermedia.
+    *
+    * Ambas funciones reciben el id de la fiesta a la cual se desea agregar un abono.
+    */
+    public function addAbonoEfectivo(Request $request, Fiesta $fiesta)
+    {
+        $abono = new abonos();
+        $abono->cantidadAbono = $request->input('cantidadAbono');
+        $abono->save();
+        
+        $fiesta->abonos()->attach($abono->id, ['tipoPago' => $request->input('tipoPago')]); 
+        return redirect()->back()->with('success-message', 'Pago de abono realizado con éxito!');
+    }
+  
+    public function addAbonoTarjeta(Request $request, Fiesta $fiesta)
+    {
+        $abono = new abonos();
+        $abono->cantidadAbono = $request->input('cantidadAbono');
+        $abono->save();
+        
+        $fiesta->abonos()->attach($abono->id, ['tipoPago' => $request->input('tipoPago'),
+                                              'pinConfirmacion' => $request->input('pinConfirmacion')] );
+        return redirect()->back()->with('success-message', 'Pago de abono realizado con éxito!');
+    }
+    
+    /**
+    * Metodo para actualizar el campo de lo de liquidacion en la tabla de fiestas.
+    * 
+    * Recibe el id de la fiesta a la cual se va a liquidar el pago.
+    */
+    public function liquidarFiesta(Request $request, Fiesta $fiesta)
+    {
+        $fiesta->update(['liquidacion' => $request->input('liquidacion')]);
+        return redirect()->back()->with('success-message', 'Fiesta liquidada con éxito!');
     }
 }

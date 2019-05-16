@@ -31,7 +31,6 @@ class CreateFiestasTable extends Migration
             $table->text('telefonoCelular');
             $table->text('correo')->nullable();
             $table->date('fechaReservacion');
-            $table->unsignedInteger('idPaquete'); //TABLA - HECHA
             $table->integer('cantidadComidaNiños')->nullable();
             $table->integer('cantidadComidaAdulto')->nullable();
             $table->float('totalPaquete')->nullable();

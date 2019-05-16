@@ -13,4 +13,8 @@ class Paquetes extends Model
     public function comida(){
       return $this->hasMany('App\Productos');
     }
+    
+    public function fiesta(){
+      return $this->hasMany('App\Fiesta');
+    }
 }

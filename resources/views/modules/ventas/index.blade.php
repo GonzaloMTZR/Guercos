@@ -87,25 +87,29 @@
                                                     <td>{{$venta->id}}</td>
                                                     <td>
                                                         <ul>
-                                                            <li>{{$venta->productos()->pluck('descripcion')}}</li>
-                                                            <li>{{$venta->productos()->value('descripcion')}}</li>                                                                                                                    
+                                                            @foreach($venta->productos as $producto)
+                                                              <li>{{$producto->descripcion}}</li>
+                                                            @endforeach
                                                         </ul>
                                                     </td>
                                                     <td>
                                                         <ul>
-                                                            <li>{{$venta->productos()->pluck('cantidad')}}</li>
-                                                            <li>{{$venta->productos()->value('cantidad')}}</li>
+                                                            @foreach($venta->productos as $producto)
+                                                              <li>{{$producto->pivot->cantidad}}</li>
+                                                            @endforeach
+                                                            
                                                         </ul>
                                                     </td>
                                                     <td>
                                                         <ul>
-                                                            <li>{{$venta->productos()->pluck('descuento')}}</li>
-                                                            <li>{{$venta->productos()->value('descuento')}}</li>
+                                                            @foreach($venta->productos as $producto)
+                                                              <li>{{$producto->pivot->descuento}}</li>
+                                                            @endforeach
                                                         </ul>
                                                     </td>
                                                     <td>{{$venta->productos()->value('area')}}</td>
                                                     <td>{{$venta->user()->value('name')}}</td>
-                                                    <td>$ {{$venta->totalVenta}}.00</td>
+                                                    <td>${{$venta->totalVenta}}.00</td>
                                                     <td>{{$venta->created_at->format('d/m/Y')}}</td>
                                                     <td>{{$venta->folio}}</td>
                                                     <td>{{$venta->serieComprobante}}</td>

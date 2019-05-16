@@ -15,9 +15,9 @@ class PaqueteProducto extends Migration
     {
         Schema::create('paquete_producto', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('paquete_id');
+            $table->unsignedInteger('paquetes_id');
             $table->unsignedInteger('producto_id'); //Con el id traera los datos del producto
-            $table->foreign('paquete_id')->references('id')->on('paquetes')->onDelete('cascade');
+            $table->foreign('paquetes_id')->references('id')->on('paquetes')->onDelete('cascade');
             $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
             $table->timestamps();
         });

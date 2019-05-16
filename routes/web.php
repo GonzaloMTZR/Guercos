@@ -52,6 +52,13 @@ Route::resource('/PDVC', 'PuntoDeVentaCocinaController')->middleware(['role:Admi
 Route::resource('/PDVE', 'PuntoDeVentaEntradaController')->middleware(['role:Administrador|AdminVentas|VendedorPVEntrada']);//Punto de venta de entrada
 Route::resource('/ventas', 'VentaController')->middleware(['role:Administrador|AdminVentas']);//Nuevo controlador de venta (Será el definitivo)
 
+/**
+* Funciones del controlador de fiestas para agregar los abonos a una fiesta asi como liquidar el total de la fiesta
+*/
+Route::post('/fiestas/{fiesta}/addAbonoEfectivo', 'FiestaController@addAbonoEfectivo')->middleware(['role:Administrador|AdminFiestas']);
+Route::post('/fiestas/{fiesta}/addAbonoTarjeta', 'FiestaController@addAbonoTarjeta')->middleware(['role:Administrador|AdminFiestas']);
+Route::post('/fiestas/{fiesta}/liquidarFiesta', 'FiestaController@liquidarFiesta')->middleware(['role:Administrador|AdminFiestas']);
+
 
 /*Route::group(['middleware' => ['role:AdminCocina']], function () {
     Route::resource('/productos', 'ProductoController')->middleware('auth');

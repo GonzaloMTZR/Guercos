@@ -46,14 +46,14 @@ class PuntoDeVentaCocinaController extends Controller
     public function store(Request $request)
     {
         $venta = new Venta;
-	    $venta->user_id = $request->get('user_id');
-	    $venta->tipoComprobante = $request->get('tipo_comprobante');
-	    $venta->serieComprobante = $request->get('serie_comprobante');
-	    $venta->folio = $request->get('num_comprobante');
+        $venta->user_id = $request->get('user_id');
+        $venta->tipoComprobante = $request->get('tipo_comprobante');
+        $venta->serieComprobante = $request->get('serie_comprobante');
+        $venta->folio = $request->get('num_comprobante');
         $venta->totalVenta = $request->get('total_venta');
         $venta -> save();
         
-	    $cantidad = $request->get('cantidad');
+	      $cantidad = $request->get('cantidad');
         $descuento = $request->get('descuento');
         $producto_id = $request->get('id_articulo');
 

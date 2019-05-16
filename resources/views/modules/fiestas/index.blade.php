@@ -72,7 +72,6 @@
                                             <th>Comida de niño</th>
                                             <th>Comida de adulto</th>
                                             <th>Detalles</th>
-                                            <th>Abono</th>
                                         </tr>
                                     </thead>
 
@@ -94,7 +93,6 @@
                                                     <td>{{$fiesta->comidaNiños}}</td>
                                                     <td>{{$fiesta->comidaAdulto}}</td>
                                                     <td><a class="btn btn-success" href="/fiestas/{{$fiesta->id}}">Ver detalles</a></td>
-                                                    <td>{{$fiesta->abonos()->value('cantidadAbono')}}</td>
                                                 </tr>
                                             
                                         @endforeach
