@@ -12,4 +12,9 @@ class Producto extends Model
     {
         return $this->belongsToMany('App\Venta');
     }
+  
+    public function paquetes()
+    {
+        return $this->belongsToMany('App\Paquetes');
+    }
 }

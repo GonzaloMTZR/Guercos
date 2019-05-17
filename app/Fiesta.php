@@ -22,8 +22,4 @@ class Fiesta extends Model
             ->withPivot('created_at', 'tipoPago', 'pinConfirmacion')
             ->withTimestamps();
     }
-  
-    public function paquete(){
-      return $this->belongsTo('App\Paquetes');
-    }
 }

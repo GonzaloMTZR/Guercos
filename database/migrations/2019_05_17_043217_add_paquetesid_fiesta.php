@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PaqueteProducto extends Migration
+class AddPaquetesidFiesta extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class PaqueteProducto extends Migration
      */
     public function up()
     {
-        Schema::create('paquetes_producto', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::table('fiestas', function (Blueprint $table) {
             $table->unsignedInteger('paquetes_id');
-            $table->unsignedInteger('producto_id'); //Con el id traera los datos del producto
             $table->foreign('paquetes_id')->references('id')->on('paquetes')->onDelete('cascade');
-            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
@@ -30,6 +26,9 @@ class PaqueteProducto extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('fiestas', function (Blueprint $table) {
+            $table->dropForeign(['paquetes_id']);
+            $table->dropColumn('paquetes_id');
+        });
     }
 }

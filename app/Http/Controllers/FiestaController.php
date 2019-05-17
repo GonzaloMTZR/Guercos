@@ -191,8 +191,12 @@ class FiestaController extends Controller
     * Recibe el id de la fiesta a la cual se va a liquidar el pago.
     */
     public function liquidarFiesta(Request $request, Fiesta $fiesta)
-    {
-        $fiesta->update(['liquidacion' => $request->input('liquidacion')]);
+    { 
+        //if($request->has())
+        $fiesta->update(
+            ['liquidacion' => $request->input('liquidacion')
+        ]);
+      
         return redirect()->back()->with('success-message', 'Fiesta liquidada con éxito!');
     }
 }

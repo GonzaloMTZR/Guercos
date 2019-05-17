@@ -135,8 +135,8 @@
                   
                   <tr>
                     <th scope="row">Horario de fiesta</th>
-                    <td>Inicio: {{\Carbon\Carbon::createFromFormat('H:i:s',$fiesta->horaInicio)->format('h:i A')}} 
-                        Término: {{\Carbon\Carbon::createFromFormat('H:i:s',$fiesta->horaFinal)->format('h:i A')}}
+                    <td>{{\Carbon\Carbon::createFromFormat('H:i:s',$fiesta->horaInicio)->format('h:i A')}} -
+                        {{\Carbon\Carbon::createFromFormat('H:i:s',$fiesta->horaFinal)->format('h:i A')}}
                     </td>
                   </tr>
                   
@@ -174,50 +174,38 @@
     <div class="card">
       <div class="card-header">
         <h5>Historial de abonos</h5>
-        
+            <div class="float-right">
+              <button class="btn btn-primary" data-toggle="modal" data-target="#abonos">Agregar abono</button> 
+              <button class="btn btn-success" data-toggle="modal" data-target="#liquidacion">Liquidar total</button>
+              <a href="/fiestas/{{$fiesta->id}}/edit" class="btn btn-warning">Editar fiesta</a>
+            </div>
       </div>
+      
       <div class="card-block table-border-style">
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr class="border-bottom-success">
-                <th>Usted Debía</th>
-                <th>Abono a Cuenta</th>
-                <th>Ustede Debe Hoy</th>
-                <th>Fecha de Abono</th>
-                <th>Tipo de pago</th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($fiesta->abonos as $abono)
-              <tr>
-                <td>$10000.00</td>
-                <td>${{$abono->cantidadAbono}}.00</td>
-                <td>$7500.00</td>
-                <td>{{$abono->pivot->created_at->format('d/m/Y')}}</td>
-                <td>
-                  <ul>
-                    <li>{{$abono->pivot->tipoPago}}</li>
-                    @if($abono->pivot->tipoPago == 'Pago con tarjeta')
-                      <li>Número de autorización: {{$abono->pivot->pinConfirmacion}}</li>
-                    @endif
-                  </ul>
-                </td>
-              </tr>
-              @endforeach
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <div class="table-responsive">
+              <table class="table m-0">
+                <tbody>
+                  <tr>
+                    <th scope="row">Costo del Paquete</th>
+                    <td>$15000</td>
+                  </tr>
+                  @foreach ($fiesta->abonos as $abono)
+                  <tr>
+                    <th scope="row">Abono {{$abono->pivot->created_at->format('d/m/Y')}}</th>
+                    <td>${{$abono->cantidadAbono}}.00</td>
+                  </tr>
+                  @endforeach
+                  <tr>
+                    <th scope="row">Usted Debe Hoy</th>
+                    <td>${{$fiesta->liquidacion}}.00</td>
+                  </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
-    <h4 class="sub-title">Acciones</h4>
-    <div class="float-right">
-      <button class="btn btn-primary" data-toggle="modal" data-target="#abonos">Agregar abono</button> 
-      <button class="btn btn-success" data-toggle="modal" data-target="#liquidacion">Liquidar total</button>
-      <a href="/fiestas/{{$fiesta->id}}/edit" class="btn btn-warning">Editar fiesta</a>
-    </div>
-    
   </div>
 </div>
 
