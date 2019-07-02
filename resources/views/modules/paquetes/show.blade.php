@@ -42,7 +42,7 @@
                             <tbody>
                               @foreach($paquete->cantidadPersonas as $cantidad)
                                 <tr>
-                                    <td>Lunes - Viernes</td>
+                                    <td>{{$cantidad->periodo}}</td>
                                     <td>{{$cantidad->cantidad}}</td>
                                     <td>
                                       @foreach($paquete->producto as $comida)
@@ -51,7 +51,7 @@
                                       </ul>
                                       @endforeach
                                     </td>
-                                    <td>${{$cantidad->precio}}.00</td>
+                                    <td>$@convert($cantidad->precio)</td>
                                     <td>Editar</td>
                                     <td>Eliminar</td>
                                 </tr>

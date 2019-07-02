@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Paquetes;
 use App\Producto;
+use DB;
+use Illuminate\Support\Facades\Input;
+use App\CantidadPersonas;
 use Illuminate\Http\Request;
 
 class PaquetesController extends Controller
@@ -19,6 +22,15 @@ class PaquetesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function dias(){
+          
+      $paquete = Input::get('paquete');
+      $dias = DB::table('cantidad_personas')
+      ->select('periodo')
+      ->groupBy('periodo')->where('paquetes_id', '=', $paquete)->get();
+      return response()->json($dias);
+    }
+  
     public function index()
     {
         $paquetes = Paquetes::all();
@@ -64,9 +76,11 @@ class PaquetesController extends Controller
      * @param  \App\Paquetes  $paquetes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Paquetes $paquetes)
-    {
-        return view ('modules.paquetes.edit');
+    public function edit(Paquetes $paquete)
+    {   
+        $cantidadPersonas = CantidadPersonas::all();
+        $productos = Producto::all();
+        return view ('modules.paquetes.edit', compact('cantidadPersonas', 'productos', 'paquete'));
     }
 
     /**

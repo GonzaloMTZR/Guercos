@@ -46,19 +46,28 @@
                                 <!--<h4 class="sub-title">Datos Personales</h4>-->
                                 <div class="form-group row">
                                     <div class="col-sm-6">
-                                        <label for="my-input">Nombre del paquete <label class="text-danger">*</label></label>
+                                        <label for="my-input">Nombre del paquete</label>
                                         <input name="descripcionPaquete" class="form-control" type="text">
                                     </div>
 
-                                    <div class="col-sm-6">
-                                        <label for="my-input">Cantidad de personas <label class="text-danger">*</label></label>
+                                    <div class="col-sm-3">
+                                        <label for="my-input">Cantidad de personas</label>
                                         <input name="cantidadPersonas" class="form-control" type="text">
                                     </div>    
+                                  
+                                    <div class="col-sm-3">
+                                        <label for="my-input">Periodo</label>
+                                        <select name="" id="" class="form-control">
+                                          <option selected disabled>Seleccione el periodo</option>
+                                          <option value="Lunes - Viernes">Lunes a Viernes</option>
+                                          <option value="Sábado - Domingo">Sábado a Domingo</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-sm-6">
-                                        <label for="my-input">Comida de niño <label class="text-danger">*</label></label>
+                                        <label for="my-input">Comida de niño</label>
                                         <select class="js-example-basic-multiple" name="comidaNiño[]" multiple="multiple">
                                             <option selected disabled>Seleccione la comida de niño</option>
                                             @foreach($productos as $producto)
@@ -68,7 +77,7 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <label for="my-input">Comida de adulto <label class="text-danger">*</label></label>
+                                        <label for="my-input">Comida de adulto</label>
                                         <select class="js-example-basic-multiple" name="comidaAdulto[]" multiple="multiple">
                                             <option selected disabled>Seleccione la comida de adulto</option>
                                             @foreach($productos as $producto)

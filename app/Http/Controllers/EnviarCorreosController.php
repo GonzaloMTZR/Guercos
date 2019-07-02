@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Salon;
+use App\Cliente;
 use Illuminate\Http\Request;
 
-class SalonController extends Controller
+class EnviarCorreosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,8 @@ class SalonController extends Controller
      */
     public function index()
     {
-        //
+        $clientes = Cliente::all();
+        return view('modules.promociones.enviarCorreos', compact('clientes'));
     }
 
     /**
@@ -41,10 +41,10 @@ class SalonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Salon  $salon
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Salon $salon)
+    public function show($id)
     {
         //
     }
@@ -52,10 +52,10 @@ class SalonController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Salon  $salon
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Salon $salon)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +64,10 @@ class SalonController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Salon  $salon
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Salon $salon)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +75,10 @@ class SalonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Salon  $salon
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Salon $salon)
+    public function destroy($id)
     {
         //
     }

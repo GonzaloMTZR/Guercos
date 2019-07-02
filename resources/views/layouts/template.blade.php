@@ -160,6 +160,7 @@
                                     @role('AdminFiestas')
                                         @include('MenuRoles.fiestas')
                                         @include('MenuRoles.paquetes')
+                                        @include('MenuRoles.promociones')
                                         @include('MenuRoles.clientes')
                                         <!--@ include('MenuRoles.empleados')-->
                                     @else

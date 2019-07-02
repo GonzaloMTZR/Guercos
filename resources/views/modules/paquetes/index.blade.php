@@ -9,7 +9,6 @@
         <div class="d-inline">
           <h4>Paquetes de fiestas</h4>
           <span>Listado de los paquetes de fiesta disponibles.</span>
-
         </div>
       </div>
     </div>
@@ -22,15 +21,17 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h5>Paquetes: </h5>
+          <h5>Paquetes: Basicos </h5>
           <div class="card-header-right">
             <i class="icofont icofont-spinner-alt-5"></i>
           </div>
         </div>
-        <div class="row card-block">
-          <div class="col-md-12">
+        
+        
+        <div class="row tab-content card-block">
+          
+          <div class="col-md-12 tab-pane active" id="basico" role="tabpanel">
             <ul class="list-view">
-
               @foreach ($paquetes as $paquete)
               <li class="">
                 <div class="card list-view-media">
@@ -69,7 +70,16 @@
               @endforeach
             </ul>
           </div>
+          
+          
+          
+          
+          
+          
         </div>
+        
+          
+        
       </div>
     </div>
   </div>

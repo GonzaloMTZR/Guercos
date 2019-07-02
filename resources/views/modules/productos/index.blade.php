@@ -85,7 +85,7 @@
                                                     <td>{{$producto->area}}</td>
                                                     <td>{{$producto->tipoUnidad}}</td>
                                                     <td>{{$producto->categoria}}</td>
-                                                    <td>${{$producto->precio}}</td>
+                                                    <td>$@convert($producto->precio)</td>
                                                     <td>
                                                         <label class="text-{{$producto->stock <= 10 ? 'danger' : 'success'}}">{{$producto->stock}}</label>
                                                     </td>
