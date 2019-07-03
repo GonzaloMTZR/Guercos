@@ -56,7 +56,29 @@ class PaquetesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paquete = new Paquetes();
+        $cantidadPersonas = new CantidadPersonas();
+
+        $paquete->descripcionPaquete = $request->input('descripcionPaquete');
+        $cantidadPersonas->cantidad = $request->input('cantidad');
+        $cantidadPersonas->precio = $request->input('precio');
+        $cantidadPersonas->periodo = $request->input('periodo');
+
+        $paquete->save();
+        $cantidadPersonas->save();
+
+        $cantidadPersonas->paquete()->saveMany($paquete);
+
+
+        /*$producto_id = $request->get('id_articulo');
+
+        $sync_data = [];
+        for($i = 0; $i < count($producto_id); $i++){
+            $sync_data[$producto_id[$i]] = ['descuento' => $descuento[$i], 'cantidad' => $cantidad[$i]];
+        }*/
+
+        //$venta->productos()->sync($sync_data);
+        return redirect()->back();
     }
 
     /**
