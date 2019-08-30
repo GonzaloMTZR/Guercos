@@ -8,6 +8,7 @@ use App\Producto;
 use App\Cliente;
 use App\abonos;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreFiestasRequest;
 
 class FiestaController extends Controller
 {
@@ -51,53 +52,52 @@ class FiestaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Fiesta $fiesta)
+    public function store(Fiesta $fiesta, StoreFiestasRequest  $request)
     {
+        $fiesta->fechaFiesta = $request->input('fechaFiesta');
+        $fiesta->fechaReservacion = $request->input('fechaReservacion');
+        $fiesta->horaInicio = $request->input('horaInicio');
+        $fiesta->horaFinal = $request->input('horaFinal');
+        $fiesta->horaComida = $request->input('horaComida');
+        $fiesta->salon = $request->input('salon');
+        $fiesta->partyStatus = $request->input('partyStatus');
+        $fiesta->piñata = $request->input('piñata');
+        $fiesta->pastel = $request->input('pastel');
+        $fiesta->notas = $request->input('notas');
 
-        $fiesta->fechaFiesta = request('fechaFiesta');
-        $fiesta->fechaReservacion = request('fechaReservacion');
-        $fiesta->horaInicio = request('horaInicio');
-        $fiesta->horaFinal = request('horaFinal');
-        $fiesta->horaComida = request('horaComida');
-        $fiesta->salon = request('salon');
-        $fiesta->partyStatus = request('partyStatus');
-        $fiesta->piñata = request('piñata');
-        $fiesta->pastel = request('pastel');
-        $fiesta->notas = request('notas');
-
-        $fiesta->nombreNiño = request('nombreNiño');
-        $fiesta->fechaNacNiño = request('fechaNacNiño');
-        $fiesta->edadNiño = request('edadNiño');
-        $fiesta->nombrePapa = request('nombrePapa');
-        $fiesta->telefonoCasa = request('telefonoCasa');
-        $fiesta->telefonoCelular = request('telefonoCelular');
-        $fiesta->correo = request('correo');
-        $fiesta->ciudad = request('ciudad');
-        $fiesta->colonia = request('colonia');
-        $fiesta->calle = request('calle');
+        $fiesta->nombreNiño = $request->input('nombreNiño');
+        $fiesta->fechaNacNiño = $request->input('fechaNacNiño');
+        $fiesta->edadNiño = $request->input('edadNiño');
+        $fiesta->nombrePapa = $request->input('nombrePapa');
+        $fiesta->telefonoCasa = $request->input('telefonoCasa');
+        $fiesta->telefonoCelular = $request->input('telefonoCelular');
+        $fiesta->correo = $request->input('correo');
+        $fiesta->ciudad = $request->input('ciudad');
+        $fiesta->colonia = $request->input('colonia');
+        $fiesta->calle = $request->input('calle');
         
         $fiesta->paquetes_id = 1;
-        $fiesta->comidaNiños = 1;
-        $fiesta->comidaAdulto = 1;
-        $fiesta->cantidadComidaNiños = request('cantidadComidaNiños');
-        $fiesta->cantidadComidaAdulto = request('cantidadComidaAdulto');
-        $fiesta->manteles = request('manteles');
-        /*$fiesta->totalPaquete = request('totalPaquete');
-        $fiesta->total = request('total');
-        $fiesta->chargeSheetNotes = request('chargeSheetNotes');
-        $fiesta->porcentajeDescuento = request('porcentajeDescuento');*/
+        //$fiesta->comidaNiños = 1;
+        //$fiesta->comidaAdulto = 1;
+        $fiesta->cantidadComidaNiños = $request->input('cantidadComidaNiños');
+        $fiesta->cantidadComidaAdulto = $request->input('cantidadComidaAdulto');
+        $fiesta->manteles = $request->input('manteles');
+        /*$fiesta->totalPaquete = $request->input('totalPaquete');
+        $fiesta->total = $request->input('total');
+        $fiesta->chargeSheetNotes = $request->input('chargeSheetNotes');
+        $fiesta->porcentajeDescuento = $request->input('porcentajeDescuento');*/
 
 
         $cliente = new Cliente();
-        $cliente->nombre = request('nombrePapa');
-        $cliente->nombreNiño = request('nombreNino');
-        $cliente->fechaNacNiño = request('fechaCumpleanos');
-        $cliente->telefonoCasa = request('telefonoCasa');
-        $cliente->telefonoCelular = request('telefonoCel');
-        $cliente->correo = request('correo');
-        $cliente->ciudad = request('ciudad');
-        $cliente->colonia = request('colonia');
-        $cliente->calle = request('calle');
+        $cliente->nombre = $request->input('nombrePapa');
+        $cliente->nombreNiño = $request->input('nombreNiño');
+        $cliente->fechaNacNiño = $request->input('fechaNacNiño');
+        $cliente->telefonoCasa = $request->input('telefonoCasa');
+        $cliente->telefonoCelular = $request->input('telefonoCelular');
+        $cliente->correo = $request->input('correo');
+        $cliente->ciudad = $request->input('ciudad');
+        $cliente->colonia = $request->input('colonia');
+        $cliente->calle = $request->input('calle');
 
         $cliente->save();
         $fiesta->save();
@@ -223,8 +223,10 @@ class FiestaController extends Controller
         $abono->cantidadAbono = $request->input('cantidadAbono');
         $abono->save();
         
-        $fiesta->abonos()->attach($abono->id, ['tipoPago' => $request->input('tipoPago'),
-                                              'pinConfirmacion' => $request->input('pinConfirmacion')] );
+        $fiesta->abonos()->attach($abono->id, [
+            'tipoPago' => $request->input('tipoPago'),
+            'pinConfirmacion' => $request->input('pinConfirmacion')
+        ]);
         return redirect()->back()->with('success-message', 'Pago de abono realizado con éxito!');
     }
     

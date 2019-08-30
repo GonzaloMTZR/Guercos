@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cliente;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreClientesRequest;
 
 class ClienteController extends Controller
 {
@@ -40,21 +41,21 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Cliente $cliente)
+    public function store(Cliente $cliente, StoreClientesRequest $request)
     {
-        $cliente->nombre = request('nombrePapa');
-        $cliente->nombreNiño = request('nombreNino');
-        $cliente->fechaNacNiño = request('fechaCumpleanos');
-        $cliente->telefonoCasa = request('telefonoCasa');
-        $cliente->telefonoCelular = request('telefonoCel');
-        $cliente->correo = request('correo');
-        $cliente->ciudad = request('ciudad');
-        $cliente->colonia = request('colonia');
-        $cliente->calle = request('calle');
+        $cliente->nombre = $request->input('nombrePapa');
+        $cliente->nombreNiño = $request->input('nombreNiño');
+        $cliente->fechaNacNiño = $request->input('fechaNacNiño');
+        $cliente->telefonoCasa = $request->input('telefonoCasa');
+        $cliente->telefonoCelular = $request->input('telefonoCelular');
+        $cliente->correo = $request->input('correo');
+        $cliente->ciudad = $request->input('ciudad');
+        $cliente->colonia = $request->input('colonia');
+        $cliente->calle = $request->input('calle');
 
         $cliente->save();
 
-        return redirect('/clientes');
+        return redirect('/clientes')->with('success-message', 'Cliente agregado con exito!');;
     }
 
     /**

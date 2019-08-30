@@ -20,6 +20,12 @@ Route::get('/', function () {
 });
 
 
+/**
+ * Rutas de ejemplo para el pdf
+ */
+Route::get('pdf','PdfController@getIndex');
+Route::get('pdf/generar','PdfController@getGenerar');
+
 /** 
  * Ruta del dashboard
 */

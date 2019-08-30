@@ -14,16 +14,27 @@
           <h4>Agendar fiesta</h4>
           <span>Formulario para agendar una fiesta.</span>
           <!--<form action="POST">
-                            <div class="input-group input-group-button input-group-primary">
-                                <input type="text" class="form-control" placeholder="Buscar empleado...">
-                                <button type="submit " class="btn btn-primary input-group-addon" id="basic-addon1">Buscar</button>
-                            </div>
-                        </form>-->
+              <div class="input-group input-group-button input-group-primary">
+                  <input type="text" class="form-control" placeholder="Buscar empleado...">
+                  <button type="submit " class="btn btn-primary input-group-addon" id="basic-addon1">Buscar</button>
+              </div>
+          </form>-->
         </div>
       </div>
     </div>
   </div>
 </div>
+
+@if($errors)
+@foreach($errors->all() as $error)
+    <div class="alert alert-danger background-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="icofont icofont-close-line-circled text-white"></i>
+        </button>
+        <p>{{ $error  }}</p>
+    </div>
+@endforeach
+@endif
 
 <div class="card">
 
@@ -35,17 +46,17 @@
       <div class="form-group row">
         <div class="col-sm-6">
           <label for="my-input">Nombre del festejado <label class="text-danger">*</label></label>
-          <input name="nombreNino" class="form-control" type="text">
+          <input name="nombreNiño" class="form-control" type="text">
         </div>
 
         <div class="col-sm-3">
           <label for="my-input">Fecha de cumpleaños <label class="text-danger">*</label></label>
-          <input name="fechaCumpleanos" class="form-control" type="date">
+          <input name="fechaNacNiño" class="form-control" type="date">
         </div>
 
         <div class="col-sm-3">
           <label for="my-input">Edad <label class="text-danger">*</label></label>
-          <input name="edadNino" class="form-control" type="number">
+          <input name="edadNiño" class="form-control" type="number">
         </div>
       </div>
 
@@ -63,7 +74,7 @@
       <div class="form-group row">
         <div class="col-sm-6">
           <label for="my-input">Número celular</label>
-          <input name="telefonoCel" class="form-control" type="text">
+          <input name="telefonoCelular" class="form-control" type="text">
         </div>
 
         <div class="col-sm-6">
@@ -131,21 +142,21 @@
         <div class="col-sm-3">
           <label for="my-input">Salón <label class="text-danger">*</label></label>
           <select name="salon" class="form-control">
-                            <option selected disable>Seleccione el salón</option>
-                            <option value="Salon 1">Salón 1</option>
-                            <option value="Salon 2">Salon 2</option>
-                            <option value="Pasillo">Pasillo</option>
-                        </select>
+              <option selected disable>Seleccione el salón</option>
+              <option value="Salon 1">Salón 1</option>
+              <option value="Salon 2">Salon 2</option>
+              <option value="Pasillo">Pasillo</option>
+          </select>
         </div>
 
         <div class="col-sm-3">
           <label for="my-input">Estatus de la fiesta <label class="text-danger">*</label></label>
-          <select name="estatusFiesta" class="form-control">
-                            <option selected disable>Seleccione el estatus</option>
-                            <option value="Activo">Activo</option>
-                            <option value="Cancelado">Cancelado</option>
-                            <option value="Terminado">Terminado</option>
-                        </select>
+          <select name="partyStatus" class="form-control">
+              <option selected disable>Seleccione el estatus</option>
+              <option value="Activo">Activo</option>
+              <option value="Cancelado">Cancelado</option>
+              <option value="Terminado">Terminado</option>
+          </select>
         </div>
 
 
@@ -177,39 +188,39 @@
         <div class="col-sm-3">
           <label for="my-input">Paquete <label class="text-danger">*</label></label>
           <select name="idPaquete" class="form-control" id="paquete">
-                            <option selected disable>Seleccione el paquete</option>
-                            @foreach ($paquetes as $paquete)
-                                <option value="{{$paquete->id}}">{{$paquete->descripcionPaquete}}</option>
-                            @endforeach
-                        </select>
+              <option selected disable>Seleccione el paquete</option>
+              @foreach ($paquetes as $paquete)
+                  <option value="{{$paquete->id}}">{{$paquete->descripcionPaquete}}</option>
+              @endforeach
+          </select>
         </div>
 
         <div class="col-sm-3">
           <label for="my-input">Días <label class="text-danger">*</label></label>
           <select name="idPeriodo" class="form-control" id="dias" required>
-                           <option value="0" disable="true" selected="true">Seleccione los dias</option>
-                        </select>
+              <option value="0" disable="true" selected="true">Seleccione los dias</option>
+          </select>
         </div>
 
         <div class="col-sm-3">
           <label for="my-input">Comida Niño <label class="text-danger">*</label></label>
           <select name="comidaNino" class="js-example-basic-sigle">
-                            <option selected disable>Seleccione la comida de niños</option>
-                            @foreach ($comidas as $comida)
-                                <option value="{{$comida->id}}">{{$comida->descripcion}}</option>
-                            @endforeach
-                        </select>
+              <option selected disable>Seleccione la comida de niños</option>
+              @foreach ($comidas as $comida)
+                  <option value="{{$comida->id}}">{{$comida->descripcion}}</option>
+              @endforeach
+          </select>
           <!--<input type="number" name="cantidadAdulto" class="form-control" placeholder="Cantidad" id="">-->
         </div>
 
         <div class="col-sm-3">
           <label for="my-input">Comida Adulto <label class="text-danger">*</label></label>
           <select name="comidaAdulto" class="js-example-basic-sigle">
-                            <option selected disable>Seleccione la comida de adulto</option>
-                            @foreach ($comidas as $comida)
-                                <option value="{{$comida->id}}">{{$comida->descripcion}}</option>
-                            @endforeach
-                        </select>
+              <option selected disable>Seleccione la comida de adulto</option>
+              @foreach ($comidas as $comida)
+                  <option value="{{$comida->id}}">{{$comida->descripcion}}</option>
+              @endforeach
+          </select>
           <!--<input type="number" name="cantidadAdulto" class="form-control" placeholder="Cantidad" id="">-->
         </div>
       </div>

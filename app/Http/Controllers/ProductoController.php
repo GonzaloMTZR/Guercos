@@ -9,6 +9,7 @@ use Alert;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProductosRequest;
 
 class ProductoController extends Controller
 {
@@ -45,7 +46,7 @@ class ProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductosRequest $request)
     {
         if ($request->hasFile('imagenProducto')) {
             $file = $request->file('imagenProducto');
@@ -70,25 +71,7 @@ class ProductoController extends Controller
             'imagenProducto' => $name,
         ]);
         
-       
-        /*if(Auth::user()->roles('Administrador')){
-            
-            $producto = Producto::create([
-                'codigo' => $request->codigo,
-                'descripcion' => $request->descripcion,
-                'precio' => $request->precio,
-                'cantidad' => $request->cantidad,
-                'area' => $request->area,
-                'infinito' => $request->infinito,
-                'tipoUnidad' => $request->tipoUnidad,
-                'categoria' => $request->categoria,
-                'imagenProducto' => $name,
-            ]);
-        }*/
-
-        //dd ($producto);
-        
-        return redirect('/productos')->with('success-message', 'Producto agregado con exito');
+        return redirect('/productos')->with('success-message', 'Producto agregado con exito!');
         
     }
 
@@ -157,5 +140,16 @@ class ProductoController extends Controller
     {
         $producto->delete();
         return redirect('/productos');
+    }
+
+
+    /**
+     * Funcion para agregar stock en el inventario
+     * 
+     * @param Recibe el request del formulario y el id del producto 
+     */
+    public function addStock(Request $request, Producto $producto)
+    {
+
     }
 }

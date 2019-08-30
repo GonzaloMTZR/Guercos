@@ -25,6 +25,17 @@
         </div>
     </div>
 
+    @if($errors)
+        @foreach($errors->all() as $error)
+            <div class="alert alert-danger background-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="icofont icofont-close-line-circled text-white"></i>
+                </button>
+                <p>{{ $error  }}</p>
+            </div>
+        @endforeach
+    @endif
+
     <div class="card">
         <div class="card-block">
             <form action="/clientes" method="post" enctype="multipart/form-data">
@@ -40,7 +51,7 @@
 
                     <div class="col-sm-6">
                         <label for="my-input">Nombre del festejado</label>
-                        <input name="nombreNino" class="form-control" type="text">
+                        <input name="nombreNiño" class="form-control" type="text">
                     </div>
 
                        
@@ -49,7 +60,7 @@
                 <div class="form-group row">
                     <div class="col-sm-3">
                         <label for="my-input">Fecha de cumpleaños</label>
-                        <input name="fechaCumpleanos" class="form-control" type="date">
+                        <input name="fechaNacNiño" class="form-control" type="date">
                     </div> 
                     
                     <div class="col-sm-3">
@@ -59,7 +70,7 @@
                
                     <div class="col-sm-3">
                         <label for="my-input">Número celular</label>
-                        <input name="telefonoCel" class="form-control" type="text">
+                        <input name="telefonoCelular" class="form-control" type="text">
                     </div>
 
                     <div class="col-sm-3">

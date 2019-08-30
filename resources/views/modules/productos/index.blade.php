@@ -91,13 +91,13 @@
                                                     </td>
                                                     <td>{{$producto->infinito}}</td>
                                                     <td>
-                                                        <a href="/productos/{{$producto->id}}/edit" class="btn btn-warning"></a>
+                                                        <a href="/productos/{{$producto->id}}/edit" class="btn btn-warning">Editar</a>
                                                         <form method="POST" action="/productos/{{$producto->id}}">
                                                             @method('DELETE')
                                                             @csrf
                                                             <div class="field">
                                                                 <div class="control">
-                                                                        <button type="submit" class="btn btn-danger"></i></button>
+                                                                        <button type="submit" class="btn btn-danger"></i>Eliminar</button>
                                                                 </div>
                                                             </div>
                                                         </form>

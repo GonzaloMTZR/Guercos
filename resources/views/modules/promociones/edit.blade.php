@@ -33,36 +33,38 @@
   <div class="page-body">
     <div class="card">
       <div class="card-block">
-        <form method="POST" action="/promociones" enctype="multipart/form-data">
+        <form method="POST" action="/promociones/{{$promocion->id}}" enctype="multipart/form-data">
           @csrf
+          @method('PATCH')
+
           <div class="form-group row">
             <div class="col-sm-12">
                 <label for="my-input">Nombre de la promoción</label>
-                <input name="nombre" class="form-control" type="text">
+                <input name="nombre" value="{{$promocion->nombre}}" class="form-control" type="text">
             </div>
           </div> 
           
           <div class="form-group row">
             <div class="col-sm-4">
                 <label for="my-input">Fecha de inicio de la promoción</label>
-                <input name="fechaInicio" class="form-control" type="date">
+                <input name="fechaInicio" value="{{$promocion->fechaInicio}}" class="form-control" type="date">
             </div>
             
             <div class="col-sm-4">
                 <label for="my-input">Fecha de termino de la promoción</label>
-                <input name="fechaTermino" class="form-control" type="date">
+                <input name="fechaTermino" value="{{$promocion->fechaTermino}}" class="form-control" type="date">
             </div>
             
             <div class="col-sm-4">
                 <label for="my-input">Dias de disponibilidad</label>
-                <input type="text" class="form-control" name="dias">
+                <input type="text" value="{{$promocion->dias}}" class="form-control" name="dias">
             </div>
           </div>     
           
           <div class="form-group row">
             <div class="col-sm-12">
                 <label for="my-input">Descripción de la promoción</label>
-                <textarea name="descripcion"></textarea>
+                <textarea name="descripcion">{{$promocion->descripcion}}</textarea>
             </div>
           </div>
           

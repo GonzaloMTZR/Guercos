@@ -6,6 +6,7 @@ use App\Promociones;
 use Cliente;
 use Validator;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePromocionesRequest;
 
 class PromocionesController extends Controller
 {
@@ -44,7 +45,7 @@ class PromocionesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePromocionesRequest $request)
     {
       $promociones = new Promociones();
       
@@ -86,9 +87,10 @@ class PromocionesController extends Controller
      * @param  \App\Promociones  $promociones
      * @return \Illuminate\Http\Response
      */
-    public function edit(Promociones $promociones)
+    public function edit($id)
     {
-        //
+        $promocion = Promociones::FindOrFail($id);
+        return view('modules.promociones.edit', compact('promocion'));
     }
 
     /**
@@ -98,9 +100,29 @@ class PromocionesController extends Controller
      * @param  \App\Promociones  $promociones
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Promociones $promociones)
+    public function update(Request $request, $id)
     {
-        //
+        $promociones = Promociones::FindOrFail($id);
+        
+        if ($request->hasFile('imagen')) {
+            $file = $request->file('imagen');
+            $name = time().$file->getClientOriginalName();
+            $public_path = public_path();
+            $file->move($public_path.'/imagenes/promociones/', $name);
+        }else{
+            $name =$promociones->imagen;
+        }
+        
+        
+        $promociones->nombre = $request->input('nombre');
+        $promociones->descripcion = $request->input('descripcion');
+        $promociones->dias = $request->input('dias');
+        $promociones->fechaInicio = $request->input('fechaInicio');
+        $promociones->fechaTermino = $request->input('fechaTermino');
+        $promociones->imagen = $name;
+        $promociones->save();
+        
+        return redirect('/promociones')->with('success-message', 'Promocion editada con exito!');
     }
 
     /**
