@@ -34,7 +34,7 @@
 
                     <div class="row">
                         <div class="col-sm-4">
-                            <img src="/imagenes/usuarios/{{$user->imagenPerfil}}" alt="" class="img-fluid p-b-10">
+                            <img src="/imagenes/usuarios/{{$user->imagenPerfil}}" alt="" class="img-fluid p-b-10 ml-2">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imagen">Cambiar imagen de perfil</button>
                         </div>
                        
@@ -53,7 +53,7 @@
                                     <h6 class="f-w-400 m-b-30"><i class="icofont icofont-ui-calendar"></i>Fecha de nacimiento:</h6>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="date" class="form-control" value="{{$user->fechaNacimiento}}" name="fechaNacimiento">
+                                    <input type="date" class="form-control" value="{{$user->fechaNacimiento->format('Y-m-d')}}" name="fechaNacimiento">
                                 </div>
                             </div>
 
@@ -103,6 +103,7 @@
                                 <div class="col-sm-5">
                                     <h6 class="f-w-400 m-b-30"><i class="icofont icofont-save"></i>Guardar datos</h6>
                                 </div>
+                                
                                 <div class="col-sm-7">
                                     <input type="submit" class="btn btn-success" value="Guardar">
                                 </div>
@@ -116,6 +117,15 @@
                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#contraseña">Cambiar contraseña</button>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                    <div class="col-sm-5">
+                                        <h6 class="f-w-400 m-b-30"><i class="icofont icofont-close-circled"></i>Regresar y no guardar :</h6>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <a href="/user/{{$user->id}}" class="btn btn-warning">Regresar</a>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </form>
@@ -187,8 +197,8 @@
                         
                         <div class="modal-body">
                             <div class="form-group">
-                                <h6 for="my-input">Imagen actual</h6>
-                                <img src="/imagenes/usuarios/{{$user->imagenPerfil}}" alt="" class="img-fluid p-b-10">
+                                <h5 for="my-input">Imagen actual</h5>
+                                <img src="/imagenes/usuarios/{{$user->imagenPerfil}}" alt="" class="img-fluid p-b-10 mt-3">
                             </div>
     
                             <div class="form-group">

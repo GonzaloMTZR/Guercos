@@ -38,16 +38,7 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        /*if ($request->hasFile('imagenPerfil')) {
-            $file = $request->file('imagenPerfil');
-            $name = time().$file->getClientOriginalName();
-            $public_path = public_path();
-            $file->move($public_path.'/imagenes'.'/'.'usuarios'.'/', $name);
-        }else{
-            $name = $user->imagenPerfil;
-        }*/
-
-        // Validate the data submitted by user
+        // Validar los datos ingresados por el usuario
         $validator = Validator::make($request->all(), [
             'name' => ['string', 'max:255'],
             'email' => ['email' =>  'email','max:255', 'unique:users,email,'.$user->id],
@@ -62,7 +53,7 @@ class UserController extends Controller
             $fechaNacimiento = $user->fechaNacimiento;
         }
 
-        // if fails redirects back with errors
+        // Si falla entra esta condicion
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
@@ -89,6 +80,8 @@ class UserController extends Controller
 
     /**
      * Funcion para actualizar la contraseña del usuario
+     * 
+     * @param Request del formulario
      */
     public function UpdatePassword(Request $request){
         $rules = [
@@ -124,6 +117,8 @@ class UserController extends Controller
 
     /**
      * Funcion para actualizar la imagen de perfil
+     * 
+     * @param Request del formulario
      */
     public function UpdateImagen(Request $request){
         $rules = [
