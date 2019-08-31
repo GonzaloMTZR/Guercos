@@ -41,15 +41,15 @@ Auth::routes();
 /**
  * grupo de rutas para modificar el perfil del usuario
  */
-Route::resource('/user' ,'UserController')->middleware('auth');
-Route::post('/user/updatepassword' ,'UserController@UpdatePassword')->middleware('auth'); //Actualizar la contraseña
-Route::post('/user/updateimagen' ,'UserController@UpdateImagen')->middleware('auth'); //Cambiar imagen de perfil
+Route::resource('/user' ,'UserController');
+Route::post('/user/updatepassword' ,'UserController@UpdatePassword');//->middleware('auth'); //Actualizar la contraseña
+Route::post('/user/updateimagen' ,'UserController@UpdateImagen');//->middleware('auth'); //Cambiar imagen de perfil
 
 
 /** 
  * Rutas de los controladores
  */
-Route::resource('/empleados', 'EmpleadosController')->middleware(['role:Administrador|AdminVentas']); //Controlador para los empleados
+Route::resource('/empleados', 'EmpleadosController');//->middleware(['role:Administrador|AdminVentas']); //Controlador para los empleados
 Route::resource('/clientes', 'ClienteController')->middleware(['role:Administrador|AdminFiestas']); //Controlador para los clientes
 Route::resource('/productos', 'ProductoController')->middleware(['role:Administrador|AdminCocina']); //Controlador para el inventario
 Route::resource('/paquetes', 'PaquetesController')->middleware(['role:Administrador|AdminFiestas']); //Controlador para los paquetes

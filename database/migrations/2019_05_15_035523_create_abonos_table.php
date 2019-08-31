@@ -19,12 +19,14 @@ class CreateAbonosTable extends Migration
             $table->timestamps();
         });
       
-        Schema::create('fiesta_abono', function (Blueprint $table) {
+        Schema::create('abonos_fiesta', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('fiesta_id');
-            $table->unsignedInteger('abono_id'); //Con el id traera los datos del producto
+            $table->unsignedInteger('abonos_id'); //Con el id traera los datos del producto
+           $table->text('tipoPago')->nullable();
+            $table->text('pinConfirmacion')->nullable();
             $table->foreign('fiesta_id')->references('id')->on('fiestas')->onDelete('cascade');
-            $table->foreign('abono_id')->references('id')->on('abonos')->onDelete('cascade');
+            $table->foreign('abonos_id')->references('id')->on('abonos')->onDelete('cascade');
             $table->timestamps();
         });
     }

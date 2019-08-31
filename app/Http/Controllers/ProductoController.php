@@ -63,7 +63,7 @@ class ProductoController extends Controller
             'codigo' => $request->codigo,
             'descripcion' => $request->descripcion,
             'precio' => $request->precio,
-            'stock' => $request->cantidad,
+            'cantidad' => $request->cantidad,
             'area' => $request->area,
             'infinito' => $request->infinito,
             'tipoUnidad' => $request->tipoUnidad,
@@ -118,7 +118,7 @@ class ProductoController extends Controller
         $producto->codigo = $request->input('codigo');
         $producto->descripcion = $request->input('descripcion');
         $producto->precio = $request->input('precio');
-        $producto->stock = $request->input('cantidad');
+        $producto->cantidad = $request->input('cantidad');
         $producto->area = $request->input('area');
         $producto->infinito = $request->input('infinito');
         $producto->tipoUnidad = $request->input('tipoUnidad');

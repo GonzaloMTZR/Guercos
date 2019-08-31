@@ -80,7 +80,7 @@
                             
                                 <li class="user-profile header-notification">
                                     <a href="#!">
-                                        <img src="/imagenes/usuarios/{{Auth::user()->imagenPerfil}}" class="img-radius" alt="User-Profile-Image">
+                                        <img src="/imagenes/usuarios/{{ Auth::user()->imagenPerfil}}" class="img-radius" alt="User-Profile-Image">
                                         <span>{{Auth::user()->name}}</span>
                                         <i class="ti-angle-down"></i>
                                     </a>
@@ -117,8 +117,8 @@
                                 <div class="main-menu-header">
                                     <img class="img-40 img-radius" src="/imagenes/usuarios/{{Auth::user()->imagenPerfil}}" alt="User-Profile-Image">
                                     <div class="user-details">
-                                        <span>{{Auth::user()->name}}</span>
-                                        @foreach(Auth::user()->roles()->pluck('name') as $role_name)
+                                        <span>{{ Auth::user()-> name}}</span>
+                                        @foreach( Auth::user()->roles()->pluck('name') as $role_name)
                                             <span id="more-details">Puesto en la empresa: {{$role_name}}<i class="ti-angle-down"></i></span>
                                         @endforeach
                                     </div>
@@ -127,7 +127,7 @@
                                 <div class="main-menu-content">
                                     <ul>
                                         <li class="more-details">
-                                            <a href="/user/{{Auth::user()->id}}"><i class="ti-user"></i>Ver Perfil</a>
+                                            <!--<a href="/user/{ {Auth::user()->id} }"><i class="ti-user"></i>Ver Perfil</a>-->
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                                 <i class="ti-layout-sidebar-left"></i>Cerrar Sesión
