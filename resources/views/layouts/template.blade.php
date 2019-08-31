@@ -80,15 +80,31 @@
                             
                                 <li class="user-profile header-notification">
                                     <a href="#!">
-                                        <img src="/imagenes/usuarios/{{ Auth::user()->imagenPerfil}}" class="img-radius" alt="User-Profile-Image">
+                                      @auth
+                                        <img src="/imagenes/usuarios/{{Auth::user()->imagenPerfil}}" class="img-radius" alt="User-Profile-Image">
                                         <span>{{Auth::user()->name}}</span>
+                                      @endauth
+                                      
+                                      @guest
+                                        <img src="/imagenes/usuarios/Group-user.jpg" class="img-radius" alt="User-Profile-Image">
+                                        <span>Perfil de invitado</span>
+                                      @endguest
+                                        
                                         <i class="ti-angle-down"></i>
                                     </a>
                                     <ul class="show-notification profile-notification">
                                         <li>
+                                          @auth
                                             <a href="/user/{{Auth::user()->id}}">
                                                 <i class="ti-user"></i> Perfil de usuario
                                             </a>
+                                          @endauth
+                                          
+                                          @guest
+                                            <a href="">
+                                                <i class="ti-user"></i> Perfil de invitado
+                                            </a>
+                                          @endguest
                                         </li>
                                         <li>
                                             <a href="{{ route('logout') }}"
@@ -115,12 +131,26 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-40 img-radius" src="/imagenes/usuarios/{{Auth::user()->imagenPerfil}}" alt="User-Profile-Image">
+                                    @auth
+                                      <img class="img-40 img-radius" src="/imagenes/usuarios/{{Auth::user()->imagenPerfil}}" alt="User-Profile-Image">
+                                    @endauth
+                                  
+                                    @guest
+                                      <img class="img-40 img-radius" src="/imagenes/usuarios/Group-user.jpg" alt="User-Profile-Image">
+                                    @endguest
+                                  
                                     <div class="user-details">
+                                      @auth
                                         <span>{{ Auth::user()-> name}}</span>
-                                        @foreach( Auth::user()->roles()->pluck('name') as $role_name)
-                                            <span id="more-details">Puesto en la empresa: {{$role_name}}<i class="ti-angle-down"></i></span>
-                                        @endforeach
+                                          @foreach( Auth::user()->roles()->pluck('name') as $role_name)
+                                              <span id="more-details">Puesto en la empresa: {{$role_name}}<i class="ti-angle-down"></i></span>
+                                          @endforeach
+                                        @endauth
+                                        
+                                        @guest
+                                          <span>Perfil de invitado</span>
+                                          <span id="more-details">Puesto en la empresa: Usuario Invitado<i class="ti-angle-down"></i></span>
+                                        @endguest
                                     </div>
                                 </div>
 
