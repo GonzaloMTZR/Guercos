@@ -18,10 +18,7 @@ class PuntoDeVentaCocinaController extends Controller
      */
     public function index()
     {   
-        $productos = DB::table('productos')
-            ->orderBy('descripcion', 'asc')
-            ->get()
-        ;
+        $productos = Producto::orderBy('descripcion','ASC')->get();
         //$productos = Producto::all();
         return view('modules.POVC.create', compact('productos'));
     }

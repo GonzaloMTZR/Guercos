@@ -41,12 +41,12 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     public function showRegistrationForm()
     {
-        $roles = Role::all();
+        $roles = Role::orderBy('name','ASC')->get();
         return view('auth.register', compact('roles'));
     }
 

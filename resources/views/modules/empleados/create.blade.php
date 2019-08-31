@@ -89,7 +89,7 @@
                                         <select class="form-control" name="role" id="">
                                             <option selected disabled>Seleccione el puesto del empleado</option>
 
-                                            @foreach ($roles as $role)
+                                            @foreach ($roles->sortBy('name') as $role)
                                                 <option value="{{$role->id}}">{{$role->name}}</option>
                                             @endforeach
                                         </select>
