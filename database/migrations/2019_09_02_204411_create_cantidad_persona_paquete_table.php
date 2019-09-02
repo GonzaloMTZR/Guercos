@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PaqueteProducto extends Migration
+class CreateCantidadPersonaPaqueteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class PaqueteProducto extends Migration
      */
     public function up()
     {
-        Schema::create('paquete_producto', function (Blueprint $table) {
+        Schema::create('cantidad_persona_paquete', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('cantidad_persona_id')->nullable();
+            $table->foreign('cantidad_persona_id')->references('id')->on('cantidad_personas')->onDelete('cascade');
+          
             $table->unsignedInteger('paquete_id')->nullable();
-            $table->unsignedInteger('producto_id')->nullable(); //Con el id traera los datos del producto
             $table->foreign('paquete_id')->references('id')->on('paquetes')->onDelete('cascade');
-            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
-            $table->text('comidaNino')->nullable();
-            $table->text('comidaAdulto')->nullable();
-            
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ class PaqueteProducto extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('cantidad_persona_paquete');
     }
 }

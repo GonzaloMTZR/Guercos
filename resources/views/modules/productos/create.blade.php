@@ -77,7 +77,7 @@
                     
                     <div class="col-sm-3">
                         <label for="my-input">Cantidad</label>
-                        <input name="cantidad" id="my-input" class="form-control" type="number">
+                        <input name="stock" id="my-input" class="form-control" type="number">
                     </div>
                     
 

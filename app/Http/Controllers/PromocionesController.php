@@ -25,7 +25,7 @@ class PromocionesController extends Controller
      */
     public function index()
     {
-        $promociones = Promociones::all();
+        $promociones = Promociones::orderBy('descripcion', 'asc')->get();
         return view('modules.promociones.index', compact('promociones'));
     }
 

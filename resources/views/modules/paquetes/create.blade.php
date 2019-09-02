@@ -74,7 +74,7 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <label for="my-input">Seleccione la comida de niño</label>
-                                        <select class="js-example-basic-multiple" name="comidaNiño[]" multiple="multiple">
+                                        <select class="js-example-basic-multiple" name="comidaNino[]" multiple="multiple">
                                             @foreach($productos as $producto)
                                               <option value="{{$producto->id}}">{{$producto->descripcion}}</option>
                                             @endforeach

@@ -21,7 +21,7 @@ class CreateProductosTable extends Migration
             $table->text('area'); //Cocina, entrada, piso
             $table->text('infinito'); //Si o no
             $table->text('tipoUnidad'); //Kgs, Lts, Pzas
-            $table->integer('cantidad');
+            $table->integer('stock');
             $table->text('categoria');// Producto o Insumo
             $table->text('imagenProducto');
             $table->timestamps();

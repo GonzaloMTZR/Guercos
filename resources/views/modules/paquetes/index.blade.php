@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="f-13 text-muted m-b-15">
-                          fecha de creación: {{$paquete->created_at->format('d-m-y')}}
+                          fecha de creación: {{\Carbon\Carbon::parse($paquete->created_at)->format('d/m/Y')}}
                         </div>
 
                         <div class="row">

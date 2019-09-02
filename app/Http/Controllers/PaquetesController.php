@@ -44,7 +44,11 @@ class PaquetesController extends Controller
      */
     public function create()
     {
-        $productos = Producto::all();
+        $productos = DB::table('productos')
+          ->select('id','descripcion')
+          ->where('area', 'Cocina')
+          ->orderBy('descripcion', 'ASC')
+          ->get();
         return view ('modules.paquetes.create', compact('productos'));
     }
 
@@ -58,24 +62,24 @@ class PaquetesController extends Controller
     {
         $paquete = new Paquetes();
         $cantidadPersonas = new CantidadPersonas();
-
-        $paquete->descripcionPaquete = $request->input('descripcionPaquete');
+      
         $cantidadPersonas->cantidad = $request->input('cantidad');
         $cantidadPersonas->precio = $request->input('precio');
         $cantidadPersonas->periodo = $request->input('periodo');
-
-        $paquete->save();
         $cantidadPersonas->save();
+      
+        $paquete->descripcionPaquete = $request->input('descripcionPaquete');
+        $paquete->save();
 
-        $cantidadPersonas->paquete()->saveMany($paquete);
+        $paquete->cantidadPersonas()->attach($cantidadPersonas);
+        //dd($paquete);
 
-
-        /*$producto_id = $request->get('id_articulo');
+        $producto_id = $request->get('comidaNino');
 
         $sync_data = [];
         for($i = 0; $i < count($producto_id); $i++){
             $sync_data[$producto_id[$i]] = ['descuento' => $descuento[$i], 'cantidad' => $cantidad[$i]];
-        }*/
+        }
 
         //$venta->productos()->sync($sync_data);
         return redirect()->back();
@@ -125,6 +129,6 @@ class PaquetesController extends Controller
      */
     public function destroy(Paquetes $paquetes)
     {
-        //
+        
     }
 }
