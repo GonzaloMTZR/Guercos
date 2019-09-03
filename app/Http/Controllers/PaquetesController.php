@@ -8,6 +8,7 @@ use DB;
 use Illuminate\Support\Facades\Input;
 use App\CantidadPersonas;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePaquetesRequest;
 
 class PaquetesController extends Controller
 {
@@ -27,7 +28,7 @@ class PaquetesController extends Controller
       $paquete = Input::get('paquete');
       $dias = DB::table('cantidad_personas')
       ->select('periodo')
-      ->groupBy('periodo')->where('paquetes_id', '=', $paquete)->get();
+      ->groupBy('periodo')->where('paquete_id', '=', $paquete)->get();
       return response()->json($dias);
     }
   
@@ -58,7 +59,7 @@ class PaquetesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePaquetesRequest $request)
     {
         $paquete = new Paquetes();
         $cantidadPersonas = new CantidadPersonas();
@@ -78,11 +79,12 @@ class PaquetesController extends Controller
 
         $sync_data = [];
         for($i = 0; $i < count($producto_id); $i++){
-            $sync_data[$producto_id[$i]] = ['descuento' => $descuento[$i], 'cantidad' => $cantidad[$i]];
+            $sync_data[$producto_id[$i]];
         }
 
-        //$venta->productos()->sync($sync_data);
-        return redirect()->back();
+        $paquete->productos()->sync($sync_data);
+        //return redirect()->back();
+        dd($paquete);
     }
 
     /**

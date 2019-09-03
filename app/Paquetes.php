@@ -11,7 +11,7 @@ class Paquetes extends Model
         ->withTimestamps();
     }
   
-    public function producto(){
+    public function productos(){
       return $this->belongsToMany('App\Producto', 'paquete_producto', 'producto_id', 'paquete_id')
           ->withTimestamps();
     }
