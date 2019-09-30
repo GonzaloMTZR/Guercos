@@ -82,23 +82,15 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <div class="col-sm-6">
-                                        <label for="my-input">Seleccione la comida de niño</label>
-                                        <select class="js-example-basic-multiple" name="comidaNino[]" multiple="multiple">
+                                    <div class="col-sm-12">
+                                        <label for="my-input">Seleccione la comida que contendrá el paquete (Niños y Adultos).</label>
+                                        <select class="js-example-basic-multiple" name="comidaPaquete[]" multiple="multiple">
                                             @foreach($productos as $producto)
                                               <option value="{{$producto->id}}">{{$producto->descripcion}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-
-                                    <div class="col-sm-6">
-                                        <label for="my-input">Seleccione la comida de adulto</label>
-                                        <select class="js-example-basic-multiple" name="comidaAdulto[]" multiple="multiple">
-                                            @foreach($productos as $producto)
-                                              <option value="{{$producto->id}}">{{$producto->descripcion}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>    
+             
                                 </div>
 
                                 <hr>
@@ -116,12 +108,6 @@
 
     @section('javascripts')
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('.js-example-basic-multiple').select2();
-            });
-        </script>
-
         <script>
             $(document).ready(function() {
                 $('.js-example-basic-multiple').select2();

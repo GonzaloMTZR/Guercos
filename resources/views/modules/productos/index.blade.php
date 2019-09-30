@@ -90,7 +90,7 @@
                                                         <label class="text-{{$producto->stock <= 10 ? 'danger' : 'success'}}">{{$producto->cantidad}}</label>
                                                     </td>
                                                     <td>{{$producto->infinito}}</td>
-                                                    <td>
+                                                    <td >
                                                         <a href="/productos/{{$producto->id}}/edit" class="btn btn-warning">Editar</a>
                                                         <form method="POST" action="/productos/{{$producto->id}}">
                                                             @method('DELETE')

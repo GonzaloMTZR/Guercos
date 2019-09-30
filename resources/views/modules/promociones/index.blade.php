@@ -16,6 +16,15 @@
     </div>
 @endif
 
+@if(session()->has('error-message'))
+    <div class="alert alert-warning background-warning">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="icofont icofont-close-line-circled text-white"></i>
+        </button>
+        {{ session()->get('error-message') }}
+    </div>
+@endif
+
 <div class="page-header card">
   <div class="row align-items-end">
     <div class="col-lg-8">
@@ -61,10 +70,10 @@
 
                                     <!-- Foreach para imprimir los datos de la base de datos -->
                                     <tbody>
-                                        @foreach ($promociones as $promocion)
+                                        @foreach($promociones as $promocion)
                                                 <tr>
                                                     <td class="pro-list-img">
-                                                        <img src="/imagenes/promociones/{{$promocion->imagen}}" width="70px" class="img-fluid" alt="Imagen">
+                                                        <img src="/imagenes/promociones/{{$promocion->imagen}}" width="100px" class="img-fluid" alt="Imagen de la promoción">
                                                     </td>
                                                     <td>{{$promocion->nombre}}</td>
                                                     <td>{{$promocion->fechaInicio}}</td>

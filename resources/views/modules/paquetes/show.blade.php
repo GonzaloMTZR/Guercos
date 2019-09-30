@@ -45,15 +45,15 @@
                                     <td>{{$cantidad->periodo}}</td>
                                     <td>{{$cantidad->cantidad}}</td>
                                     <td>
-                                      @foreach($paquete->producto as $comida)
+                                      @foreach($paquete->productos as $comida)
                                       <ul>
-                                        <li>{{$comida->descripcion}}</li>
+                                        <li>* {{$comida->descripcion}}</li>
                                       </ul>
                                       @endforeach
                                     </td>
                                     <td>$@convert($cantidad->precio)</td>
-                                    <td>Editar</td>
-                                    <td>Eliminar</td>
+                                    <td> <a href="/paquetes/{{$paquete->id}}/edit" class="btn btn-warning">Editar</a> </td>
+                                    <td> <a href="" class="btn btn-danger">Eliminar</a> </td>
                                 </tr>
                               @endforeach
                             </tbody>
@@ -65,7 +65,7 @@
     </div>
 
     @section('javascripts')
-       <!-- <script>
+       <script>
             $(document).ready(function() {
                 $('#paquete').DataTable({
                     "language": {
@@ -96,7 +96,7 @@
         <script src="{ {asset('admin/bower_components/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
 
         <script src="{ {asset('admin/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-        <script src="{ {asset('admin/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>-->
+        <script src="{ {asset('admin/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
         <!--<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>-->
     @endsection

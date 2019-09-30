@@ -12,7 +12,7 @@ class Paquetes extends Model
     }
   
     public function productos(){
-      return $this->belongsToMany('App\Producto', 'paquete_producto', 'producto_id', 'paquete_id')
+      return $this->belongsToMany('App\Producto', 'paquete_producto',  'paquete_id', 'producto_id')
           ->withTimestamps();
     }
 }

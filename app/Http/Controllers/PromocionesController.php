@@ -7,6 +7,8 @@ use Cliente;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePromocionesRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class PromocionesController extends Controller
 {
@@ -16,7 +18,6 @@ class PromocionesController extends Controller
         $this->middleware('auth');
     }
   
-   
   
     /**
      * Display a listing of the resource.
@@ -51,7 +52,7 @@ class PromocionesController extends Controller
       
       if ($request->hasFile('imagen')) {
           $file = $request->file('imagen');
-          $name = time().$file->getClientOriginalName();
+          $name = time().'-'.$file->getClientOriginalName();
           $public_path = public_path();
           $file->move($public_path.'/imagenes/promociones/', $name);
       }else{
@@ -132,10 +133,21 @@ class PromocionesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-       $promociones = Promociones::findOrFail($id);
-       $promociones->delete();
-       return redirect('/promociones');
+    {   
+         $promociones = Promociones::findOrFail($id);
+         $public_path = public_path(); //Variable del public path
+
+        try{
+          $promociones->delete();
+          $image_path = $public_path.'/imagenes/promociones/'.$promociones->imagen; //Concatena el public path con las carpetas y el nombre de la imagen
+          if(File::exists($image_path)) 
+              File::delete($image_path); //Elimina la imagen de la carpeta
+
+        }catch(\Exception $e){
+            return redirect('/promociones')->with('error-message', 'La promoción no se ha podido eliminar');
+        }
+
+        return redirect('/promociones')->with('success-message', 'Promocion eliminada con exito!');
     }
     
 }

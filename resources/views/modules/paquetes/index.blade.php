@@ -1,6 +1,16 @@
 @extends('layouts.template') 
 @section('title', '- Paquetes de fiesta') 
 @section('content')
+
+@if(session()->has('success-message'))
+    <div class="alert alert-success background-success">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="icofont icofont-close-line-circled text-white"></i>
+        </button>
+        {{ session()->get('success-message') }}
+    </div>
+@endif
+
 <div class="page-header card">
   <div class="row align-items-end">
     <div class="col-lg-8">

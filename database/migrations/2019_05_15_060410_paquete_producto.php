@@ -19,9 +19,6 @@ class PaqueteProducto extends Migration
             $table->unsignedInteger('producto_id')->nullable(); //Con el id traera los datos del producto
             $table->foreign('paquete_id')->references('id')->on('paquetes')->onDelete('cascade');
             $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
-            $table->text('comidaNino')->nullable();
-            $table->text('comidaAdulto')->nullable();
-            
             $table->timestamps();
         });
     }
