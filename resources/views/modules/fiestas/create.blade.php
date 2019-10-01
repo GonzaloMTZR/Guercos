@@ -394,7 +394,7 @@
     $(document).ready(function() {
       $('.js-example-basic-sigle').select2();
     });
-
+  
     $('#paquete').on('change', function(e) {
       console.log(e);
       var paquete = e.target.value;
@@ -402,12 +402,12 @@
         console.log(data);
         $('#dias').empty();
         $('#dias').append('<option value="0" disable="true" selected="true">Seleccione los días</option>');
-
         $.each(data, function(index, diasObj) {
           $('#dias').append('<option value="' + diasObj.dias + '">' + diasObj.dias + '</option>');
         })
       });
     });
+
   </script>
 
   @endsection 

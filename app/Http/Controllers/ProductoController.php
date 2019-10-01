@@ -144,12 +144,16 @@ class ProductoController extends Controller
 
 
     /**
-     * Funcion para agregar stock en el inventario
+     * Funcion para agregar stock en el inventario, aun no está probada
      * 
      * @param Recibe el request del formulario y el id del producto 
      */
     public function addStock(Request $request, Producto $producto)
     {
-
+        DB::table('productos')
+          ->where('id', $producto->id)
+          ->increment('stock', $request->input('stock'));
+        
+      return redirect('/productos/'.$producto->id)->with('success-message', 'Producto agregado con exito!');
     }
 }

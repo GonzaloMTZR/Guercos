@@ -36,10 +36,6 @@ class FiestaController extends Controller
      */
     public function create()
     {
-        /*$paquetes = Paquetes::pluck('descripcionPaquete', 'id');
-        $periodos = Periodo::pluck('descripcionPeriodo', 'id');
-        $comidas = Producto::pluck('descripcion', 'id');*/
-
         $paquetes = Paquetes::all();
         $comidas = Producto::all();
 
@@ -76,17 +72,11 @@ class FiestaController extends Controller
         $fiesta->colonia = $request->input('colonia');
         $fiesta->calle = $request->input('calle');
         
-        $fiesta->paquetes_id = 1;
-        //$fiesta->comidaNiños = 1;
-        //$fiesta->comidaAdulto = 1;
-        $fiesta->cantidadComidaNiños = $request->input('cantidadComidaNiños');
-        $fiesta->cantidadComidaAdulto = $request->input('cantidadComidaAdulto');
+        $fiesta->paquetes_id = $request->input('idPaquete');;
+        $fiesta->cantidadComidaNiños = 13; //$request->input('cantidadComidaNiños');
+        $fiesta->cantidadComidaAdulto = 13; //$request->input('cantidadComidaAdulto');
         $fiesta->manteles = $request->input('manteles');
-        /*$fiesta->totalPaquete = $request->input('totalPaquete');
-        $fiesta->total = $request->input('total');
-        $fiesta->chargeSheetNotes = $request->input('chargeSheetNotes');
-        $fiesta->porcentajeDescuento = $request->input('porcentajeDescuento');*/
-
+       
 
         $cliente = new Cliente();
         $cliente->nombre = $request->input('nombrePapa');
@@ -136,7 +126,7 @@ class FiestaController extends Controller
      * @param  \App\Fiesta  $fiesta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fiesta $fiesta)
+    public function update(StoreFiestasRequest $request, Fiesta $fiesta)
     {
         $fiesta->fechaFiesta = request('fechaFiesta');
         $fiesta->fechaReservacion = request('fechaReservacion');

@@ -23,15 +23,6 @@ class PaquetesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function dias(){
-          
-      $paquete = Input::get('paquete');
-      $dias = DB::table('cantidad_personas')
-      ->select('periodo')
-      ->groupBy('periodo')->where('paquete_id', '=', $paquete)->get();
-      return response()->json($dias);
-    }
-  
     public function index()
     {
         $paquetes = Paquetes::all();
@@ -62,21 +53,18 @@ class PaquetesController extends Controller
     public function store(StorePaquetesRequest $request)
     {
         $paquete = new Paquetes();
-        $cantidadPersonas = new CantidadPersonas();
-      
-        $cantidadPersonas->cantidad = $request->input('cantidad'); //Cantidad de personas del paquete
-        $cantidadPersonas->precio = $request->input('precio');     //Precio del paquete
-        $cantidadPersonas->periodo = $request->input('periodo');  //Dias en los que esta disponible
-        $paquete->descripcionPaquete = $request->input('descripcionPaquete'); //Nombre del paquete
-        $cantidadPersonas->save();                                 //Se guardan los registros en la tabla de cantidad de personas
-        $paquete->save();                                         //Se guarda el nombre del paquete
-        $paquete->cantidadPersonas()->sync($cantidadPersonas); //Se insertan los registros en la tablde muchos a muchos de "cantidad_persona_paquete"
+
+        $paquete->descripcionPaquete = $request->input('descripcionPaquete');
+        $paquete->cantidad = $request->input('cantidad'); 
+        $paquete->precio = $request->input('precio');
+        $paquete->periodo = $request->input('periodo');
+        $paquete->save();                                         
         
         $producto_id = $request->input('comidaPaquete');         //Se obtiene el id de los productos 
 
         $paquete->productos()->sync((array)$producto_id);       //Se guardan los datos en la tabla de muchos a muchos de "paquete_producto"
       
-        return redirect('/paquetes')->with('success-message', 'Paquete creado con exito!');
+        return redirect('/paquetes')->with('success-message', 'Paquete creado con éxito!');
     }
 
     /**
@@ -98,13 +86,12 @@ class PaquetesController extends Controller
      */
     public function edit(Paquetes $paquete)
     {   
-        $cantidadPersonas = CantidadPersonas::findOrFail($paquete->id);
         $productos = DB::table('productos')
           ->select('id','descripcion')
           ->where('area', 'Cocina')
           ->orderBy('descripcion', 'ASC')
           ->get();
-        return view ('modules.paquetes.edit', compact('cantidadPersonas', 'productos', 'paquete'));
+        return view ('modules.paquetes.edit', compact('productos', 'paquete'));
     }
 
     /**
@@ -114,24 +101,20 @@ class PaquetesController extends Controller
      * @param  \App\Paquetes  $paquetes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Paquetes $paquetes)
+    public function update(StorePaquetesRequest $request, $id)
     {
-        $paquete = new Paquetes();
-        $cantidadPersonas = new CantidadPersonas();
-      
-        $cantidadPersonas->cantidad = $request->input('cantidad'); //Cantidad de personas del paquete
-        $cantidadPersonas->precio = $request->input('precio');     //Precio del paquete
-        $cantidadPersonas->periodo = $request->input('periodo');  //Dias en los que esta disponible
-        $paquete->descripcionPaquete = $request->input('descripcionPaquete'); //Nombre del paquete
-        $cantidadPersonas->save();                                 //Se guardan los registros en la tabla de cantidad de personas
-        $paquete->save();                                         //Se guarda el nombre del paquete
-        $paquete->cantidadPersonas()->updateExistingPivot($paquete->id, $cantidadPersonas); //Se insertan los registros en la tablde muchos a muchos de "cantidad_persona_paquete"
+        $paquete = Paquetes::findOrFail($id);
+        $paquete->descripcionPaquete = $request->input('descripcionPaquete');
+        $paquete->cantidad = $request->input('cantidad'); 
+        $paquete->precio = $request->input('precio');
+        $paquete->periodo = $request->input('periodo');
+        $paquete->save();                                         
         
-        $producto_id = $request->input('comidaPaquete');         //Se obtiene el id de los productos 
-
-        $paquete->productos()->updateExistingPivot($paquete->id, (array)$producto_id);       //Se guardan los datos en la tabla de muchos a muchos de "paquete_producto"
+        $producto_id = $request->input('comidaPaquete');
+        $id = $paquete->id;
+        $paquete->find($id)->productos()->sync((array)$producto_id);
       
-        return redirect('/paquetes')->with('success-message', 'Paquete editado con exito!');
+        return redirect('/paquetes')->with('success-message', 'Paquete editado con éxito!');
     }
 
     /**
@@ -140,8 +123,23 @@ class PaquetesController extends Controller
      * @param  \App\Paquetes  $paquetes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Paquetes $paquetes)
+    public function destroy($id)
     {
-
+      $paquetes = Paquetes::findOrFail($id);
+      $paquetes->productos()->detach();
+      $paquetes->delete();
+      return redirect('/paquetes')->with('success-message', 'Paquete eliminado con éxito!');;
+    }
+  
+    /**
+    *
+    *
+    */
+    public function dias(){      
+      $paquete = Input::get('paquete');
+      $dias = DB::table('paquetes')
+      ->select('periodo')
+      ->groupBy('periodo')->where('id', '=', $paquete)->get();
+      return response()->json($dias);
     }
 }

@@ -100,7 +100,7 @@
                   
                   <tr>
                     <th scope="row">Paquete de fiesta</th>
-                    <td>Nombre del paquete</td>
+                    <td>{{$fiesta->paquetes_id}}</td>
                   </tr>
                   
                   <tr>

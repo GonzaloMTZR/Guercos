@@ -19,6 +19,7 @@ Route::get('/', function () {
     }
 });
 
+Route::get('/dias', 'PaquetesController@dias')->middleware('auth');
 
 /**
  * Rutas de ejemplo para el pdf
@@ -66,11 +67,6 @@ Route::resource('/enviarPromociones', 'EnviarCorreosController')->middleware(['r
 Route::post('/fiestas/{fiesta}/addAbonoEfectivo', 'FiestaController@addAbonoEfectivo')->middleware(['role:Administrador|AdminFiestas']);
 Route::post('/fiestas/{fiesta}/addAbonoTarjeta', 'FiestaController@addAbonoTarjeta')->middleware(['role:Administrador|AdminFiestas']);
 Route::post('/fiestas/{fiesta}/liquidarFiesta', 'FiestaController@liquidarFiesta')->middleware(['role:Administrador|AdminFiestas']);
-
-/** 
- * Ruta de los paquetes
-*/
-Route::get('/dias', 'PaquetesController@dias')->middleware('auth');
 
 /*Route::group(['middleware' => ['role:AdminCocina']], function () {
     Route::resource('/productos', 'ProductoController')->middleware('auth');

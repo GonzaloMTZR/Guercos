@@ -2,15 +2,6 @@
 @section('title', '- Paquetes de fiesta') 
 @section('content')
 
-@if(session()->has('success-message'))
-    <div class="alert alert-success background-success">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="icofont icofont-close-line-circled text-white"></i>
-        </button>
-        {{ session()->get('success-message') }}
-    </div>
-@endif
-
 <div class="page-header card">
   <div class="row align-items-end">
     <div class="col-lg-8">
@@ -25,21 +16,27 @@
   </div>
 </div>
 
+@if(session()->has('success-message'))
+<div class="alert alert-success background-success">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="icofont icofont-close-line-circled text-white"></i>
+        </button> {{ session()->get('success-message') }}
+</div>
+@endif
 
 <div class="page-body">
   <div class="row">
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h5>Paquetes: Basicos </h5>
           <div class="card-header-right">
             <i class="icofont icofont-spinner-alt-5"></i>
           </div>
         </div>
-        
-        
+
+
         <div class="row tab-content card-block">
-          
+
           <div class="col-md-12 tab-pane active" id="basico" role="tabpanel">
             <ul class="list-view">
               @foreach ($paquetes as $paquete)
@@ -68,7 +65,9 @@
                           <form method="POST" action="/paquetes/{{$paquete->id}}">
                             @method('DELETE') @csrf
                             <div class="field">
-                              <button type="submit" class="btn btn-danger">Eliminar</button>
+                              <div class="control">
+                                <button type="submit" class="btn btn-danger"></i>Eliminar</button>
+                              </div>
                             </div>
                           </form>
                         </div>
@@ -80,16 +79,9 @@
               @endforeach
             </ul>
           </div>
-          
-          
-          
-          
-          
-          
+
         </div>
-        
-          
-        
+
       </div>
     </div>
   </div>

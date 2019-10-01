@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPeriodoCantidadPersonas extends Migration
+class UpdatePaquetesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class AddPeriodoCantidadPersonas extends Migration
      */
     public function up()
     {
-        Schema::table('cantidad_personas', function (Blueprint $table) {
+        Schema::table('paquetes', function (Blueprint $table) {
+            $table->string('cantidad')->after('descripcionPaquete');
+            $table->Integer('precio')->after('cantidad');
             $table->text('periodo')->after('precio');
         });
     }
@@ -25,7 +27,9 @@ class AddPeriodoCantidadPersonas extends Migration
      */
     public function down()
     {
-        Schema::table('cantidad_personas', function (Blueprint $table) {
+        Schema::table('paquetes', function (Blueprint $table) {
+            $table->dropColumn('cantidad');
+            $table->dropColumn('precio');
             $table->dropColumn('periodo');
         });
     }

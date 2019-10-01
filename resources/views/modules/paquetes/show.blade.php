@@ -40,10 +40,10 @@
                             </thead>
 
                             <tbody>
-                              @foreach($paquete->cantidadPersonas as $cantidad)
+                              
                                 <tr>
-                                    <td>{{$cantidad->periodo}}</td>
-                                    <td>{{$cantidad->cantidad}}</td>
+                                    <td>{{$paquete->periodo}}</td>
+                                    <td>{{$paquete->cantidad}}</td>
                                     <td>
                                       @foreach($paquete->productos as $comida)
                                       <ul>
@@ -51,11 +51,20 @@
                                       </ul>
                                       @endforeach
                                     </td>
-                                    <td>$@convert($cantidad->precio)</td>
+                                    <td>$@convert($paquete->precio)</td>
                                     <td> <a href="/paquetes/{{$paquete->id}}/edit" class="btn btn-warning">Editar</a> </td>
-                                    <td> <a href="" class="btn btn-danger">Eliminar</a> </td>
+                                    <td>
+                                      <form method="POST" action="/paquetes/{{$paquete->id}}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <div class="field">
+                                            <div class="control">
+                                                    <button type="submit" class="btn btn-danger"></i>Eliminar</button>
+                                            </div>
+                                        </div>
+                                      </form>
+                                    </td>
                                 </tr>
-                              @endforeach
                             </tbody>
                         </table>
                     </div>

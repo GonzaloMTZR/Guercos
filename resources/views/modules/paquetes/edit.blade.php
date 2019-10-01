@@ -1,10 +1,6 @@
 @extends('layouts.template')
 @section('title', '- Paquetes de fiesta')
 @section('css')
-    <!--<link rel="stylesheet" type="text/css" href="{ {asset('admin/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{ {asset('admin/bower_components/multiselect/css/multi-select.css')}}"/>
-    <link rel="stylesheet" href="{ {asset('admin/bower_components/select2/css/select2.min.css')}}"/>-->
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
 @endsection
 
@@ -36,7 +32,7 @@
                     <div class="row card-block">
                         <div class="col-md-12">
                             <form action="/paquetes/{{$paquete->id}}" method="post">
-                                @method('PUT')
+                                @method('PATCH')
                                 @csrf
                                 <!--<h4 class="sub-title">Datos Personales</h4>-->
                                 <div class="form-group row">
@@ -47,18 +43,18 @@
 
                                     <div class="col-sm-2">
                                         <label for="my-input">Precio</label>
-                                        <input name="precio" value="{{$cantidadPersonas->precio}}" class="form-control" type="text">
+                                        <input name="precio" value="{{$paquete->precio}}" class="form-control" type="text">
                                     </div>
 
                                     <div class="col-sm-3">
                                         <label for="my-input">Cantidad de personas</label>
-                                        <input name="cantidad" value="{{$cantidadPersonas->cantidad}}" class="form-control" type="text">
+                                        <input name="cantidad" value="{{$paquete->cantidad}}" class="form-control" type="text">
                                     </div>    
                                   
                                     <div class="col-sm-3">
                                         <label for="my-input">Periodo</label>
                                         <select name="periodo" id="" class="form-control">
-                                          <option selected>{{$cantidadPersonas->periodo}}</option>
+                                          <option selected>{{$paquete->periodo}}</option>
                                           <option value="Lunes - Viernes">Lunes a Viernes</option>
                                           <option value="Sábado - Domingo">Sábado a Domingo</option>
                                         </select>
@@ -101,11 +97,4 @@
                 $('.js-example-basic-multiple').select2();
             });
         </script>
-        <!--<script type="text/javascript" src="{ {asset('admin/bower_components/select2/js/select2.full.min.js')}}"></script>
-        <script type="text/javascript" src="{ {asset('admin/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js')}}"></script>
-        <script type="text/javascript" src="{ {asset('admin/bower_components/multiselect/js/jquery.multi-select.js')}}"></script>
-        <script type="text/javascript" src="{ {asset('admin/assets/js/jquery.quicksearch.js')}}"></script>-->
-    @endsection
-       
-        
 @endsection
