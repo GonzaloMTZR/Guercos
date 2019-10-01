@@ -19,7 +19,7 @@ Route::get('/', function () {
     }
 });
 
-Route::get('/dias', 'PaquetesController@dias')->middleware('auth');
+Route::get('/getDias', 'PaquetesController@getDias')->middleware('auth');
 
 /**
  * Rutas de ejemplo para el pdf

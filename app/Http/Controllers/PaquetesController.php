@@ -132,14 +132,15 @@ class PaquetesController extends Controller
     }
   
     /**
-    *
-    *
+    * Funcion para el select dinamico de los paquetes
+    * este obtiene el periodo del paquete
     */
-    public function dias(){      
+    public function getDias(){      
       $paquete = Input::get('paquete');
       $dias = DB::table('paquetes')
       ->select('periodo')
       ->groupBy('periodo')->where('id', '=', $paquete)->get();
       return response()->json($dias);
+
     }
 }

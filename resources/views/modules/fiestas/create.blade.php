@@ -1,7 +1,7 @@
 @extends('layouts.template') 
 @section('title', '- Agendar fiesta') 
 @section('css')
-<link rel="stylesheet" href="{{asset('admin/bower_components/select2/css/select2.min.css')}}" /> 
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
 @endsection 
 
 @section('content')
@@ -187,7 +187,7 @@
 
         <div class="col-sm-3">
           <label for="my-input">Paquete <label class="text-danger">*</label></label>
-          <select name="idPaquete" class="form-control" id="paquete">
+          <select name="paquete" class="form-control" id="paquete">
               <option selected disable>Seleccione el paquete</option>
               @foreach ($paquetes as $paquete)
                   <option value="{{$paquete->id}}">{{$paquete->descripcionPaquete}}</option>
@@ -204,22 +204,18 @@
 
         <div class="col-sm-3">
           <label for="my-input">Comida Niño <label class="text-danger">*</label></label>
-          <select name="comidaNino" class="js-example-basic-sigle">
-              <option selected disable>Seleccione la comida de niños</option>
-              @foreach ($comidas as $comida)
-                  <option value="{{$comida->id}}">{{$comida->descripcion}}</option>
-              @endforeach
+          <select name="comidaNino" class="js-example-basic-multiple" multiple="multiple" id="comidaNino">
+              <option selected disable>Seleccione la comida</option>
+              
           </select>
           <!--<input type="number" name="cantidadAdulto" class="form-control" placeholder="Cantidad" id="">-->
         </div>
 
         <div class="col-sm-3">
           <label for="my-input">Comida Adulto <label class="text-danger">*</label></label>
-          <select name="comidaAdulto" class="js-example-basic-sigle">
-              <option selected disable>Seleccione la comida de adulto</option>
-              @foreach ($comidas as $comida)
-                  <option value="{{$comida->id}}">{{$comida->descripcion}}</option>
-              @endforeach
+          <select name="comidaAdulto" class="js-example-basic-multiple" multiple="multiple" id="comidaAdulto">
+              <option selected disable>Seleccione la comida</option>
+              
           </select>
           <!--<input type="number" name="cantidadAdulto" class="form-control" placeholder="Cantidad" id="">-->
         </div>
@@ -388,25 +384,33 @@
 </div>
 
   @section('javascripts')
-  <script src="https://js.stripe.com/v3/"></script>
-  <script type="text/javascript" src="{{asset('admin/bower_components/select2/js/select2.full.min.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
   <script>
     $(document).ready(function() {
-      $('.js-example-basic-sigle').select2();
+        $('.js-example-basic-multiple').select2();
     });
-  
-    $('#paquete').on('change', function(e) {
-      console.log(e);
-      var paquete = e.target.value;
-      $.get('/dias?paquete=' + paquete, function(data) {
-        console.log(data);
-        $('#dias').empty();
-        $('#dias').append('<option value="0" disable="true" selected="true">Seleccione los días</option>');
-        $.each(data, function(index, diasObj) {
-          $('#dias').append('<option value="' + diasObj.dias + '">' + diasObj.dias + '</option>');
-        })
+    
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+    
+    
+    
+    $('#paquete').on('change', function (e) {
+    //console.log(e);
+    var paquete = e.target.value;
+    $.get('/getDias?paquete=' + paquete, function (data) {
+      //console.log(data);
+      $('#dias').empty();
+
+      $.each(data, function (index, subcatObj) {
+          //console.log(subcatObj.periodo);
+          var option = $('<option></option>').text(subcatObj.periodo).val(subcatObj.periodo);
+          $('#dias').append(option);
       });
     });
+  });
+
 
   </script>
 
