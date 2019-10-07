@@ -59,9 +59,25 @@
                           <br>
                           <div class="row">
                             <div class="col-3">
-                              <div class="card">
-                                Producto 1
-                              </div> 
+                              <div class="card prod-view">
+                                <div class="prod-item text-center">
+                                  <div class="prod-img">
+                                    <a href="#!" class="hvr-shrink">
+                                                  <img src="/imagenes/productos/logo-guercos.png" class="img-fluid o-hidden" alt="prod1.jpg">
+                                              </a>
+                                  </div>
+                                  <div class="prod-info">
+                                    <a href="#!" class="txt-muted">
+                                      <h4>ADULTO + BAGUETTE</h4>
+                                    </a>
+                                    <div class="m-b-10">
+                                      <a class="text-muted f-w-600">Stock: </a>
+                                      <label class="label label-danger"> 1</label>
+                                    </div>
+                                    <span class="prod-price"><i class="icofont icofont-cur-dollar"></i>49.00</span>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                             <div class="col-3">
                               <div class="card">

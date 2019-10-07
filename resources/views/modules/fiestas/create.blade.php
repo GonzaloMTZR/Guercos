@@ -204,20 +204,20 @@
 
         <div class="col-sm-3">
           <label for="my-input">Comida Niño <label class="text-danger">*</label></label>
-          <select name="comidaNino" class="js-example-basic-multiple" multiple="multiple" id="comidaNino">
+          <select name="comidaNino[]" class="js-example-basic-multiple" multiple="multiple" id="comidaNino">
               <option selected disable>Seleccione la comida</option>
               
           </select>
-          <!--<input type="number" name="cantidadAdulto" class="form-control" placeholder="Cantidad" id="">-->
+          <input type="text" name="cantidadNino" class="form-control" placeholder="Cantidad" id="">
         </div>
 
         <div class="col-sm-3">
           <label for="my-input">Comida Adulto <label class="text-danger">*</label></label>
-          <select name="comidaAdulto" class="js-example-basic-multiple" multiple="multiple" id="comidaAdulto">
+          <select name="comidaAdulto[]" class="js-example-basic-multiple" multiple="multiple" id="comidaAdulto">
               <option selected disable>Seleccione la comida</option>
               
           </select>
-          <!--<input type="number" name="cantidadAdulto" class="form-control" placeholder="Cantidad" id="">-->
+          <input type="text" name="cantidadAdulto" class="form-control" placeholder="Cantidad" id="">
         </div>
       </div>
 
@@ -394,6 +394,36 @@
         $('.js-example-basic-multiple').select2();
     });
     
+    
+    $('#paquete').on('change', function (e) {
+      //console.log(e);
+      var paquete = e.target.value;
+      $.get('/getComida?paquete=' + paquete, function (data) {
+        //console.log(data);
+        $('#comidaNino').empty();
+
+        $.each(data, function (index, subcatObj) {
+            //console.log(subcatObj.descripcion);
+            var comida = $('<option name="comidaNino[]" multiple="multiple"></option>').text(subcatObj.descripcion).val(subcatObj.descripcion);
+            $('#comidaNino').append(comida);
+        });
+      });
+    });
+    
+    $('#paquete').on('change', function (e) {
+      //console.log(e);
+      var paquete = e.target.value;
+      $.get('/getComida?paquete=' + paquete, function (data) {
+        //console.log(data);
+        $('#comidaAdulto').empty();
+
+        $.each(data, function (index, subcatObj) {
+            //console.log(subcatObj.descripcion);
+            var comida = $('<option name="comidaAdulto[]" multiple="multiple"></option>').text(subcatObj.descripcion).val(subcatObj.descripcion);
+            $('#comidaAdulto').append(comida);
+        });
+      });
+    });
     
     
     $('#paquete').on('change', function (e) {

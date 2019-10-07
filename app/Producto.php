@@ -16,6 +16,7 @@ class Producto extends Model
     public function paquetes()
     {
         return $this->belongsToMany('App\Paquetes', 'paquete_producto', 'paquete_id', 'producto_id')
+          ->withPivot('nombre_producto')
           ->withTimestamps();
     }
 }

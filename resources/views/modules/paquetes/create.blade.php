@@ -88,7 +88,7 @@
                                             @foreach($productos as $producto)
                                               <option value="{{$producto->id}}">{{$producto->descripcion}}</option>
                                             @endforeach
-                                        </select>
+                                        </select>                                      
                                     </div>
              
                                 </div>
@@ -112,6 +112,7 @@
             $(document).ready(function() {
                 $('.js-example-basic-multiple').select2();
             });
+            
         </script>
         <!--<script type="text/javascript" src="{ {asset('admin/bower_components/select2/js/select2.full.min.js')}}"></script>
         <script type="text/javascript" src="{ {asset('admin/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js')}}"></script>

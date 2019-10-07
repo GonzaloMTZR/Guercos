@@ -13,6 +13,14 @@ class Paquetes extends Model
   
     public function productos(){
       return $this->belongsToMany('App\Producto', 'paquete_producto',  'paquete_id', 'producto_id')
+          ->withPivot('nombre_producto')
           ->withTimestamps();
+    }
+  
+    public function fiestas(){
+      return $this->belongsToMany('App\Fiesta', 'fiesta_paquete', 'paquete_id', 'fiesta_id')
+          ->withPivot('comidaNino', 'comidaAdulto', 'cantidadNino', 'cantidadAdulto')
+          ->withTimestamps();
+    
     }
 }

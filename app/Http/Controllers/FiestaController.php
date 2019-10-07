@@ -9,6 +9,8 @@ use App\Cliente;
 use App\abonos;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreFiestasRequest;
+use Illuminate\Support\Facades\Input;
+
 
 class FiestaController extends Controller
 {
@@ -71,12 +73,23 @@ class FiestaController extends Controller
         $fiesta->ciudad = $request->input('ciudad');
         $fiesta->colonia = $request->input('colonia');
         $fiesta->calle = $request->input('calle');
-        
-        $fiesta->paquetes_id = $request->input('idPaquete');;
-        $fiesta->cantidadComidaNiños = 13; //$request->input('cantidadComidaNiños');
-        $fiesta->cantidadComidaAdulto = 13; //$request->input('cantidadComidaAdulto');
         $fiesta->manteles = $request->input('manteles');
+        
+        /** Variables para la tabla paquete_fiesta */
+        $paquete_id = $request->get('paquete');
+        $comidaNino = $request->get('comidaNino');
+        $comidaAdulto = $request->get('comidaAdulto');
        
+        $fiesta->save();
+      
+        $sync_data = [];
+        for($i = 0; $i < count($comidaNino); $i++){
+            $sync_data[$comidaNino[$i]] = ['comidaAdulto' => $comidaAdulto[$i]];
+        }
+            
+                
+        $fiesta->paquetes()->sync($sync_data);
+        
 
         $cliente = new Cliente();
         $cliente->nombre = $request->input('nombrePapa');
@@ -90,7 +103,7 @@ class FiestaController extends Controller
         $cliente->calle = $request->input('calle');
 
         $cliente->save();
-        $fiesta->save();
+        
         
         return redirect('/fiestas')->with('success-message', 'Fiesta agendada con exito!');
 

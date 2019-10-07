@@ -141,6 +141,21 @@ class PaquetesController extends Controller
       ->select('periodo')
       ->groupBy('periodo')->where('id', '=', $paquete)->get();
       return response()->json($dias);
+      
+    }
+  
+    /**
+    * Funcion para el select dinamico de los paquetes
+    * este obtiene las comidas del paquete
+    */
+    public function getComida(){
+      $paquete = Input::get('paquete');
+      $comida = DB::table('paquete_producto')
+      ->select('producto_id', 'productos.descripcion')
+      ->Join('productos', 'productos.id', '=', 'paquete_producto.producto_id')
+      ->where('paquete_id', '=', $paquete)
+      ->get();
+      return response()->json($comida);
 
     }
 }

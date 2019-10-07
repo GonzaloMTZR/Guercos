@@ -40,8 +40,7 @@ class StoreFiestasRequest extends FormRequest
             'correo' => 'required|email',
             'ciudad' => 'required',
             'colonia' => 'required',
-            'calle' => 'required',
-            'idPaquete' => 'required',
+            'calle' => 'required'
         ];
     }
 
@@ -70,7 +69,6 @@ class StoreFiestasRequest extends FormRequest
             'ciudad.required' => 'El campo de la ciudad es obligatorio',
             'colonia.required' => 'El campo de la colonia es obligatorio',
             'calle.required' => 'El campo de la calle es obligatorio',
-            'idPaquete.required' => 'El campo del paquete de fiesta es obligatorio',
         ];
     }
 }

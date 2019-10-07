@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/getDias', 'PaquetesController@getDias')->middleware('auth');
+Route::get('/getComida', 'PaquetesController@getComida')->middleware('auth');
 
 /**
  * Rutas de ejemplo para el pdf

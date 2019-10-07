@@ -22,4 +22,10 @@ class Fiesta extends Model
             ->withPivot('created_at', 'tipoPago', 'pinConfirmacion')
             ->withTimestamps();
     }
+  
+    public function paquetes(){
+      return $this->belongsToMany('App\Paquetes', 'fiesta_paquete', 'paquete_id', 'fiesta_id')
+            ->withPivot('comidaNino', 'comidaAdulto', 'cantidadNino', 'cantidadAdulto')
+            ->withTimestamps();  
+    }
 }
