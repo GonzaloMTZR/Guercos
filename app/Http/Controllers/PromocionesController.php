@@ -109,7 +109,7 @@ class PromocionesController extends Controller
             $file = $request->file('imagen');
             $name = time().$file->getClientOriginalName();
             $public_path = public_path();
-            $file->move($public_path.'/imagenes'.'/promociones/', $name);
+            $file->move($public_path.'/imagenes/promociones/', $name);
         }else{
             $name =$promociones->imagen;
         }
@@ -139,7 +139,7 @@ class PromocionesController extends Controller
 
         try{
           $promociones->delete();
-          $image_path = $public_path.'/imagenes'.'/promociones/'.$promociones->imagen; //Concatena el public path con las carpetas y el nombre de la imagen
+          $image_path = $public_path.'/imagenes/promociones/'.$promociones->imagen; //Concatena el public path con las carpetas y el nombre de la imagen
           if(File::exists($image_path)) 
               File::delete($image_path); //Elimina la imagen de la carpeta
 
