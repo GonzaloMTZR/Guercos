@@ -172,48 +172,42 @@
 
                     <div class="col-sm-3">
                         <label for="my-input">Paquete *</label>
-                        <select name="paquetes_id" class="form-control">
-                            <option selected disable>Seleccione el paquete</option>
-                            @foreach ($paquetes as $paquete)
-                                <option value="{{$paquete->id}}">{{$paquete->descripcionPaquete}}</option>
+                        <select name="paquete" class="form-control" id="paquete">
+                            @foreach ($fiesta->paquetes as $item)
+                                <option selected value="{{$item->id}}">{{$item->descripcionPaquete}}</option>
+                                
+                                @foreach ($paquetes as $paquete)
+                                    <option value="{{$paquete->id}}">{{$paquete->descripcionPaquete}}</option>
+                                @endforeach
                             @endforeach
+
+                          
                         </select>
                     </div>
 
                     <div class="col-sm-3">
-                        <label for="my-input">Días *</label>
-                        <select name="dias" class="form-control">
-                            <option selected disable>Seleccione los dias</option>
-                                <option value="">Dias</option>
+                        <label for="my-input">Días <label class="text-danger">*</label></label>
+                        <select name="idPeriodo" class="form-control" id="dias">
+                            <option value="0" disable="true" selected="true">Periodo del paquete</option>
                         </select>
                     </div>
-
-                    <div class="col-sm-3">
-                        <label for="my-input">Comida Niño *</label>
-                        <select name="comidaNino" class="form-control">
-                            <option selected disable>Seleccione la comida de niños</option>
-                        </select>
-                        <input type="number" name="cantidadNino" class="form-control" placeholder="Cantidad" id="">
-                    </div>   
-
-                    <div class="col-sm-3">
-                        <label for="my-input">Comida Adulto *</label>
-                        <select name="comidaAdulto" class="form-control">
-                            <option selected disable>Seleccione la comida de adulto</option>
-                        </select>
-                        <input type="number" name="cantidadAdulto" class="form-control" placeholder="Cantidad" id="">
-                    </div> 
-                </div>
-
-                <hr>
-
-                <div class="form-group row">
-                    <div class="col-sm-3">
-                        <label for="">Total: </label>
-                        <input class="form-control" type="text">
-                    </div>
-                </div>
                 
+                    <div class="col-sm-3">
+                        <label for="my-input">Comida Niño <label class="text-danger">*</label></label>
+                        <select name="comidaNino[]" class="js-example-basic-multiple" multiple="multiple" id="comidaNino">
+                            <option selected disable>Seleccione la comida</option>
+                        </select>
+                        <!--<input type="text" name="cantidadNino" class="form-control" placeholder="Cantidad" id="">-->
+                    </div>
+                
+                    <div class="col-sm-3">
+                        <label for="my-input">Comida Adulto <label class="text-danger">*</label></label>
+                        <select name="comidaAdulto[]" class="js-example-basic-multiple" multiple="multiple" id="comidaAdulto">
+                            <option selected disable>Seleccione la comida</option>
+                        </select>
+                        <!--<input type="text" name="cantidadAdulto" class="form-control" placeholder="Cantidad" id="">-->
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <button type="submit" class="col-sm-12 btn btn-success">Guardar cambios</button>
@@ -224,7 +218,17 @@
     </div>
 
     @section('javascripts')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
         
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+        </script>
+        <script src="{{asset('js/fiestasScript.js')}}"></script>
     @endsection
 
 

@@ -17,9 +17,8 @@ class CreateTableFiestaPaquete extends Migration
             $table->increments('id');
             $table->unsignedInteger('paquete_id')->nullable();
             $table->unsignedInteger('fiesta_id')->nullable();
-            $table->text('comidaNino');
-            $table->text('comidaAdulto');
-          
+            $table->text('comidaNino')->nullable();
+            $table->text('comidaAdulto')->nullable();
             $table->foreign('paquete_id')->references('id')->on('paquetes')->onDelete('cascade');
             $table->foreign('fiesta_id')->references('id')->on('fiestas')->onDelete('cascade');
             $table->timestamps();

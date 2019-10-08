@@ -80,7 +80,8 @@
                                 <hr>
                             
                                 <div class="form-group row">
-                                    <button type="submit" class="col-12 btn btn-success">Agregar</button>
+                                    <button type="submit" class="col-6 btn btn-success">Actualizar</button>
+                                    <a href="/paquetes" class="col-6 btn btn-warning">Regresar</a>
                                 </div>
                             </form>
                         </div>
@@ -97,4 +98,5 @@
                 $('.js-example-basic-multiple').select2();
             });
         </script>
+    @endsection
 @endsection

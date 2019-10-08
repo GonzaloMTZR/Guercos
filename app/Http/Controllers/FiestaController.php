@@ -76,19 +76,24 @@ class FiestaController extends Controller
         $fiesta->manteles = $request->input('manteles');
         
         /** Variables para la tabla paquete_fiesta */
-        $paquete_id = $request->get('paquete');
-        $comidaNino = $request->get('comidaNino');
-        $comidaAdulto = $request->get('comidaAdulto');
-       
+        $paquete_id = $request->input('paquete');
+        $comidaNino = $request->input('comidaNino');
+        $comidaAdulto = $request->input('comidaAdulto');
         $fiesta->save();
-      
-        $sync_data = [];
+       
+        /*$sync_data = [];
         for($i = 0; $i < count($comidaNino); $i++){
-            $sync_data[$comidaNino[$i]] = ['comidaAdulto' => $comidaAdulto[$i]];
+            $sync_data[$paquete_id[$i]] = ['comidaNino' => $comidaNino[$i], 'comidaAdulto' => $comidaAdulto[$i]];
         }
+
+        $fiesta->paquetes()->sync($paquete_id, $sync_data);*/
+
+        
+        $fiesta->paquetes()->sync($paquete_id, array(
+            'comidaNino' => $comidaNino,
+            'comidaAdulto' => $comidaAdulto,
+        )); 
             
-                
-        $fiesta->paquetes()->sync($sync_data);
         
 
         $cliente = new Cliente();
@@ -116,7 +121,12 @@ class FiestaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Fiesta $fiesta)
-    {
+    {   
+        /*$comida = DB::table('fiesta_paquete')
+        ->select('producto_id', 'productos.descripcion')
+        ->Join('productos', 'productos.id', '=', 'fiesta_paquete.producto_id')
+        ->where('paquete_id', '=', $paquete)
+        ->get();*/
         return view('modules.fiestas.show', compact('fiesta'));
     }
 

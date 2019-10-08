@@ -197,7 +197,7 @@
 
         <div class="col-sm-3">
           <label for="my-input">Días <label class="text-danger">*</label></label>
-          <select name="idPeriodo" class="form-control" id="dias" required>
+          <select name="idPeriodo" class="form-control" id="dias">
               <option value="0" disable="true" selected="true">Seleccione los dias</option>
           </select>
         </div>
@@ -205,19 +205,17 @@
         <div class="col-sm-3">
           <label for="my-input">Comida Niño <label class="text-danger">*</label></label>
           <select name="comidaNino[]" class="js-example-basic-multiple" multiple="multiple" id="comidaNino">
-              <option selected disable>Seleccione la comida</option>
-              
+            <option selected disable>Seleccione la comida</option>
           </select>
-          <input type="text" name="cantidadNino" class="form-control" placeholder="Cantidad" id="">
+          <!--<input type="text" name="cantidadNino" class="form-control" placeholder="Cantidad" id="">-->
         </div>
 
         <div class="col-sm-3">
           <label for="my-input">Comida Adulto <label class="text-danger">*</label></label>
           <select name="comidaAdulto[]" class="js-example-basic-multiple" multiple="multiple" id="comidaAdulto">
-              <option selected disable>Seleccione la comida</option>
-              
+            <option selected disable>Seleccione la comida</option>
           </select>
-          <input type="text" name="cantidadAdulto" class="form-control" placeholder="Cantidad" id="">
+          <!--<input type="text" name="cantidadAdulto" class="form-control" placeholder="Cantidad" id="">-->
         </div>
       </div>
 
@@ -237,151 +235,16 @@
     </div>
 
     <div class="form-group">
-      <button data-toggle="modal" data-target="#liquidar" class="col-sm-12 btn btn-primary">Liquidar</button>
+      <button data-toggle="modal" data-target="#liquidacion" class="col-sm-12 btn btn-primary">Liquidar</button>
     </div>
 
   </div>
 </div>
 
-<!-- modal para abonar -->
-
-<div class="modal fade modal-flex" id="abonos" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#tab-efectivo" role="tab">Pago en efectivo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#tab-tarjeta" role="tab">Pago con tarjeta</a>
-          </li>
-        </ul>
-        <div class="tab-content modal-body">
-          <div class="tab-pane active" id="tab-efectivo" role="tabpanel">
-
-            <form method="POST" action="">
-              @csrf
-
-              <div class="modal-body">
-                <div class="form-group">
-                  <label for="">Monto del Abono</label>
-                  <input id="my-input" name="cantidadAbono" class="form-control" type="number">
-                </div>
-              </div>
-
-              <input type="hidden" name="tipoPago" value="Pago en efectivo">
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary waves-effect waves-light ">Pagar</button>
-              </div>
-            </form>
-          </div>
-
-          <div class="tab-pane" id="tab-tarjeta" role="tabpanel">
-            <form method="POST" action="">
-              @csrf
-
-              <div class="modal-body">
-                <div class="form-group">
-                  <label for="my-input">Monto del Abono</label>
-                  <input id="my-input" name="cantidadAbono" class="form-control" type="number">
-                </div>
-
-                <div class="form-group">
-                  <label for="my-input">Número de Autorización</label>
-                  <input id="my-input" name="pinConfirmacion" class="form-control" type="text">
-                </div>
-
-                <input type="hidden" name="tipoPago" value="Pago con tarjeta">
-              </div>
+  <!-- modal para abonar -->
+  @include('modules.modals.modal_Liquidar_Anticipo')
 
 
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary waves-effect waves-light ">Pagar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- modal para liquidar -->
-
-<div class="modal fade modal-flex" id="liquidar" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#tab-efectivo" role="tab">Pago en efectivo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#tab-tarjeta" role="tab">Pago con tarjeta</a>
-          </li>
-        </ul>
-        <div class="tab-content modal-body">
-          <div class="tab-pane active" id="tab-efectivo" role="tabpanel">
-
-            <form method="POST" action="">
-              @csrf
-
-              <div class="modal-body">
-                <div class="form-group">
-                  <label for="">Monto para liquidar </label>
-                  <input id="my-input" name="cantidadAbono" class="form-control" type="number">
-                </div>
-              </div>
-
-              <input type="hidden" name="tipoPago" value="Pago en efectivo">
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary waves-effect waves-light ">Pagar</button>
-              </div>
-            </form>
-          </div>
-
-          <div class="tab-pane" id="tab-tarjeta" role="tabpane1">
-            <form method="POST" action="">
-              @csrf
-
-              <div class="modal-body">
-                <div class="form-group">
-                  <label for="my-input">Monto para liquidar</label>
-                  <input id="my-input" name="cantidadAbono" class="form-control" type="number">
-                </div>
-
-                <div class="form-group">
-                  <label for="my-input">Número de Autorización</label>
-                  <input id="my-input" name="pinConfirmacion" class="form-control" type="text">
-                </div>
-
-                <input type="hidden" name="tipoPago" value="Pago con tarjeta">
-              </div>
-
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary waves-effect waves-light ">Pagar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
   @section('javascripts')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
@@ -393,56 +256,8 @@
     $(document).ready(function() {
         $('.js-example-basic-multiple').select2();
     });
-    
-    
-    $('#paquete').on('change', function (e) {
-      //console.log(e);
-      var paquete = e.target.value;
-      $.get('/getComida?paquete=' + paquete, function (data) {
-        //console.log(data);
-        $('#comidaNino').empty();
-
-        $.each(data, function (index, subcatObj) {
-            //console.log(subcatObj.descripcion);
-            var comida = $('<option name="comidaNino[]" multiple="multiple"></option>').text(subcatObj.descripcion).val(subcatObj.descripcion);
-            $('#comidaNino').append(comida);
-        });
-      });
-    });
-    
-    $('#paquete').on('change', function (e) {
-      //console.log(e);
-      var paquete = e.target.value;
-      $.get('/getComida?paquete=' + paquete, function (data) {
-        //console.log(data);
-        $('#comidaAdulto').empty();
-
-        $.each(data, function (index, subcatObj) {
-            //console.log(subcatObj.descripcion);
-            var comida = $('<option name="comidaAdulto[]" multiple="multiple"></option>').text(subcatObj.descripcion).val(subcatObj.descripcion);
-            $('#comidaAdulto').append(comida);
-        });
-      });
-    });
-    
-    
-    $('#paquete').on('change', function (e) {
-    //console.log(e);
-    var paquete = e.target.value;
-    $.get('/getDias?paquete=' + paquete, function (data) {
-      //console.log(data);
-      $('#dias').empty();
-
-      $.each(data, function (index, subcatObj) {
-          //console.log(subcatObj.periodo);
-          var option = $('<option></option>').text(subcatObj.periodo).val(subcatObj.periodo);
-          $('#dias').append(option);
-      });
-    });
-  });
-
-
   </script>
+  <script src="{{asset('js/fiestasScript.js')}}"></script>
 
   @endsection 
 @endsection

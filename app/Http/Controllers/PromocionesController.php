@@ -55,6 +55,7 @@ class PromocionesController extends Controller
           $name = time().'-'.$file->getClientOriginalName();
           $public_path = public_path();
           $file->move($public_path.'/imagenes'.'/promociones/', $name);
+
       }else{
           $name ='logo-guercos.png';
       }

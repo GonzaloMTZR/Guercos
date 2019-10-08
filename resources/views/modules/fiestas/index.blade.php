@@ -68,9 +68,9 @@
                                             <th>Hora de inicio</th>
                                             <th>Hora de termino</th>
                                             <th>Hora de la comida</th>
-                                            <th>Paquete</th>
+                                            <!--<th>Paquete</th>
                                             <th>Comida de niño</th>
-                                            <th>Comida de adulto</th>
+                                            <th>Comida de adulto</th>-->
                                             <th>Detalles</th>
                                         </tr>
                                     </thead>
@@ -78,22 +78,25 @@
                                     <!-- Foreach para imprimir los datos de la base de datos -->
                                     <tbody>
                                         @foreach ($fiestas as $fiesta)
-                                                <tr>
-                                                    <td>{{$fiesta->nombreNiño}}</td>
-                                                    <td>{{$fiesta->nombrePapa}}</td>
-                                                    <td>{{\Carbon\Carbon::parse($fiesta->fechaNacNiño)->format('d/m/Y')}}</td>
-                                                    <td>{{\Carbon\Carbon::parse($fiesta->fechaFiesta)->format('d/m/Y')}}</td>
-                                                    <td>{{$fiesta->pastel}}</td>
-                                                    <td>{{$fiesta->piñata}}</td>
-                                                    <td>{{$fiesta->notas}}</td>
-                                                    <td>{{\Carbon\Carbon::createFromFormat('H:i:s',$fiesta->horaInicio)->format('h:i A')}}</td>
-                                                    <td>{{\Carbon\Carbon::createFromFormat('H:i:s',$fiesta->horaFinal)->format('h:i A')}}</td>
-                                                    <td>{{\Carbon\Carbon::createFromFormat('H:i:s',$fiesta->horaComida)->format('h:i A')}}</td>
-                                                    <td>{{$fiesta->idPaquete}}</td>
-                                                    <td>{{$fiesta->comidaNiños}}</td>
-                                                    <td>{{$fiesta->comidaAdulto}}</td>
-                                                    <td><a class="btn btn-success" href="/fiestas/{{$fiesta->id}}">Ver detalles</a></td>
-                                                </tr>
+                                            <tr>
+                                                <td>{{$fiesta->nombreNiño}}</td>
+                                                <td>{{$fiesta->nombrePapa}}</td>
+                                                <td>{{\Carbon\Carbon::parse($fiesta->fechaNacNiño)->format('d/m/Y')}}</td>
+                                                <td>{{\Carbon\Carbon::parse($fiesta->fechaFiesta)->format('d/m/Y')}}</td>
+                                                <td>{{$fiesta->pastel}}</td>
+                                                <td>{{$fiesta->piñata}}</td>
+                                                <td>{{$fiesta->notas}}</td>
+                                                <td>{{\Carbon\Carbon::createFromFormat('H:i:s',$fiesta->horaInicio)->format('h:i A')}}</td>
+                                                <td>{{\Carbon\Carbon::createFromFormat('H:i:s',$fiesta->horaFinal)->format('h:i A')}}</td>
+                                                <td>{{\Carbon\Carbon::createFromFormat('H:i:s',$fiesta->horaComida)->format('h:i A')}}</td>
+                                                <!--@ foreach ($fiesta->paquetes as $item)
+                                                    <td>{ {$item->descripcionPaquete}}</td>
+                                                @ endforeach
+                                                
+                                                <td>{ {$fiesta->comidaNiños}}</td>
+                                                <td>{ {$fiesta->comidaAdulto}}</td>-->
+                                                <td><a class="btn btn-success" href="/fiestas/{{$fiesta->id}}">Ver detalles</a></td>
+                                            </tr>
                                             
                                         @endforeach
                                     </tbody>
