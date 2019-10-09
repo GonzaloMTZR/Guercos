@@ -67,6 +67,10 @@ Route::resource('/enviarPromociones', 'EnviarCorreosController')->middleware(['r
 */
 Route::post('/fiestas/{fiesta}/addAbonoEfectivo', 'FiestaController@addAbonoEfectivo')->middleware(['role:Administrador|AdminFiestas']);
 Route::post('/fiestas/{fiesta}/addAbonoTarjeta', 'FiestaController@addAbonoTarjeta')->middleware(['role:Administrador|AdminFiestas']);
+
+Route::post('/fiestas/{fiesta}/addLiquidacionEfectivo', 'FiestaController@addLiquidacionEfectivo')->middleware(['role:Administrador|AdminFiestas']);
+Route::post('/fiestas/{fiesta}/addLiquidacionTarjeta', 'FiestaController@addLiquidacionTarjeta')->middleware(['role:Administrador|AdminFiestas']);
+
 Route::post('/fiestas/{fiesta}/liquidarFiesta', 'FiestaController@liquidarFiesta')->middleware(['role:Administrador|AdminFiestas']);
 
 /*Route::group(['middleware' => ['role:AdminCocina']], function () {

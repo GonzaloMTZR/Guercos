@@ -89,10 +89,12 @@ class FiestaController extends Controller
         $fiesta->paquetes()->sync($paquete_id, $sync_data);*/
 
         
-        $fiesta->paquetes()->sync($paquete_id, array(
-            'comidaNino' => $comidaNino,
-            'comidaAdulto' => $comidaAdulto,
-        )); 
+        $fiesta->paquetes()->sync([
+            $paquete_id => [
+                    'comidaNino' => implode(",", $comidaNino),
+                    'comidaAdulto' => implode(",", $comidaAdulto),
+            ]
+        ]);
             
         
 
@@ -208,9 +210,13 @@ class FiestaController extends Controller
      * @param  \App\Fiesta  $fiesta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fiesta $fiesta)
+    public function destroy($id)
     {
-        //
+        $fiestas = Fiesta::findOrFail($id);
+        $fiestas->paquetes()->detach();
+        $fiesas->abonos()->detach();
+        $fiestas->delete();
+        return redirect('/fiestas')->with('success-message', 'Fiesta eliminado con éxito!');;
     }
     
     /**
@@ -242,6 +248,29 @@ class FiestaController extends Controller
         ]);
         return redirect()->back()->with('success-message', 'Pago de abono realizado con éxito!');
     }
+
+    public function addLiquidacionEfectivo(Request $request, Fiesta $fiesta)
+    {
+        $abono = new abonos();
+        $abono->cantidadAbono = $request->input('liquidacion');
+        $abono->save();
+        
+        $fiesta->abonos()->attach($abono->id, ['tipoPago' => $request->input('tipoPago')]); 
+        return redirect()->back()->with('success-message', 'Fiesta loquidada con éxito!');
+    }
+
+    public function addLiquidacionTarjeta(Request $request, Fiesta $fiesta)
+    {
+        $abono = new abonos();
+        $abono->cantidadAbono = $request->input('liquidacion');
+        $abono->save();
+        
+        $fiesta->abonos()->attach($abono->id, [
+            'tipoPago' => $request->input('tipoPago'),
+            'pinConfirmacion' => $request->input('pinConfirmacion')
+        ]);
+        return redirect()->back()->with('success-message', 'Fiesta loquidada con éxito!');
+    }
     
     /**
     * Metodo para actualizar el campo de lo de liquidacion en la tabla de fiestas.
@@ -257,4 +286,6 @@ class FiestaController extends Controller
       
         return redirect()->back()->with('success-message', 'Fiesta liquidada con éxito!');
     }
+
+    
 }

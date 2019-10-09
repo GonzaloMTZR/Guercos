@@ -28,7 +28,7 @@
                               </div>
                           </div>
                           
-                          <input type="hidden" name="tipoPago" value="Pago en efectivo">
+                          <input type="hidden" name="tipoPago" value="Abono en efectivo">
 
                           <div class="modal-footer">
                               <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancelar</button>
@@ -53,7 +53,7 @@
                                   <input id="my-input" name="pinConfirmacion" class="form-control" type="text">
                               </div>
                             
-                              <input type="hidden" name="tipoPago" value="Pago con tarjeta">
+                              <input type="hidden" name="tipoPago" value="Abono con tarjeta">
                           </div>
 
 
@@ -92,7 +92,7 @@
                 <div class="tab-content modal-body">
                     <div class="tab-pane active" id="tab-efectivo-liquidacion" role="tabpanel">
                       
-                        <form method="POST" action="/fiestas/{{$fiesta->id}}/liquidarFiesta">
+                        <form method="POST" action="/fiestas/{{$fiesta->id}}/addLiquidacionEfectivo">
                           @csrf
 
                           <div class="modal-body">
@@ -102,7 +102,7 @@
                               </div>
                           </div>
                           
-                          <input type="hidden" name="tipoPago" value="Pago en efectivo">
+                          <input type="hidden" name="tipoPago" value="Liquidación en efectivo">
 
                           <div class="modal-footer">
                               <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancelar</button>
@@ -113,7 +113,7 @@
                     
                     <!-- Liquidar Con tarjeta -->
                     <div class="tab-pane" id="tab-tarjeta-liquidacion" role="tabpanel">
-                        <form method="POST" action="/fiestas/{{$fiesta->id}}/liquidarFiesta">
+                        <form method="POST" action="/fiestas/{{$fiesta->id}}/addLiquidacionTarjeta">
                           @csrf
 
                           <div class="modal-body">
@@ -127,7 +127,7 @@
                                   <input id="my-input" name="pinConfirmacion" class="form-control" type="text">
                               </div>
                             
-                              <input type="hidden" name="tipoPago" value="Pago con tarjeta">
+                              <input type="hidden" name="tipoPago" value="Liquidación tarjeta">
                           </div>
 
 

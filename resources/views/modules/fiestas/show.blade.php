@@ -116,11 +116,7 @@
                       <th scope="row">Comida para niño</th>
                       @foreach ($fiesta->paquetes as $item) 
                       <td>
-                        @foreach ($item->productos as $comida)
-                          <ul>
-                            <li>{{$comida->descripcion}}</li>
-                          </ul>
-                        @endforeach
+                        {{$item->pivot->comidaNino}}
                       </td>
                       @endforeach
                     </tr>
@@ -132,11 +128,7 @@
                       <th scope="row">Comida para adulto</th>
                       @foreach ($fiesta->paquetes as $item) 
                       <td>
-                        @foreach ($item->productos as $comida)
-                          <ul>
-                            <li>{{$comida->descripcion}}</li>
-                          </ul>
-                        @endforeach
+                          {{$item->pivot->comidaAdulto}}
                       </td>
                       @endforeach
                     </tr>
@@ -185,6 +177,24 @@
                       @endforeach
                       
                     </tr>
+                    <tr>
+                      <th>
+                        <div class="group-form">
+                          <a href="/fiestas/{{$fiesta->id}}/edit" class="btn btn-warning">Editar fiesta</a>
+                        </div>
+                      </th>
+                      <td>
+                        <div class="group-form">
+                          <form method="POST" action="/fiestas/{{$fiesta->id}}">
+                            @method('DELETE') 
+                            @csrf
+                              <button type="submit" class="btn btn-danger">Eliminar fiesta</button>
+                          </form>
+                        </div>
+                      </td>
+                        
+                      
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -224,7 +234,15 @@
                     </tr>
                     @foreach ($fiesta->abonos as $abono)
                     <tr>
-                      <th scope="row">Abono {{$abono->pivot->created_at->format('d/m/Y')}}</th>
+                      <th scope="row">Abono: {{$abono->pivot->tipoPago}} <br> 
+                        Fecha: {{$abono->pivot->created_at->format('d/m/Y')}} 
+                        @if ($abono->pivot->pinConfirmacion == null)
+                            
+                        @else
+                          <br>
+                          Número de confirmación: {{$abono->pivot->pinConfirmacion}}
+                        @endif
+                      </th>
                       <td>${{$abono->cantidadAbono}}.00</td>
                     </tr>
                     @endforeach

@@ -128,7 +128,7 @@ class PaquetesController extends Controller
     $paquetes = Paquetes::findOrFail($id);
     $paquetes->productos()->detach();
     $paquetes->delete();
-    return redirect('/paquetes')->with('success-message', 'Paquete eliminado con éxito!');;
+    return redirect('/paquetes')->with('success-message', 'Paquete eliminado con éxito!');
   }
 
   /**
