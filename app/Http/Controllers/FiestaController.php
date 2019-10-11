@@ -80,13 +80,6 @@ class FiestaController extends Controller
         $comidaNino = $request->input('comidaNino');
         $comidaAdulto = $request->input('comidaAdulto');
         $fiesta->save();
-       
-        /*$sync_data = [];
-        for($i = 0; $i < count($comidaNino); $i++){
-            $sync_data[$paquete_id[$i]] = ['comidaNino' => $comidaNino[$i], 'comidaAdulto' => $comidaAdulto[$i]];
-        }
-
-        $fiesta->paquetes()->sync($paquete_id, $sync_data);*/
 
         
         $fiesta->paquetes()->sync([
@@ -95,9 +88,8 @@ class FiestaController extends Controller
                     'comidaAdulto' => implode(",", $comidaAdulto),
             ]
         ]);
-            
         
-
+ 
         $cliente = new Cliente();
         $cliente->nombre = $request->input('nombrePapa');
         $cliente->nombreNiño = $request->input('nombreNiño');
@@ -111,9 +103,7 @@ class FiestaController extends Controller
 
         $cliente->save();
         
-        
         return redirect('/fiestas')->with('success-message', 'Fiesta agendada con exito!');
-
     }
 
     /**
@@ -249,6 +239,13 @@ class FiestaController extends Controller
         return redirect()->back()->with('success-message', 'Pago de abono realizado con éxito!');
     }
 
+    /**
+    * Los metodos addLiquidacionEfectivo y addLiquidacionTarjeta sirven para poder liquidar las fiestas
+    * se usa una relacion de muchos a muchos en fiestas y abonos y el metodo attach para poder insertar 
+    * los registros en la tabla intermedia.
+    *
+    * Ambas funciones reciben el id de la fiesta a la cual se desea agregar un abono.
+    */
     public function addLiquidacionEfectivo(Request $request, Fiesta $fiesta)
     {
         $abono = new abonos();
