@@ -23,7 +23,7 @@
             {{ session()->get('success-message') }}
         </div>
     @endif
-
+    <!--
     <div class="page-header card">
         <div class="row align-items-end">
             <div class="col-lg-8">
@@ -37,12 +37,12 @@
                                 <input type="text" class="form-control" placeholder="Buscar empleado...">
                                 <button type="submit " class="btn btn-primary input-group-addon" id="basic-addon1">Buscar</button>
                             </div>
-                        </form>-->
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
     <!-- Page body start -->
     <div class="page-body">
@@ -51,54 +51,255 @@
                 <div class="card">
                     <div class="card-block">
                       <div class="row">
-                        <div class="col-10"><h3>Generación de Venta</h3></div>
+                        <div class="col-10"><h3>Punto de Venta - Cocina</h3></div>
                         <div class="col-2"><b>TIKET: </b></div>
                       </div>
                       <div class="row">
                         <div class="col-8" style="background-color:#D3D3D3;">
                           <br>
+                          <b>Favoritos:</b>
+                          <br>
                           <div class="row">
                             <div class="col-3">
                               <div class="card prod-view">
                                 <div class="prod-item text-center">
-                                  <div class="prod-img">
-                                    <a href="#!" class="hvr-shrink">
-                                                  <img src="/imagenes/productos/logo-guercos.png" class="img-fluid o-hidden" alt="prod1.jpg">
-                                              </a>
-                                  </div>
                                   <div class="prod-info">
                                     <a href="#!" class="txt-muted">
                                       <h4>ADULTO + BAGUETTE</h4>
                                     </a>
-                                    <div class="m-b-10">
-                                      <a class="text-muted f-w-600">Stock: </a>
-                                      <label class="label label-danger"> 1</label>
-                                    </div>
                                     <span class="prod-price"><i class="icofont icofont-cur-dollar"></i>49.00</span>
                                   </div>
                                 </div>
                               </div>
                             </div>
                             <div class="col-3">
-                              <div class="card">
-                                Producto 2
+                              <div class="card prod-view">
+                                <div class="prod-item text-center">
+                                  <div class="prod-info">
+                                    <a href="#!" class="txt-muted">
+                                      <h4>ADULTO + BAGUETTE</h4>
+                                    </a>
+                                    <span class="prod-price"><i class="icofont icofont-cur-dollar"></i>49.00</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-3">
+                              <div class="card prod-view">
+                                <div class="prod-item text-center">
+                                  <div class="prod-info">
+                                    <a href="#!" class="txt-muted">
+                                      <h4>ADULTO + BAGUETTE</h4>
+                                    </a>
+                                    <span class="prod-price"><i class="icofont icofont-cur-dollar"></i>49.00</span>
+                                  </div>
+                                </div>
                               </div> 
                             </div>
                             <div class="col-3">
-                              <div class="card">
-                                Producto 3
-                              </div> 
-                            </div>
-                            <div class="col-3">
-                              <div class="card">
-                                Producto 4
+                              <div class="card prod-view">
+                                <div class="prod-item text-center">
+                                  <div class="prod-info">
+                                    <a href="#!" class="txt-muted">
+                                      <h4>ADULTO + BAGUETTE</h4>
+                                    </a>
+                                    <span class="prod-price"><i class="icofont icofont-cur-dollar"></i>49.00</span>
+                                  </div>
+                                </div>
                               </div> 
                             </div>
                             
                           </div>
+                          
+                          <b>Combos:</b>
+                          <br>
+                          <div class="row">
+                            <div class="col-3">
+                              <div class="card prod-view">
+                                <div class="prod-item text-center">
+                                  <div class="prod-info">
+                                    <a href="#!" class="txt-muted">
+                                      <h4>ADULTO + BAGUETTE</h4>
+                                    </a>
+                                    <span class="prod-price"><i class="icofont icofont-cur-dollar"></i>49.00</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-3">
+                              <div class="card prod-view">
+                                <div class="prod-item text-center">
+                                  <div class="prod-info">
+                                    <a href="#!" class="txt-muted">
+                                      <h4>ADULTO + BAGUETTE</h4>
+                                    </a>
+                                    <span class="prod-price"><i class="icofont icofont-cur-dollar"></i>49.00</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-3">
+                              <div class="card prod-view">
+                                <div class="prod-item text-center">
+                                  <div class="prod-info">
+                                    <a href="#!" class="txt-muted">
+                                      <h4>ADULTO + BAGUETTE</h4>
+                                    </a>
+                                    <span class="prod-price"><i class="icofont icofont-cur-dollar"></i>49.00</span>
+                                  </div>
+                                </div>
+                              </div> 
+                            </div>
+                            <div class="col-3">
+                              <div class="card prod-view">
+                                <div class="prod-item text-center">
+                                  <div class="prod-info">
+                                    <a href="#!" class="txt-muted">
+                                      <h4>ADULTO + BAGUETTE</h4>
+                                    </a>
+                                    <span class="prod-price"><i class="icofont icofont-cur-dollar"></i>49.00</span>
+                                  </div>
+                                </div>
+                              </div> 
+                            </div>
+                            
+                          </div>
+                          
+                          <b>Busqueda de Productos:</b>
+                          <div class="form-group row">
+                            <div class="col">
+                              <input type="text" class="form-control form-control-round" placeholder="Ingrese busqueda">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="card ">
+                                  <div class="slimScrollDiv" style="overflow: scroll; width: auto; height: 120px;"><ul class="scroll-list helix" style="overflow: hidden; width: auto; height: 300px;">
+                                      <li class="past">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="future">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="future">
+                                          <h6>Item2</h6>
+                                      </li>
+                                  </ul><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; top: 140px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 110.565px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          
                         </div>
                         <div class="col-4">
-                          Lista de Ventas
+                          <b>Lista de Pedido Actual</b>
+                           <div class="row">
+                            <div class="col">
+                              <div class="card ">
+                                  <div class="slimScrollDiv" style="overflow: scroll; width: auto; height: 300px;"><ul class="scroll-list helix" style="overflow: hidden; width: auto; height: 300px;">
+                                      <li class="past">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="past">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="">
+                                          <h6>Item2</h6>
+                                      </li>
+                                      <li class="future">
+                                          <h6>Item1</h6>
+                                      </li>
+                                      <li class="future">
+                                          <h6>Item2</h6>
+                                      </li>
+                                  </ul><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; top: 140px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 110.565px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
