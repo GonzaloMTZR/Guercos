@@ -210,11 +210,11 @@ class FiestaController extends Controller
     }
     
     /**
-    * Los metodos addAbonoEfectivo y addAbonoTarjeta sirven para poder agregar los abonos a las fiestas
+    * Funcion addAbonoEfectivo sirve para poder agregar los abonos que se hagan en efectivo a las fiestas
     * se usa una relacion de muchos a muchos en fiestas y abonos y el metodo attach para poder insertar 
     * los registros en la tabla intermedia.
-    *
-    * Ambas funciones reciben el id de la fiesta a la cual se desea agregar un abono.
+    * @param  \App\Fiesta  $fiesta
+    * @return \Illuminate\Http\Response 
     */
     public function addAbonoEfectivo(Request $request, Fiesta $fiesta)
     {
@@ -222,10 +222,20 @@ class FiestaController extends Controller
         $abono->cantidadAbono = $request->input('cantidadAbono');
         $abono->save();
         
-        $fiesta->abonos()->attach($abono->id, ['tipoPago' => $request->input('tipoPago')]); 
+        $fiesta->abonos()->attach($abono->id, [
+            'tipoPago' => $request->input('tipoPago')
+        ]); 
         return redirect()->back()->with('success-message', 'Pago de abono realizado con éxito!');
     }
-  
+
+    /**
+    * Funcion addAbonoTarjeta sirve para poder agregar los abonos que se hagan por medio de tarjeta a las fiestas
+    * se usa una relacion de muchos a muchos en fiestas y abonos y el metodo attach para poder insertar 
+    * los registros en la tabla intermedia.
+    * @param  \Illuminate\Http\Request  $request
+    * @param  \App\Fiesta  $fiesta
+    * @return \Illuminate\Http\Response 
+    */
     public function addAbonoTarjeta(Request $request, Fiesta $fiesta)
     {
         $abono = new abonos();
@@ -240,11 +250,12 @@ class FiestaController extends Controller
     }
 
     /**
-    * Los metodos addLiquidacionEfectivo y addLiquidacionTarjeta sirven para poder liquidar las fiestas
+    * Funcion addLiquidacionEfectivo sirve para poder liquidar la fiesta por pago en efectivo
     * se usa una relacion de muchos a muchos en fiestas y abonos y el metodo attach para poder insertar 
     * los registros en la tabla intermedia.
-    *
-    * Ambas funciones reciben el id de la fiesta a la cual se desea agregar un abono.
+    * @param  \Illuminate\Http\Request  $request
+    * @param  \App\Fiesta  $fiesta
+    * @return \Illuminate\Http\Response 
     */
     public function addLiquidacionEfectivo(Request $request, Fiesta $fiesta)
     {
@@ -252,10 +263,20 @@ class FiestaController extends Controller
         $abono->cantidadAbono = $request->input('liquidacion');
         $abono->save();
         
-        $fiesta->abonos()->attach($abono->id, ['tipoPago' => $request->input('tipoPago')]); 
+        $fiesta->abonos()->attach($abono->id, [
+            'tipoPago' => $request->input('tipoPago')
+        ]); 
         return redirect()->back()->with('success-message', 'Fiesta loquidada con éxito!');
     }
 
+    /**
+    * Funcion addLiquidacionTarjeta sirve para poder liquidar la fiesta por pago por tarjeta
+    * se usa una relacion de muchos a muchos en fiestas y abonos y el metodo attach para poder insertar 
+    * los registros en la tabla intermedia.
+    * @param  \Illuminate\Http\Request  $request
+    * @param  \App\Fiesta  $fiesta
+    * @return \Illuminate\Http\Response 
+    */
     public function addLiquidacionTarjeta(Request $request, Fiesta $fiesta)
     {
         $abono = new abonos();
@@ -271,6 +292,9 @@ class FiestaController extends Controller
     
     /**
     * Metodo para actualizar el campo de lo de liquidacion en la tabla de fiestas.
+    * @param  \Illuminate\Http\Request  $request
+    * @param  \App\Fiesta  $fiesta
+    * @return \Illuminate\Http\Response 
     * 
     * Recibe el id de la fiesta a la cual se va a liquidar el pago.
     */
