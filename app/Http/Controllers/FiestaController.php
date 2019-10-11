@@ -204,7 +204,7 @@ class FiestaController extends Controller
     {
         $fiestas = Fiesta::findOrFail($id);
         $fiestas->paquetes()->detach();
-        $fiesas->abonos()->detach();
+        $fiestas->abonos()->detach();
         $fiestas->delete();
         return redirect('/fiestas')->with('success-message', 'Fiesta eliminado con éxito!');;
     }
