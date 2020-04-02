@@ -206,7 +206,7 @@ class FiestaController extends Controller
         $fiestas->paquetes()->detach();
         $fiestas->abonos()->detach();
         $fiestas->delete();
-        return redirect('/fiestas')->with('success-message', 'Fiesta eliminado con éxito!');;
+        return redirect('/fiestas')->with('success-message', 'Fiesta eliminado con éxito!');
     }
     
     /**

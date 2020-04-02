@@ -57,7 +57,7 @@ class PuntoDeVentaEntradaController extends Controller
 
         $sync_data = [];
         for($i = 0; $i < count($producto_id); $i++){
-            $sync_data[$producto_id[$i]] = ['descuento' => $descuento[$i], 'cantidad' => $cantidad[$i]];
+            $sync_data[$producto_id[$i]] = ['cantidad' => $cantidad[$i], 'descuento' => $descuento[$i]];
         }
 
         $venta->productos()->sync($sync_data);
